@@ -1,6 +1,8 @@
 import model.Movie;
 import org.jnosql.artemis.DatabaseQualifier;
 import repository.MovieRepository;
+import service.TestsWithAggregation;
+import service.TestsWithoutRelationshipService;
 
 import javax.enterprise.inject.se.SeContainer;
 import javax.enterprise.inject.se.SeContainerInitializer;
@@ -9,25 +11,20 @@ public class Main {
 
 
     public static void main(String[] args) {
+        TestsWithoutRelationshipService testsWithoutRelationshipService = new TestsWithoutRelationshipService();
+        TestsWithAggregation agregationTests = new TestsWithAggregation();
+        //testsWithoutRelationshipService.Insert();
 
-        try (SeContainer container = SeContainerInitializer.newInstance().initialize()) {
+        //testsWithoutRelationshipService.Delete();
 
-            //Injetando o repositório
-            MovieRepository repository = container.select(MovieRepository.class)
-                    .select(DatabaseQualifier.ofDocument()).get();
-            Movie movie = new Movie();
+        //agregationTests.Insert();
 
-            movie.setId(3);
-            movie.setName("The Batman");
+        //agregationTests.Select();
 
-            repository.save(movie);
+        //agregationTests.Update();
 
-            var movieReturn = repository.findByName("The Batman");
-            System.out.println("Filme encontrado: " + movieReturn.getName());
+        agregationTests.Delete();
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 
     }
 

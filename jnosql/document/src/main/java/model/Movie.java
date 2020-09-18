@@ -4,10 +4,21 @@ import org.jnosql.artemis.Column;
 import org.jnosql.artemis.Entity;
 import org.jnosql.artemis.Id;
 
+import java.util.Random;
+
 @Entity("Movie")
 public class Movie {
     public Movie(){
 
+    }
+    private static final Random RANDOM = new Random();
+
+    public static long generateId() {
+        return RANDOM.nextLong();
+    }
+    public Movie(String name){
+        this.id = generateId();
+        this.name = name;
     }
 
     @Id
@@ -16,12 +27,6 @@ public class Movie {
     private String name;
 
 
-    public long getId() {
-        return id;
-    }
-    public void setId(long id) {
-        this.id = id;
-    }
     public String getName() {
         return name;
     }
@@ -30,5 +35,7 @@ public class Movie {
     }
 
 
-
+    public long getId() {
+        return id;
+    }
 }
