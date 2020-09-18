@@ -1,6 +1,7 @@
 import model.Movie;
 import org.jnosql.artemis.DatabaseQualifier;
 import repository.MovieRepository;
+import service.CompositionTestsService;
 import service.TestsWithAggregation;
 import service.TestsWithoutRelationshipService;
 
@@ -13,6 +14,7 @@ public class Main {
     public static void main(String[] args) {
         TestsWithoutRelationshipService testsWithoutRelationshipService = new TestsWithoutRelationshipService();
         TestsWithAggregation agregationTests = new TestsWithAggregation();
+        CompositionTestsService compositionTests = new CompositionTestsService();
         //testsWithoutRelationshipService.Insert();
 
         //testsWithoutRelationshipService.Delete();
@@ -23,7 +25,11 @@ public class Main {
 
         //agregationTests.Update();
 
-        agregationTests.Delete();
+        //agregationTests.Delete();
+
+        //compositionTests.Insert();
+
+        compositionTests.Select();
 
 
     }

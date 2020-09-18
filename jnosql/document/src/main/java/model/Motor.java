@@ -2,33 +2,29 @@ package model;
 
 import org.jnosql.artemis.Column;
 import org.jnosql.artemis.Embeddable;
+import org.jnosql.artemis.Entity;
 import org.jnosql.artemis.Id;
 
-@Embeddable
+@Entity
 public class Motor {
 
     public Motor(){
 
     }
 
+    public Motor(double power){
+        this.Power = power;
+    }
+
     @Column
     private String Name;
 
     @Column
-    private float Power;
+    private double Power;
 
 
 
-    public String getName() {
-        return Name;
-    }
-
-    public void setName(String name) {
-        Name = name;
-    }
-
-
-    public float getPower() {
+    public double getPower() {
         return Power;
     }
 

@@ -31,4 +31,20 @@ public class Car {
 
     @Column
     private  Motor Motor;
+
+    public model.Motor getMotor() {
+        return Motor;
+    }
+
+    public void setMotor(model.Motor motor) {
+        Motor = motor;
+    }
+
+    public String getName() {
+        return Name;
+    }
+
+    public void setName(String name) {
+        Name = name;
+    }
 }
