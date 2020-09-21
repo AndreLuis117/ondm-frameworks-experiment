@@ -28,6 +28,7 @@ public class NoRelationshipTestsService implements ServiceBase {
                 System.out.println("Objeto salvo no banco de dados com sucesso!");
             else
                 System.out.println("O objeto não foi salvo no banco de dados.");
+
         } catch (Exception e) {
             e.printStackTrace();
         }
