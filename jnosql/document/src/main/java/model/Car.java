@@ -47,4 +47,8 @@ public class Car {
     public void setName(String name) {
         Name = name;
     }
+
+    public long getId() {
+        return Id;
+    }
 }

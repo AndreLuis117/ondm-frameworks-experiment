@@ -44,11 +44,25 @@ public class CompositionTestsService implements ServiceBase{
 
     @Override
     public void Update() {
+        Car car = new Car("Monza", new Motor(100.5));
 
+        carRepository.save(car);
+
+        var newMotor = car.getMotor();
+
+        newMotor.setPower(240.0);
+
+        car.setMotor(newMotor);
+
+        carRepository.save(car);
     }
 
     @Override
     public void Delete() {
+        Car car = new Car("Renault Clio", new Motor(70.2));
 
+        carRepository.save(car);
+
+        carRepository.deleteById(car.getId());
     }
 }

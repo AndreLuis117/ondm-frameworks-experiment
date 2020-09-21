@@ -28,7 +28,7 @@ public class Motor {
         return Power;
     }
 
-    public void setPower(float power) {
+    public void setPower(double power) {
         Power = power;
     }
 }

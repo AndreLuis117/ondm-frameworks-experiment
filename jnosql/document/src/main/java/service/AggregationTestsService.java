@@ -12,9 +12,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class TestsWithAggregation implements ServiceBase {
+public class AggregationTestsService implements ServiceBase {
 
-    public TestsWithAggregation(){
+    public AggregationTestsService(){
         container = SeContainerInitializer.newInstance().initialize();
         orderRepository = container.select(OrderRepository.class)
                 .select(DatabaseQualifier.ofDocument()).get();

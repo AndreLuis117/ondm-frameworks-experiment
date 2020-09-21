@@ -1,19 +1,13 @@
-import model.Movie;
-import org.jnosql.artemis.DatabaseQualifier;
-import repository.MovieRepository;
 import service.CompositionTestsService;
-import service.TestsWithAggregation;
-import service.TestsWithoutRelationshipService;
-
-import javax.enterprise.inject.se.SeContainer;
-import javax.enterprise.inject.se.SeContainerInitializer;
+import service.AggregationTestsService;
+import service.NoRelationshipTestsService;
 
 public class Main {
 
 
     public static void main(String[] args) {
-        TestsWithoutRelationshipService testsWithoutRelationshipService = new TestsWithoutRelationshipService();
-        TestsWithAggregation agregationTests = new TestsWithAggregation();
+        NoRelationshipTestsService noRelationshipTestsService = new NoRelationshipTestsService();
+        AggregationTestsService agregationTests = new AggregationTestsService();
         CompositionTestsService compositionTests = new CompositionTestsService();
         //testsWithoutRelationshipService.Insert();
 
@@ -29,7 +23,11 @@ public class Main {
 
         //compositionTests.Insert();
 
-        compositionTests.Select();
+        //compositionTests.Select();
+
+        //compositionTests.Update();
+
+        //compositionTests.Delete();
 
 
     }
