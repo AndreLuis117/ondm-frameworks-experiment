@@ -19,9 +19,8 @@ public class AggregationTestsService implements ServiceBase {
         orderRepository = container.select(OrderRepository.class)
                 .select(DatabaseQualifier.ofDocument()).get();
     }
+    
     SeContainer container;
-
-    //Injetando o repositório
     OrderRepository orderRepository;
 
     @Override

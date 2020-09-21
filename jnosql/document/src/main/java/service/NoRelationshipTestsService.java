@@ -49,22 +49,42 @@ public class NoRelationshipTestsService implements ServiceBase {
     }
 
     public void Delete(){
-        //Novo registro
-        Movie movie = new Movie("Gambit");
 
-        movieRepository.save(movie);
+        try{
+            Movie movie = new Movie("Gambit");
 
-        //Delete
-        movieRepository.deleteById(movie.getId());
+            movieRepository.save(movie);
+
+            movieRepository.deleteById(movie.getId());
+
+            if(!movieRepository.existsById(movie.getId()))
+                System.out.println("Objeto deletado com sucesso!");
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
     public void Update(){
 
-        Movie movie = new Movie("Indiana Jones e Os Caçadores da Arca");
+        try{
+            Movie movie = new Movie("Indiana Jones e Os Caçadores da Arca");
 
-        movieRepository.save(movie);
+            movieRepository.save(movie);
 
-        movie.setName("Indiana Jones e Os Caçadores da Arca Perdida");
+            movie.setName("Indiana Jones e Os Caçadores da Arca Perdida");
 
-        movieRepository.save(movie);
+            movieRepository.save(movie);
+
+            var movieReturn = movieRepository.findByName("Indiana Jones e Os Caçadores da Arca Perdida");
+
+            if(movieReturn != null)
+                System.out.println("Objeto atualizado no banco de dados!");
+            else
+                System.out.println("O obejto não foi atualizado no banco de dados.");
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
 }
