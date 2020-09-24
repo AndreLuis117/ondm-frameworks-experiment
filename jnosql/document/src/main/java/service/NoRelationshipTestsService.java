@@ -60,6 +60,9 @@ public class NoRelationshipTestsService implements ServiceBase {
 
             if(!movieRepository.existsById(movie.getId()))
                 System.out.println("Objeto deletado com sucesso!");
+            else
+                System.out.println("Objeto não foi deletado");
+
         } catch (Exception e){
             e.printStackTrace();
         }

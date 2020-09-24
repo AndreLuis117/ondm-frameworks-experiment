@@ -96,8 +96,10 @@ public class AggregationTestsService implements ServiceBase {
 
             var orderReturn = orderRepository.findById(order.getId());
 
-            if(orderReturn.get().getOrderItem().contains(newOrderItem))
+            if(orderReturn.get().getOrderItem().stream().anyMatch(x -> x.getProduct().equals("Mochila")))
                 System.out.println("O objeto foi atualizado com sucesso!");
+            else
+                System.out.println("O obejto não foi atualizado no banco de dados.");
 
         }catch (Exception e){
             e.printStackTrace();
@@ -122,6 +124,8 @@ public class AggregationTestsService implements ServiceBase {
 
             if(!orderRepository.existsById(order.getId()))
                 System.out.println("O objeto foi deletado com sucesso!");
+            else
+            System.out.println("Objeto não foi deletado");
 
         } catch (Exception e){
             e.printStackTrace();
