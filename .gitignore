@@ -1,4 +1,10 @@
 target
+.iml
 .settings
 .classpath
 .project
+/.iml
+/ondm-tests.iml
+/jnosql/mongodb/mongodb.iml
+*.iml
+/.idea/
