@@ -3,7 +3,6 @@ package service;
 import model.Order;
 import model.OrderItems;
 import org.jnosql.artemis.DatabaseQualifier;
-import repository.MovieRepository;
 import repository.OrderRepository;
 
 import javax.enterprise.inject.se.SeContainer;
@@ -24,7 +23,7 @@ public class AggregationTestsService implements ServiceBase {
     OrderRepository orderRepository;
 
     @Override
-    public void Insert() {
+    public void insert() {
 
         try {
             List<OrderItems> orderItems = new ArrayList<OrderItems>();
@@ -47,7 +46,7 @@ public class AggregationTestsService implements ServiceBase {
     }
 
     @Override
-    public void Select() {
+    public void select() {
 
         try {
             List<OrderItems> orderItems = new ArrayList<OrderItems>();
@@ -79,7 +78,7 @@ public class AggregationTestsService implements ServiceBase {
     }
 
     @Override
-    public void Update() {
+    public void update() {
 
         try{
             List<OrderItems> orderItems = new ArrayList<OrderItems>();
@@ -108,7 +107,7 @@ public class AggregationTestsService implements ServiceBase {
     }
 
     @Override
-    public void Delete() {
+    public void delete() {
 
         try{
             List<OrderItems> orderItems = new ArrayList<OrderItems>();

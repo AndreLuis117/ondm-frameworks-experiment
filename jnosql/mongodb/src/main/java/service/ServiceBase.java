@@ -2,11 +2,11 @@ package service;
 
 public interface ServiceBase {
 
-    void Insert();
+    void insert();
 
-    void Select();
+    void select();
 
-    void Update();
+    void update();
 
-    void Delete();
+    void delete();
 }

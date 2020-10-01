@@ -1,11 +1,9 @@
 package service;
 
-import model.Car;
-import model.Motor;
-import model.OrderItems;
+import model.Address;
+import model.Client;
 import org.jnosql.artemis.DatabaseQualifier;
-import repository.CarRepository;
-import repository.OrderRepository;
+import repository.ClientRepository;
 
 import javax.enterprise.inject.se.SeContainer;
 import javax.enterprise.inject.se.SeContainerInitializer;
@@ -14,22 +12,23 @@ public class CompositionTestsService implements ServiceBase{
 
     public CompositionTestsService(){
         container = SeContainerInitializer.newInstance().initialize();
-        carRepository = container.select(CarRepository.class)
+        clientRepository = container.select(ClientRepository.class)
                 .select(DatabaseQualifier.ofDocument()).get();
     }
 
     SeContainer container;
-    CarRepository carRepository;
+    ClientRepository clientRepository;
 
     @Override
-    public void Insert() {
+    public void insert() {
 
         try{
-            Car car = new Car("Celta", new Motor(70.0));
+            Address address = new Address("Rio Negrinho", "Rua Marechal Teodoro", "SC", 178);
+            Client client = new Client("John Marston", address);
 
-            carRepository.save(car);
+            clientRepository.save(client);
 
-            if(carRepository.existsById(car.getId()))
+            if(clientRepository.existsById(client.getId()))
                 System.out.println("Objeto salvo no banco de dados com sucesso!");
             else
                 System.out.println("O objeto não foi salvo no banco de dados.");
@@ -41,24 +40,29 @@ public class CompositionTestsService implements ServiceBase{
     }
 
     @Override
-    public void Select() {
+    public void select() {
 
         try {
-            Car car = new Car("Ford KA", new Motor(72.0));
-            Car car2 = new Car("GOL G4", new Motor(80.0));
-            Car car3 = new Car("POLO", new Motor(85.4));
+            Address address = new Address("Joinville", "Rua da saudade", "SC", 898);
+            Client client = new Client("Marco Reus", address);
 
-            carRepository.save(car);
+            Address address2 = new Address("Campo Alegre", "Rua General Osvaldo", "SC", 1009);
+            Client client2 = new Client("Arthur Morgan", address2);
 
-            var carReturn = carRepository.findAll();
+            Address address3 = new Address("Blumenau", "Rua João das Neves", "SC", 980);
+            Client client3 = new Client("Keanu Reeves", address3);
 
-            if(!carReturn.isEmpty()){
+            clientRepository.save(client);
+
+            var clientReturn = clientRepository.findAll();
+
+            if(!clientReturn.isEmpty()){
                 System.out.println("Objetos recuperados com sucesso!");
                 System.out.println("Carros:");
 
-                for (Car carInDb : carReturn)
+                for (Client clientInDb : clientReturn)
                 {
-                    System.out.println(carInDb.getName());
+                    System.out.println(clientInDb.getName());
                 }
             }else
                 System.out.println("O objeto não foi recuperado do banco de dados.");
@@ -70,24 +74,21 @@ public class CompositionTestsService implements ServiceBase{
     }
 
     @Override
-    public void Update() {
+    public void update() {
 
         try{
-            Car car = new Car("Monza", new Motor(100.5));
+            Address address = new Address("Joinville", "Rua XV de novembro", "SC", 1100);
+            Client client = new Client("Thomas A. Anderson", address);
 
-            carRepository.save(car);
+            clientRepository.save(client);
 
-            var newMotor = car.getMotor();
+            client.getAddress().setPostalCode(1111);
 
-            newMotor.setPower(240.0);
+            clientRepository.save(client);
 
-            car.setMotor(newMotor);
+            var clientReturn = clientRepository.findById(client.getId());
 
-            carRepository.save(car);
-
-            var carReturn = carRepository.findById(car.getId());
-
-            if(carReturn.get().getMotor().getPower() == newMotor.getPower())
+            if(clientReturn.get().getAddress().getPostalCode() == client.getAddress().getPostalCode())
                 System.out.println("Objeto atualizado com sucesso!");
             else
                 System.out.println("O obejto não foi atualizado no banco de dados.");
@@ -99,16 +100,17 @@ public class CompositionTestsService implements ServiceBase{
     }
 
     @Override
-    public void Delete() {
+    public void delete() {
 
         try {
-            Car car = new Car("Renault Clio", new Motor(70.2));
+            Address address = new Address("Chapecó", "Rua João dos Santos", "SC", 460);
+            Client client = new Client("John Wick", address);
 
-            carRepository.save(car);
+            clientRepository.save(client);
 
-            carRepository.deleteById(car.getId());
+            clientRepository.deleteById(client.getId());
 
-            if(!carRepository.existsById(car.getId()))
+            if(!clientRepository.existsById(client.getId()))
                 System.out.println("Objeto deletado com sucesso!");
             else
                 System.out.println("Objeto não foi deletado");

@@ -7,37 +7,35 @@ import org.jnosql.artemis.Id;
 import java.util.Random;
 
 @Entity
-public class Car {
-    public Car(){
+public class Client {
+
+    public Client(){
 
     }
+
+    public Client(String name, Address address){
+        this.Name = name;
+        this.Address = address;
+    }
+
     private static final Random RANDOM = new Random();
 
     public static long generateId() {
         return RANDOM.nextLong();
     }
 
-    public Car(String name, Motor motor){
-        this.Id = generateId();
-        this.Name = name;
-        this.Motor = motor;
-    }
-
     @Id
     private long Id;
 
-    @Column
-    private  String Name;
 
     @Column
-    private  Motor Motor;
+    private String Name;
 
-    public model.Motor getMotor() {
-        return Motor;
-    }
+    @Column
+    private Address Address;
 
-    public void setMotor(model.Motor motor) {
-        Motor = motor;
+    public long getId() {
+        return Id;
     }
 
     public String getName() {
@@ -48,7 +46,11 @@ public class Car {
         Name = name;
     }
 
-    public long getId() {
-        return Id;
+    public model.Address getAddress() {
+        return Address;
+    }
+
+    public void setAddress(model.Address address) {
+        Address = address;
     }
 }

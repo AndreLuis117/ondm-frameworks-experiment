@@ -1,6 +1,5 @@
 package repository;
 
-import model.Movie;
 import model.Order;
 import org.jnosql.artemis.Repository;
 

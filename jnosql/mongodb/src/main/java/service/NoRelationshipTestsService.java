@@ -1,8 +1,8 @@
 package service;
 
-import model.Movie;
+import model.Status;
 import org.jnosql.artemis.DatabaseQualifier;
-import repository.MovieRepository;
+import repository.StatusRepository;
 
 import javax.enterprise.inject.se.SeContainer;
 import javax.enterprise.inject.se.SeContainerInitializer;
@@ -11,20 +11,20 @@ public class NoRelationshipTestsService implements ServiceBase {
 
     public NoRelationshipTestsService(){
         container = SeContainerInitializer.newInstance().initialize();
-        movieRepository = container.select(MovieRepository.class)
+        statusRepository = container.select(StatusRepository.class)
                 .select(DatabaseQualifier.ofDocument()).get();
     }
 
     SeContainer container;
-    MovieRepository movieRepository;
+    StatusRepository statusRepository;
 
-    public void Insert(){
+    public void insert(){
         try {
-            Movie movie = new Movie("Avengers");
+            Status status = new Status("Aguardando pagamento");
 
-            movieRepository.save(movie);
+            statusRepository.save(status);
 
-            if(movieRepository.existsById(movie.getId()))
+            if(statusRepository.existsById(status.getId()))
                 System.out.println("Objeto salvo no banco de dados com sucesso!");
             else
                 System.out.println("O objeto não foi salvo no banco de dados.");
@@ -34,31 +34,32 @@ public class NoRelationshipTestsService implements ServiceBase {
         }
     }
 
-    public void Select(){
+    public void select(){
         try{
-            Movie movie = new Movie("The Batman");
+            Status status = new Status("Em separação");
 
-            movieRepository.save(movie);
+            statusRepository.save(status);
 
-            var movieReturn = movieRepository.findByName("The Batman");
+            var statusReturn = statusRepository.findByName("Em separação");
 
-            System.out.println("Filme encontrado: " + movieReturn.getName());
+            if(statusReturn != null)
+                System.out.println(statusReturn.getDescription());
 
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void Delete(){
+    public void delete(){
 
         try{
-            Movie movie = new Movie("Gambit");
+            Status status = new Status("Aguardando coleta da transportadora");
 
-            movieRepository.save(movie);
+            statusRepository.save(status);
 
-            movieRepository.deleteById(movie.getId());
+            statusRepository.deleteById(status.getId());
 
-            if(!movieRepository.existsById(movie.getId()))
+            if(!statusRepository.existsById(status.getId()))
                 System.out.println("Objeto deletado com sucesso!");
             else
                 System.out.println("Objeto não foi deletado");
@@ -68,18 +69,18 @@ public class NoRelationshipTestsService implements ServiceBase {
         }
 
     }
-    public void Update(){
+    public void update(){
 
         try{
-            Movie movie = new Movie("Indiana Jones e Os Caçadores da Arca");
+            Status status = new Status("Em transrte");
 
-            movieRepository.save(movie);
+            statusRepository.save(status);
 
-            movie.setName("Indiana Jones e Os Caçadores da Arca Perdida");
+            status.setDescription("Em transporte");
 
-            movieRepository.save(movie);
+            statusRepository.save(status);
 
-            var movieReturn = movieRepository.findByName("Indiana Jones e Os Caçadores da Arca Perdida");
+            var movieReturn = statusRepository.findByName("Em transporte");
 
             if(movieReturn != null)
                 System.out.println("Objeto atualizado no banco de dados!");

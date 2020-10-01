@@ -1,10 +1,8 @@
 package service;
 
-import model.Car;
-import model.Dog;
-import model.Motor;
+import model.Electronic;
 import org.jnosql.artemis.DatabaseQualifier;
-import repository.DogRepository;
+import repository.ElectronicRepository;
 
 import javax.enterprise.inject.se.SeContainer;
 import javax.enterprise.inject.se.SeContainerInitializer;
@@ -13,23 +11,23 @@ public class InheritanceTestsService implements ServiceBase {
 
     public InheritanceTestsService(){
         container = SeContainerInitializer.newInstance().initialize();
-        dogRepository = container.select(DogRepository.class)
+        electronicRepository = container.select(ElectronicRepository.class)
                 .select(DatabaseQualifier.ofDocument()).get();
     }
 
     SeContainer container;
-    DogRepository dogRepository;
+    ElectronicRepository electronicRepository;
 
 
     @Override
-    public void Insert() {
+    public void insert() {
 
         try{
-            Dog dog = new Dog("Dogmeat", "Canis familiaris");
+            Electronic electronic = new Electronic("Xbox One X", 220);
 
-            dogRepository.save(dog);
+            electronicRepository.save(electronic);
 
-            if(dogRepository.existsById(dog.getId()))
+            if(electronicRepository.existsById(electronic.getId()))
                 System.out.println("Objeto salvo no banco de dados com sucesso!");
             else
                 System.out.println("O objeto não foi salvo no banco de dados.");
@@ -41,16 +39,16 @@ public class InheritanceTestsService implements ServiceBase {
     }
 
     @Override
-    public void Select() {
+    public void select() {
 
         try{
-            Dog dog = new Dog("Chop", "Canis familiaris");
+            Electronic electronic = new Electronic("Xbox One X", 220);
 
-            dogRepository.save(dog);
+            electronicRepository.save(electronic);
 
-            var dogReturn = dogRepository.findById(dog.getId());
+            var electronicReturn = electronicRepository.findById(electronic.getId());
 
-            if (dogReturn.isPresent())
+            if (electronicReturn.isPresent())
                 System.out.println("Objeto recuperado do banco de dados!");
             else
                 System.out.println("O objeto não foi recuperado do banco de dados.");
@@ -63,20 +61,20 @@ public class InheritanceTestsService implements ServiceBase {
     }
 
     @Override
-    public void Update() {
+    public void update() {
 
         try{
-            Dog dog = new Dog("Chop", "Canis familiaris");
+            Electronic electronic = new Electronic("PS4", 110);
 
-            dogRepository.save(dog);
+            electronicRepository.save(electronic);
 
-            dog.setSpecies("Canis familiaris");
-            dog.setName("Boomer");
-            dogRepository.save(dog);
+            electronic.setVoltage(220);
 
-            var dogReturn = dogRepository.findById(dog.getId());
+            electronicRepository.save(electronic);
 
-            if(dogReturn.get().getName().equals(dog.getName()) && dogReturn.get().getSpecies().equals(dog.getSpecies()))
+            var dogReturn = electronicRepository.findById(electronic.getId());
+
+            if(dogReturn.get().getVoltage() == electronic.getVoltage())
                 System.out.println("Objeto atualizado com sucesso!");
             else
                 System.out.println("O obejto não foi atualizado no banco de dados.");
@@ -87,16 +85,16 @@ public class InheritanceTestsService implements ServiceBase {
     }
 
     @Override
-    public void Delete() {
+    public void delete() {
 
         try{
-            Dog dog = new Dog("D-Dog", "Canis familiaris");
+            Electronic electronic = new Electronic("TV SAMSUNG 4K RU7100", 220);
 
-            dogRepository.save(dog);
+            electronicRepository.save(electronic);
 
-            dogRepository.deleteById(dog.getId());
+            electronicRepository.deleteById(electronic.getId());
 
-            if(!dogRepository.existsById(dog.getId()))
+            if(!electronicRepository.existsById(electronic.getId()))
                 System.out.println("Objeto deletado com sucesso!");
             else
                 System.out.println("Objeto não foi deletado");

@@ -29,10 +29,10 @@ public class Main {
         //compositionTests.Update();
         //compositionTests.Delete();
 
-        inheritanceTests.Insert();
-        inheritanceTests.Select();
-        inheritanceTests.Update();
-        inheritanceTests.Delete();
+        inheritanceTests.update();
+        inheritanceTests.insert();
+        inheritanceTests.select();
+        inheritanceTests.delete();
 
     }
 
