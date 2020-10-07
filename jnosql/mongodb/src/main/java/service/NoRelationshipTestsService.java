@@ -3,6 +3,7 @@ package service;
 import model.Status;
 import org.jnosql.artemis.DatabaseQualifier;
 import repository.StatusRepository;
+import utilities.Printer;
 
 import javax.enterprise.inject.se.SeContainer;
 import javax.enterprise.inject.se.SeContainerInitializer;
@@ -18,6 +19,13 @@ public class NoRelationshipTestsService implements ServiceBase {
     SeContainer container;
     StatusRepository statusRepository;
 
+    public void runAll(){
+        insert();
+        select();
+        update();
+        delete();
+    }
+
     public void insert(){
         try {
             Status status = new Status("Aguardando pagamento");
@@ -25,10 +33,9 @@ public class NoRelationshipTestsService implements ServiceBase {
             statusRepository.save(status);
 
             if(statusRepository.existsById(status.getId()))
-                System.out.println("Objeto salvo no banco de dados com sucesso!");
+                Printer.insertSuccess();
             else
-                System.out.println("O objeto não foi salvo no banco de dados.");
-
+                Printer.insertFailure();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -40,10 +47,15 @@ public class NoRelationshipTestsService implements ServiceBase {
 
             statusRepository.save(status);
 
-            var statusReturn = statusRepository.findByName("Em separação");
+            var statusReturn = statusRepository.findByName(status.getName());
 
-            if(statusReturn != null)
-                System.out.println(statusReturn.getDescription());
+            if(statusReturn != null){
+                Printer.selectSuccess();
+                System.out.println("Status: ");
+                System.out.println(statusReturn.getName());
+            }else{
+                Printer.selectFailure();
+            }
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -60,9 +72,9 @@ public class NoRelationshipTestsService implements ServiceBase {
             statusRepository.deleteById(status.getId());
 
             if(!statusRepository.existsById(status.getId()))
-                System.out.println("Objeto deletado com sucesso!");
+                Printer.deleteSuccess();
             else
-                System.out.println("Objeto não foi deletado");
+                Printer.deleteFailure();
 
         } catch (Exception e){
             e.printStackTrace();
@@ -76,16 +88,17 @@ public class NoRelationshipTestsService implements ServiceBase {
 
             statusRepository.save(status);
 
-            status.setDescription("Em transporte");
+            status.setName("Em transporte");
 
             statusRepository.save(status);
 
-            var movieReturn = statusRepository.findByName("Em transporte");
+            var movieReturn = statusRepository.findById(status.getId());
 
-            if(movieReturn != null)
-                System.out.println("Objeto atualizado no banco de dados!");
+
+            if(movieReturn.get().getName().equals(status.getName()))
+                Printer.updateSuccess();
             else
-                System.out.println("O obejto não foi atualizado no banco de dados.");
+                Printer.updateFailure();
         }
         catch (Exception e){
             e.printStackTrace();

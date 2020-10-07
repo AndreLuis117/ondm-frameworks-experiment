@@ -6,7 +6,7 @@ import org.jnosql.artemis.Id;
 
 import java.util.Random;
 
-@Entity("OrderItems")
+@Entity
 public class OrderItems {
 
     public OrderItems(){
@@ -19,22 +19,27 @@ public class OrderItems {
         return RANDOM.nextLong();
     }
 
-    public OrderItems(String product){
+    public OrderItems(Product product){
         this.Id = generateId();
-        this.product = product;
+        this.Product = product;
     }
 
     @Id
     private long Id;
 
     @Column
-    private  String product;
+    private Product Product;
 
-    public String getProduct() {
-        return product;
+
+    public long getId() {
+        return Id;
     }
 
-    public void setProduct(String product) {
-        this.product = product;
+    public Product getProduct() {
+        return Product;
+    }
+
+    public void setProduct(model.Product product) {
+        Product = product;
     }
 }

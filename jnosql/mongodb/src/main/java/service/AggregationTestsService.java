@@ -1,43 +1,45 @@
 package service;
 
-import model.Order;
-import model.OrderItems;
+import model.Address;
+import model.Client;
 import org.jnosql.artemis.DatabaseQualifier;
-import repository.OrderRepository;
+import repository.ClientRepository;
+import utilities.Printer;
 
 import javax.enterprise.inject.se.SeContainer;
 import javax.enterprise.inject.se.SeContainerInitializer;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 
-public class AggregationTestsService implements ServiceBase {
+public class AggregationTestsService implements ServiceBase{
 
     public AggregationTestsService(){
         container = SeContainerInitializer.newInstance().initialize();
-        orderRepository = container.select(OrderRepository.class)
+        clientRepository = container.select(ClientRepository.class)
                 .select(DatabaseQualifier.ofDocument()).get();
     }
 
     SeContainer container;
-    OrderRepository orderRepository;
+    ClientRepository clientRepository;
+
+    public void runAll(){
+        insert();
+        select();
+        update();
+        delete();
+    }
 
     @Override
     public void insert() {
 
-        try {
-            List<OrderItems> orderItems = new ArrayList<OrderItems>();
-            orderItems.add(new OrderItems("Xbox one"));
-            orderItems.add(new OrderItems("Ps4"));
-            orderItems.add(new OrderItems("Nintendo Switch"));
-            Order order = new Order(orderItems);
+        try{
+            Address address = new Address("Rio Negrinho", "Rua Marechal Teodoro", "SC", 178);
+            Client client = new Client("John Marston", address);
 
-            orderRepository.save(order);
+            clientRepository.save(client);
 
-            if(orderRepository.existsById(order.getId()))
-                System.out.println("Objeto salvo no banco de dados com sucesso!");
+            if(clientRepository.existsById(client.getId()))
+                Printer.insertSuccess();
             else
-                System.out.println("O objeto não foi salvo no banco de dados.");
+                Printer.insertFailure();
 
         }catch (Exception e){
             e.printStackTrace();
@@ -49,29 +51,33 @@ public class AggregationTestsService implements ServiceBase {
     public void select() {
 
         try {
-            List<OrderItems> orderItems = new ArrayList<OrderItems>();
-            orderItems.add(new OrderItems("GTA V"));
-            orderItems.add(new OrderItems("Mafia 3"));
-            orderItems.add(new OrderItems("Forza Horizon 3"));
-            orderItems.add(new OrderItems("Skate 3"));
-            Order order = new Order(orderItems);
+            Address address = new Address("Joinville", "Rua da saudade", "SC", 898);
+            Client client = new Client("Marco Reus", address);
 
-            orderRepository.save(order);
+            Address address2 = new Address("Campo Alegre", "Rua General Osvaldo", "SC", 1009);
+            Client client2 = new Client("Arthur Morgan", address2);
 
-            Optional<Order> orderReturn = orderRepository.findById(order.getId());
+            Address address3 = new Address("Blumenau", "Rua João das Neves", "SC", 980);
+            Client client3 = new Client("Keanu Reeves", address3);
 
-            if(orderReturn.isPresent()){
-                System.out.println("Objeto recuperado do banco de dados!");
-                System.out.println("Itens:");
+            clientRepository.save(client);
+            clientRepository.save(client2);
+            clientRepository.save(client3);
 
-                for (OrderItems orderItem : orderReturn.get().getOrderItem())
+            var clientReturn = clientRepository.findAll();
+
+            if(!clientReturn.isEmpty()){
+                Printer.selectSuccess();
+                System.out.println("Clientes:");
+
+                for (Client clientInDb : clientReturn)
                 {
-                    System.out.println(orderItem.getProduct());
+                    System.out.println(clientInDb.getName());
                 }
             }else
-                System.out.println("O objeto não foi recuperado do banco de dados.");
+                Printer.selectFailure();
 
-        } catch (Exception e){
+        }catch (Exception e){
             e.printStackTrace();
         }
 
@@ -81,26 +87,23 @@ public class AggregationTestsService implements ServiceBase {
     public void update() {
 
         try{
-            List<OrderItems> orderItems = new ArrayList<OrderItems>();
-            orderItems.add(new OrderItems("Caneta"));
-            orderItems.add(new OrderItems("Caderno"));
-            orderItems.add(new OrderItems("Lápis"));
-            orderItems.add(new OrderItems("Estojo"));
-            Order order = new Order(orderItems);
+            Address address = new Address("Joinville", "Rua XV de novembro", "SC", 1100);
+            Client client = new Client("Thomas A. Anderson", address);
 
-            orderRepository.save(order);
-            var newOrderItem = new OrderItems("Mochila");
-            order.getOrderItem().add(newOrderItem);
-            orderRepository.save(order);
+            clientRepository.save(client);
 
-            var orderReturn = orderRepository.findById(order.getId());
+            client.getAddress().setPostalCode(1111);
 
-            if(orderReturn.get().getOrderItem().stream().anyMatch(x -> x.getProduct().equals("Mochila")))
-                System.out.println("O objeto foi atualizado com sucesso!");
+            clientRepository.save(client);
+
+            var clientReturn = clientRepository.findById(client.getId());
+
+            if(clientReturn.get().getAddress().getPostalCode() == client.getAddress().getPostalCode())
+                Printer.updateSuccess();
             else
-                System.out.println("O obejto não foi atualizado no banco de dados.");
+                Printer.updateFailure();
 
-        }catch (Exception e){
+        } catch (Exception e){
             e.printStackTrace();
         }
 
@@ -109,27 +112,21 @@ public class AggregationTestsService implements ServiceBase {
     @Override
     public void delete() {
 
-        try{
-            List<OrderItems> orderItems = new ArrayList<OrderItems>();
-            orderItems.add(new OrderItems("TV SAMSUNG"));
-            orderItems.add(new OrderItems("TV LG"));
-            orderItems.add(new OrderItems("TV SONY"));
-            orderItems.add(new OrderItems("TV AOC"));
-            Order order = new Order(orderItems);
+        try {
+            Address address = new Address("Chapecó", "Rua João dos Santos", "SC", 460);
+            Client client = new Client("John Wick", address);
 
-            orderRepository.save(order);
+            clientRepository.save(client);
 
-            orderRepository.deleteById(order.getId());
+            clientRepository.deleteById(client.getId());
 
-            if(!orderRepository.existsById(order.getId()))
-                System.out.println("O objeto foi deletado com sucesso!");
+            if(!clientRepository.existsById(client.getId()))
+                Printer.deleteSuccess();
             else
-            System.out.println("Objeto não foi deletado");
-
-        } catch (Exception e){
+                Printer.deleteFailure();
+        }catch (Exception e){
             e.printStackTrace();
         }
 
     }
-
 }

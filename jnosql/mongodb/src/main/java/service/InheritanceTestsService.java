@@ -3,6 +3,7 @@ package service;
 import model.Electronic;
 import org.jnosql.artemis.DatabaseQualifier;
 import repository.ElectronicRepository;
+import utilities.Printer;
 
 import javax.enterprise.inject.se.SeContainer;
 import javax.enterprise.inject.se.SeContainerInitializer;
@@ -18,6 +19,12 @@ public class InheritanceTestsService implements ServiceBase {
     SeContainer container;
     ElectronicRepository electronicRepository;
 
+    public void runAll(){
+        insert();
+        select();
+        update();
+        delete();
+    }
 
     @Override
     public void insert() {
@@ -28,9 +35,9 @@ public class InheritanceTestsService implements ServiceBase {
             electronicRepository.save(electronic);
 
             if(electronicRepository.existsById(electronic.getId()))
-                System.out.println("Objeto salvo no banco de dados com sucesso!");
+                Printer.insertSuccess();
             else
-                System.out.println("O objeto não foi salvo no banco de dados.");
+                Printer.insertFailure();
 
         }catch (Exception e){
             e.printStackTrace();
@@ -49,9 +56,9 @@ public class InheritanceTestsService implements ServiceBase {
             var electronicReturn = electronicRepository.findById(electronic.getId());
 
             if (electronicReturn.isPresent())
-                System.out.println("Objeto recuperado do banco de dados!");
+                Printer.selectSuccess();
             else
-                System.out.println("O objeto não foi recuperado do banco de dados.");
+                Printer.selectFailure();
 
 
         }catch (Exception e){
@@ -75,9 +82,10 @@ public class InheritanceTestsService implements ServiceBase {
             var dogReturn = electronicRepository.findById(electronic.getId());
 
             if(dogReturn.get().getVoltage() == electronic.getVoltage())
-                System.out.println("Objeto atualizado com sucesso!");
+                Printer.updateSuccess();
             else
-                System.out.println("O obejto não foi atualizado no banco de dados.");
+                Printer.updateFailure();
+
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -95,9 +103,10 @@ public class InheritanceTestsService implements ServiceBase {
             electronicRepository.deleteById(electronic.getId());
 
             if(!electronicRepository.existsById(electronic.getId()))
-                System.out.println("Objeto deletado com sucesso!");
+                Printer.deleteSuccess();
             else
-                System.out.println("Objeto não foi deletado");
+                Printer.deleteFailure();
+
         }catch (Exception e){
             e.printStackTrace();
         }

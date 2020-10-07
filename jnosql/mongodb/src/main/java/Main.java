@@ -1,41 +1,45 @@
-import service.CompositionTestsService;
 import service.AggregationTestsService;
+import service.CompositionTestsService;
 import service.InheritanceTestsService;
 import service.NoRelationshipTestsService;
 
 public class Main {
 
-
     public static void main(String[] args) {
+
         NoRelationshipTestsService noRelationshipTests = new NoRelationshipTestsService();
-        AggregationTestsService agregationTests = new AggregationTestsService();
         CompositionTestsService compositionTests = new CompositionTestsService();
+        AggregationTestsService agregationTests = new AggregationTestsService();
         InheritanceTestsService inheritanceTests = new InheritanceTestsService();
 
-        //noRelationshipTests.Insert();
-        //noRelationshipTests.Select();
-        //noRelationshipTests.Update();
-        //noRelationshipTests.Delete();
+        //noRelationshipTests.insert();
+        //noRelationshipTests.select();
+        //noRelationshipTests.update();
+        //noRelationshipTests.delete();
 
 
-        //agregationTests.Insert();
-        //agregationTests.Select();
-        //agregationTests.Update();
-        //agregationTests.Delete();
+        //agregationTests.insert();
+        //agregationTests.select();
+        //agregationTests.update();
+        //agregationTests.delete();
 
 
-        //compositionTests.Insert();
-        //compositionTests.Select();
-        //compositionTests.Update();
-        //compositionTests.Delete();
+        //compositionTests.insert();
+        //compositionTests.select();
+        //compositionTests.update();
+        //compositionTests.delete();
 
-        inheritanceTests.update();
-        inheritanceTests.insert();
-        inheritanceTests.select();
-        inheritanceTests.delete();
+        //inheritanceTests.insert();
+        //inheritanceTests.update();
+        //inheritanceTests.delete();
+        //inheritanceTests.select();
+
+        noRelationshipTests.runAll();
+        agregationTests.runAll();
+        compositionTests.runAll();
+        inheritanceTests.runAll();
+
 
     }
 
-    private Main() {
-    }
 }

@@ -20,9 +20,10 @@ public class Order {
         return RANDOM.nextLong();
     }
 
-    public Order(List<OrderItems> orderItems){
+    public Order(List<OrderItems> orderItems, Status status){
         this.Id = generateId();
         this.OrderItem = orderItems;
+        this.Status = status;
     }
 
     @Id
@@ -30,6 +31,9 @@ public class Order {
 
     @Column
     private List<OrderItems> OrderItem = new ArrayList<OrderItems>();
+
+    @Column
+    private Status Status;
 
     public List<OrderItems> getOrderItem() {
         return OrderItem;
@@ -41,5 +45,13 @@ public class Order {
 
     public long getId() {
         return Id;
+    }
+
+    public Status getStatus() {
+        return Status;
+    }
+
+    public void setStatus(Status status) {
+        Status = status;
     }
 }

@@ -1,37 +1,56 @@
 package service;
 
-import model.Address;
-import model.Client;
+import model.*;
 import org.jnosql.artemis.DatabaseQualifier;
-import repository.ClientRepository;
+import repository.OrderRepository;
+import utilities.Printer;
 
 import javax.enterprise.inject.se.SeContainer;
 import javax.enterprise.inject.se.SeContainerInitializer;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
-public class CompositionTestsService implements ServiceBase{
+public class CompositionTestsService implements ServiceBase {
 
     public CompositionTestsService(){
         container = SeContainerInitializer.newInstance().initialize();
-        clientRepository = container.select(ClientRepository.class)
+        orderRepository = container.select(OrderRepository.class)
                 .select(DatabaseQualifier.ofDocument()).get();
     }
 
     SeContainer container;
-    ClientRepository clientRepository;
+    OrderRepository orderRepository;
+
+    public void runAll(){
+        insert();
+        select();
+        update();
+        delete();
+    }
 
     @Override
     public void insert() {
 
-        try{
-            Address address = new Address("Rio Negrinho", "Rua Marechal Teodoro", "SC", 178);
-            Client client = new Client("John Marston", address);
+        try {
+            Electronic xbox360 = new Electronic("Xbox 360", 110);
+            Electronic ps3 = new Electronic("PS3", 220);
+            Toy funko = new Toy("Batmovel", 5);
+            Status status = new Status("Aguardando pagamento");
 
-            clientRepository.save(client);
 
-            if(clientRepository.existsById(client.getId()))
-                System.out.println("Objeto salvo no banco de dados com sucesso!");
+            List<OrderItems> orderItems = new ArrayList<OrderItems>();
+            orderItems.add(new OrderItems(xbox360));
+            orderItems.add(new OrderItems(ps3));
+            orderItems.add(new OrderItems(funko));
+            Order order = new Order(orderItems, status);
+
+            orderRepository.save(order);
+
+            if(orderRepository.existsById(order.getId()))
+                Printer.insertSuccess();
             else
-                System.out.println("O objeto não foi salvo no banco de dados.");
+                Printer.insertFailure();
 
         }catch (Exception e){
             e.printStackTrace();
@@ -43,31 +62,34 @@ public class CompositionTestsService implements ServiceBase{
     public void select() {
 
         try {
-            Address address = new Address("Joinville", "Rua da saudade", "SC", 898);
-            Client client = new Client("Marco Reus", address);
+            Electronic xboxOne = new Electronic("Xbox one", 220);
+            Electronic ps4 = new Electronic("PS4", 220);
+            Toy hotwheels = new Toy("Batmovel", 5);
+            Status status = new Status("Aguardando pagamento");
 
-            Address address2 = new Address("Campo Alegre", "Rua General Osvaldo", "SC", 1009);
-            Client client2 = new Client("Arthur Morgan", address2);
 
-            Address address3 = new Address("Blumenau", "Rua João das Neves", "SC", 980);
-            Client client3 = new Client("Keanu Reeves", address3);
+            List<OrderItems> orderItems = new ArrayList<OrderItems>();
+            orderItems.add(new OrderItems(xboxOne));
+            orderItems.add(new OrderItems(ps4));
+            orderItems.add(new OrderItems(hotwheels));
+            Order order = new Order(orderItems, status);
 
-            clientRepository.save(client);
+            orderRepository.save(order);
 
-            var clientReturn = clientRepository.findAll();
+            Optional<Order> orderReturn = orderRepository.findById(order.getId());
 
-            if(!clientReturn.isEmpty()){
-                System.out.println("Objetos recuperados com sucesso!");
-                System.out.println("Carros:");
+            if(orderReturn.isPresent()){
+                Printer.selectSuccess();
+                System.out.println("Itens:");
 
-                for (Client clientInDb : clientReturn)
+                for (OrderItems orderItem : orderReturn.get().getOrderItem())
                 {
-                    System.out.println(clientInDb.getName());
+                    System.out.println(orderItem.getProduct().getName());
                 }
             }else
-                System.out.println("O objeto não foi recuperado do banco de dados.");
+                Printer.selectFailure();
 
-        }catch (Exception e){
+        } catch (Exception e){
             e.printStackTrace();
         }
 
@@ -77,23 +99,31 @@ public class CompositionTestsService implements ServiceBase{
     public void update() {
 
         try{
-            Address address = new Address("Joinville", "Rua XV de novembro", "SC", 1100);
-            Client client = new Client("Thomas A. Anderson", address);
+            Product ps2 = new Electronic("PS2", 220);
+            Product xbox = new Electronic("Xbox", 220);
+            Product maxSteel = new Toy("Max Steel", 5);
+            Status status = new Status("Aguardando pagamento");
 
-            clientRepository.save(client);
 
-            client.getAddress().setPostalCode(1111);
+            List<OrderItems> orderItems = new ArrayList<OrderItems>();
+            orderItems.add(new OrderItems(ps2));
+            orderItems.add(new OrderItems(xbox));
+            orderItems.add(new OrderItems(maxSteel));
+            Order order = new Order(orderItems, status);
 
-            clientRepository.save(client);
+            orderRepository.save(order);
+            Toy pistaHotWheels = new Toy("Pista Hot Wheels", 5);
+            order.getOrderItem().add(new OrderItems(pistaHotWheels));
+            orderRepository.save(order);
 
-            var clientReturn = clientRepository.findById(client.getId());
+            var orderReturn = orderRepository.findById(order.getId());
 
-            if(clientReturn.get().getAddress().getPostalCode() == client.getAddress().getPostalCode())
-                System.out.println("Objeto atualizado com sucesso!");
+            if(orderReturn.get().getOrderItem().stream().anyMatch(x -> x.getProduct().getName().equals("Pista Hot Wheels")))
+                Printer.updateSuccess();
             else
-                System.out.println("O obejto não foi atualizado no banco de dados.");
+                Printer.updateFailure();
 
-        } catch (Exception e){
+        }catch (Exception e){
             e.printStackTrace();
         }
 
@@ -102,21 +132,32 @@ public class CompositionTestsService implements ServiceBase{
     @Override
     public void delete() {
 
-        try {
-            Address address = new Address("Chapecó", "Rua João dos Santos", "SC", 460);
-            Client client = new Client("John Wick", address);
+        try{
+            Electronic nswitch = new Electronic("Nintendo Switch", 220);
+            Electronic wii = new Electronic("Nintendo Wii", 220);
+            Toy funko = new Toy("Funko", 5);
+            Status status = new Status("Aguardando pagamento");
 
-            clientRepository.save(client);
 
-            clientRepository.deleteById(client.getId());
+            List<OrderItems> orderItems = new ArrayList<OrderItems>();
+            orderItems.add(new OrderItems(nswitch));
+            orderItems.add(new OrderItems(wii));
+            orderItems.add(new OrderItems(funko));
+            Order order = new Order(orderItems, status);
 
-            if(!clientRepository.existsById(client.getId()))
-                System.out.println("Objeto deletado com sucesso!");
+            orderRepository.save(order);
+
+            orderRepository.deleteById(order.getId());
+
+            if(!orderRepository.existsById(order.getId()))
+                Printer.deleteSuccess();
             else
-                System.out.println("Objeto não foi deletado");
-        }catch (Exception e){
+                Printer.deleteFailure();
+
+        } catch (Exception e){
             e.printStackTrace();
         }
 
     }
+
 }

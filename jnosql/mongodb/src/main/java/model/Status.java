@@ -12,9 +12,9 @@ public class Status {
 
     }
 
-    public Status(String description){
+    public Status(String statusDescription){
         this.Id = generateId();
-        this.Description = description;
+        this.Name = statusDescription;
     }
     private static final Random RANDOM = new Random();
 
@@ -25,18 +25,19 @@ public class Status {
     @Id
     private long Id;
 
+
     @Column
-    private String Description;
+    private String Name;
 
     public long getId() {
         return Id;
     }
 
-    public String getDescription() {
-        return Description;
+    public String getName() {
+        return Name;
     }
 
-    public void setDescription(String description) {
-        Description = description;
+    public void setName(String name) {
+        Name = name;
     }
 }
