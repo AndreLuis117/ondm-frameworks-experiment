@@ -13,17 +13,17 @@ public class Toy extends Product {
     public Toy(String name, int ageIndication){
         this.Id = generateId();
         this.Name = name;
-        this.ageIndication = ageIndication;
+        this.AgeIndication = ageIndication;
     }
 
     @Column
-    private int ageIndication;
+    private int AgeIndication;
 
     public int getAgeIndication() {
-        return ageIndication;
+        return AgeIndication;
     }
 
     public void setAgeIndication(int ageIndication) {
-        this.ageIndication = ageIndication;
+        AgeIndication = ageIndication;
     }
 }
