@@ -12,22 +12,20 @@ public class Electronic extends Product {
     }
 
     public Electronic(String name, int voltage){
-        this.Id = generateId();
-        this.Name = name;
-        this.Voltage = voltage;
+        this.id = generateId();
+        this.name = name;
+        this.voltage = voltage;
     }
 
-
-
     @Column
-    private int Voltage;
+    private int voltage;
 
 
     public int getVoltage() {
-        return Voltage;
+        return voltage;
     }
 
     public void setVoltage(int voltage) {
-        Voltage = voltage;
+        this.voltage = voltage;
     }
 }

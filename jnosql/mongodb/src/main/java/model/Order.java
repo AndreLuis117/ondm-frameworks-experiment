@@ -10,6 +10,7 @@ import java.util.Random;
 
 @Entity
 public class Order {
+
     public  Order(){
 
     };
@@ -21,37 +22,38 @@ public class Order {
     }
 
     public Order(List<OrderItems> orderItems, Status status){
-        this.Id = generateId();
-        this.OrderItem = orderItems;
-        this.Status = status;
+        this.id = generateId();
+        this.orderItems = orderItems;
+        this.status = status;
     }
 
     @Id
-    private long Id;
+    private long id;
 
     @Column
-    private List<OrderItems> OrderItem = new ArrayList<OrderItems>();
+    private List<OrderItems> orderItems = new ArrayList<OrderItems>();
 
     @Column
-    private Status Status;
+    private Status status;
 
-    public List<OrderItems> getOrderItem() {
-        return OrderItem;
+
+    public List<OrderItems> getOrderItems() {
+        return orderItems;
     }
 
-    public void setOrderItem(List<OrderItems> orderItem) {
-        OrderItem = orderItem;
+    public void setOrderItems(List<OrderItems> orderItems) {
+        this.orderItems = orderItems;
     }
 
     public long getId() {
-        return Id;
+        return id;
     }
 
     public Status getStatus() {
-        return Status;
+        return status;
     }
 
     public void setStatus(Status status) {
-        Status = status;
+        this.status = status;
     }
 }

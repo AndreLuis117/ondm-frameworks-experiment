@@ -11,51 +11,51 @@ public class Address {
     }
 
     public Address(String city, String street, String state, int postalCode){
-        this.City = city;
-        this.Street = street;
-        this.State = state;
-        this.PostalCode = postalCode;
+        this.city = city;
+        this.street = street;
+        this.state = state;
+        this.postalCode = postalCode;
     }
 
     @Column
-    private String City;
+    private String city;
     @Column
-    private String Street;
+    private String street;
     @Column
-    private String State;
+    private String state;
     @Column
-    private int PostalCode;
+    private int postalCode;
+
 
     public String getCity() {
-        return City;
+        return city;
     }
 
     public void setCity(String city) {
-        City = city;
+        this.city = city;
     }
 
     public String getStreet() {
-        return Street;
+        return street;
     }
 
     public void setStreet(String street) {
-        Street = street;
+        this.street = street;
     }
 
     public String getState() {
-        return State;
+        return state;
     }
 
     public void setState(String state) {
-        State = state;
+        this.state = state;
     }
 
-
     public int getPostalCode() {
-        return PostalCode;
+        return postalCode;
     }
 
     public void setPostalCode(int postalCode) {
-        PostalCode = postalCode;
+        this.postalCode = postalCode;
     }
 }

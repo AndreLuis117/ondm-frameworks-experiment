@@ -14,8 +14,9 @@ public class Client {
     }
 
     public Client(String name, Address address){
-        this.Name = name;
-        this.Address = address;
+        this.id = generateId();
+        this.name = name;
+        this.address = address;
     }
 
     private static final Random RANDOM = new Random();
@@ -25,32 +26,32 @@ public class Client {
     }
 
     @Id
-    private long Id;
-
-
-    @Column
-    private String Name;
+    private long id;
 
     @Column
-    private Address Address;
+    private String name;
+
+    @Column
+    private Address address;
+
 
     public long getId() {
-        return Id;
+        return id;
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
     public void setName(String name) {
-        Name = name;
+        this.name = name;
     }
 
     public model.Address getAddress() {
-        return Address;
+        return address;
     }
 
     public void setAddress(model.Address address) {
-        Address = address;
+        this.address = address;
     }
 }

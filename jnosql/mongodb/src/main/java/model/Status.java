@@ -8,13 +8,14 @@ import java.util.Random;
 
 @Entity
 public class Status {
+
     public Status(){
 
     }
 
     public Status(String statusDescription){
-        this.Id = generateId();
-        this.Name = statusDescription;
+        this.id = generateId();
+        this.name = statusDescription;
     }
     private static final Random RANDOM = new Random();
 
@@ -23,21 +24,20 @@ public class Status {
     }
 
     @Id
-    private long Id;
-
+    private long id;
 
     @Column
-    private String Name;
+    private String name;
 
     public long getId() {
-        return Id;
+        return id;
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
     public void setName(String name) {
-        Name = name;
+        this.name = name;
     }
 }

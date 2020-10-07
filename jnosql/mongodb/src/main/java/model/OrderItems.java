@@ -20,26 +20,26 @@ public class OrderItems {
     }
 
     public OrderItems(Product product){
-        this.Id = generateId();
-        this.Product = product;
+        this.id = generateId();
+        this.product = product;
     }
 
     @Id
-    private long Id;
+    private long id;
 
     @Column
-    private Product Product;
+    private Product product;
 
 
     public long getId() {
-        return Id;
+        return id;
     }
 
     public Product getProduct() {
-        return Product;
+        return product;
     }
 
     public void setProduct(model.Product product) {
-        Product = product;
+        this.product = product;
     }
 }

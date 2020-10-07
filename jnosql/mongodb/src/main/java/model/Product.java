@@ -22,20 +22,20 @@ public class Product {
     }
 
     @Id
-    protected long Id;
+    protected long id;
 
     @Column
-    protected String Name;
+    protected String name;
 
     public long getId() {
-        return Id;
+        return id;
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
     public void setName(String name) {
-        Name = name;
+        this.name = name;
     }
 }
