@@ -1,7 +1,7 @@
 package service;
 
 import model.*;
-import org.jnosql.artemis.DatabaseQualifier;
+import org.eclipse.jnosql.artemis.DatabaseQualifier;
 import repository.OrderRepository;
 import utilities.Printer;
 
@@ -82,7 +82,7 @@ public class CompositionTestsService implements ServiceBase {
                 Printer.selectSuccess();
                 System.out.println("Itens:");
 
-                for (OrderItems orderItem : orderReturn.get().getOrderItem())
+                for (OrderItems orderItem : orderReturn.get().getOrderItems())
                 {
                     System.out.println(orderItem.getProduct().getName());
                 }
@@ -113,12 +113,12 @@ public class CompositionTestsService implements ServiceBase {
 
             orderRepository.save(order);
             Toy pistaHotWheels = new Toy("Pista Hot Wheels", 5);
-            order.getOrderItem().add(new OrderItems(pistaHotWheels));
+            order.getOrderItems().add(new OrderItems(pistaHotWheels));
             orderRepository.save(order);
 
             var orderReturn = orderRepository.findById(order.getId());
 
-            if(orderReturn.get().getOrderItem().stream().anyMatch(x -> x.getProduct().getName().equals("Pista Hot Wheels")))
+            if(orderReturn.get().getOrderItems().stream().anyMatch(x -> x.getProduct().getName().equals("Pista Hot Wheels")))
                 Printer.updateSuccess();
             else
                 Printer.updateFailure();

@@ -1,15 +1,17 @@
 package model;
 
-import org.jnosql.artemis.Column;
-import org.jnosql.artemis.Entity;
-import org.jnosql.artemis.Id;
-import org.jnosql.artemis.MappedSuperclass;
 
+import jakarta.nosql.mapping.Column;
+import jakarta.nosql.mapping.Entity;
+import jakarta.nosql.mapping.Id;
+import jakarta.nosql.mapping.MappedSuperclass;
+
+import java.io.Serializable;
 import java.util.Random;
 
 @Entity
 @MappedSuperclass
-public class Product {
+public class Product implements Serializable {
 
     public Product(){
 

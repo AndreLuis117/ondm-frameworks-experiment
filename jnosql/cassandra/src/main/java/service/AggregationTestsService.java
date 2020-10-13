@@ -2,7 +2,7 @@ package service;
 
 import model.Address;
 import model.Client;
-import org.jnosql.artemis.DatabaseQualifier;
+import org.eclipse.jnosql.artemis.DatabaseQualifier;
 import repository.ClientRepository;
 import utilities.Printer;
 
@@ -13,8 +13,7 @@ public class AggregationTestsService implements ServiceBase{
 
     public AggregationTestsService(){
         container = SeContainerInitializer.newInstance().initialize();
-        clientRepository = container.select(ClientRepository.class)
-                .select(DatabaseQualifier.ofColumn()).get();
+        clientRepository = container.select(ClientRepository.class).get();
     }
 
     SeContainer container;
@@ -31,8 +30,16 @@ public class AggregationTestsService implements ServiceBase{
     public void insert() {
 
         try{
-            Address address = new Address("Rio Negrinho", "Rua Marechal Teodoro", "SC", 178);
-            Client client = new Client("John Marston", address);
+            Address address = new Address();
+            address.setCity("Rio Negrinho");
+            address.setStreet("Rua Marechal Teodoro");
+            address.setState("SC");
+            //address.setPostalCode(178);
+            Client client = new Client();
+            client.setName("John Marston");
+            client.setAddress(address);
+            client.setId(10);
+
 
             clientRepository.save(client);
 
@@ -49,7 +56,7 @@ public class AggregationTestsService implements ServiceBase{
 
     @Override
     public void select() {
-
+        /*
         try {
             Address address = new Address("Joinville", "Rua da saudade", "SC", 898);
             Client client = new Client("Marco Reus", address);
@@ -80,12 +87,12 @@ public class AggregationTestsService implements ServiceBase{
         }catch (Exception e){
             e.printStackTrace();
         }
-
+*/
     }
 
     @Override
     public void update() {
-
+        /*
         try{
             Address address = new Address("Joinville", "Rua XV de novembro", "SC", 1100);
             Client client = new Client("Thomas A. Anderson", address);
@@ -106,12 +113,12 @@ public class AggregationTestsService implements ServiceBase{
         } catch (Exception e){
             e.printStackTrace();
         }
-
+*/
     }
 
     @Override
     public void delete() {
-
+/*
         try {
             Address address = new Address("Chapecó", "Rua João dos Santos", "SC", 460);
             Client client = new Client("John Wick", address);
@@ -127,6 +134,6 @@ public class AggregationTestsService implements ServiceBase{
         }catch (Exception e){
             e.printStackTrace();
         }
-
+*/
     }
 }

@@ -1,7 +1,7 @@
 package repository;
 
+import jakarta.nosql.mapping.Repository;
 import model.Client;
-import org.jnosql.artemis.Repository;
 
 import java.util.List;
 

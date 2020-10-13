@@ -2,7 +2,6 @@ package service;
 
 import model.Address;
 import model.Client;
-import org.jnosql.artemis.DatabaseQualifier;
 import repository.ClientRepository;
 import utilities.Printer;
 
@@ -13,8 +12,7 @@ public class AggregationTestsService implements ServiceBase{
 
     public AggregationTestsService(){
         container = SeContainerInitializer.newInstance().initialize();
-        clientRepository = container.select(ClientRepository.class)
-                .select(DatabaseQualifier.ofDocument()).get();
+        clientRepository = container.select(ClientRepository.class).get();
     }
 
     SeContainer container;

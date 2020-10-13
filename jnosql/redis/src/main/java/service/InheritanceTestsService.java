@@ -1,7 +1,6 @@
 package service;
 
 import model.Electronic;
-import org.jnosql.artemis.DatabaseQualifier;
 import repository.ElectronicRepository;
 import utilities.Printer;
 
@@ -12,8 +11,7 @@ public class InheritanceTestsService implements ServiceBase {
 
     public InheritanceTestsService(){
         container = SeContainerInitializer.newInstance().initialize();
-        electronicRepository = container.select(ElectronicRepository.class)
-                .select(DatabaseQualifier.ofKeyValue()).get();
+        electronicRepository = container.select(ElectronicRepository.class).get();
     }
 
     SeContainer container;

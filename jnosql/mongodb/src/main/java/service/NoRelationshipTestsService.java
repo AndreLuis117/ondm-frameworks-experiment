@@ -1,7 +1,6 @@
 package service;
 
 import model.Status;
-import org.jnosql.artemis.DatabaseQualifier;
 import repository.StatusRepository;
 import utilities.Printer;
 
@@ -12,8 +11,7 @@ public class NoRelationshipTestsService implements ServiceBase {
 
     public NoRelationshipTestsService(){
         container = SeContainerInitializer.newInstance().initialize();
-        statusRepository = container.select(StatusRepository.class)
-                .select(DatabaseQualifier.ofDocument()).get();
+        statusRepository = container.select(StatusRepository.class).get();
     }
 
     SeContainer container;

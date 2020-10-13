@@ -1,21 +1,12 @@
 package model;
 
-import org.jnosql.artemis.Column;
-import org.jnosql.artemis.Entity;
 
-@Entity
+import jakarta.nosql.mapping.Column;
+import jakarta.nosql.mapping.Entity;
+
+import java.util.Objects;
+
 public class Address {
-
-    public Address(){
-
-    }
-
-    public Address(String city, String street, String state, int postalCode){
-        this.city = city;
-        this.street = street;
-        this.state = state;
-        this.postalCode = postalCode;
-    }
 
     @Column
     private String city;
@@ -23,8 +14,6 @@ public class Address {
     private String street;
     @Column
     private String state;
-    @Column
-    private int postalCode;
 
 
     public String getCity() {
@@ -51,11 +40,5 @@ public class Address {
         this.state = state;
     }
 
-    public int getPostalCode() {
-        return postalCode;
-    }
 
-    public void setPostalCode(int postalCode) {
-        this.postalCode = postalCode;
-    }
 }

@@ -1,7 +1,7 @@
 package service;
 
 import model.Electronic;
-import org.jnosql.artemis.DatabaseQualifier;
+import org.eclipse.jnosql.artemis.DatabaseQualifier;
 import repository.ElectronicRepository;
 import utilities.Printer;
 

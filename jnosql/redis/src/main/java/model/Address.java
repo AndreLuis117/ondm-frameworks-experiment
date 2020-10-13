@@ -1,10 +1,13 @@
 package model;
 
-import org.jnosql.artemis.Column;
-import org.jnosql.artemis.Entity;
+
+import jakarta.nosql.mapping.Column;
+import jakarta.nosql.mapping.Entity;
+
+import java.io.Serializable;
 
 @Entity
-public class Address {
+public class Address implements Serializable {
 
     public Address(){
 

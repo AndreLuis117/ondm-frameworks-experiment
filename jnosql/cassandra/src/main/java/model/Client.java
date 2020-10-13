@@ -1,31 +1,18 @@
 package model;
 
-import org.jnosql.artemis.Column;
-import org.jnosql.artemis.Entity;
-import org.jnosql.artemis.Id;
+
+import jakarta.nosql.mapping.Column;
+import jakarta.nosql.mapping.Entity;
+import jakarta.nosql.mapping.Id;
+import org.eclipse.jnosql.artemis.cassandra.column.UDT;
 
 import java.util.Random;
 
 @Entity
 public class Client {
 
-    public Client(){
 
-    }
-
-    public Client(String name, Address address){
-        this.id = generateId();
-        this.name = name;
-        this.address = address;
-    }
-
-    private static final Random RANDOM = new Random();
-
-    public static long generateId() {
-        return RANDOM.nextLong();
-    }
-
-    @Id
+    @Id("id")
     private long id;
 
     @Column
@@ -53,5 +40,9 @@ public class Client {
 
     public void setAddress(Address address) {
         this.address = address;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }

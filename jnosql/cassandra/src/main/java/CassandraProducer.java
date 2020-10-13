@@ -12,7 +12,7 @@ import javax.enterprise.inject.Produces;
 @ApplicationScoped
 public class CassandraProducer {
 
-    private static final String KEY_SPACE = "developers";
+    private static final String KEY_SPACE = "test";
 
     private CassandraConfiguration cassandraConfiguration;
 
@@ -23,7 +23,6 @@ public class CassandraProducer {
         cassandraConfiguration = new CassandraConfiguration();
         managerFactory = cassandraConfiguration.get();
     }
-
 
     @Produces
     public CassandraColumnFamilyManager getManagerCassandra() {

@@ -14,10 +14,10 @@
  */
 
 
-import org.jnosql.diana.api.key.BucketManager;
-import org.jnosql.diana.api.key.BucketManagerFactory;
-import org.jnosql.diana.api.key.KeyValueConfiguration;
-import org.jnosql.diana.redis.key.RedisConfiguration;
+
+import jakarta.nosql.keyvalue.BucketManager;
+import org.eclipse.jnosql.diana.redis.keyvalue.RedisBucketManagerFactory;
+import org.eclipse.jnosql.diana.redis.keyvalue.RedisConfiguration;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
@@ -26,24 +26,22 @@ import javax.enterprise.inject.Produces;
 @ApplicationScoped
 public class BucketManagerProducer {
 
-    private static final String BUCKET = "developers";
+    private static final String BUCKET = "test";
 
-    private BucketManagerFactory<BucketManager> managerFactory;
+    private RedisConfiguration configuration;
+
+    private RedisBucketManagerFactory managerFactory;
 
     @PostConstruct
     public void init() {
-        KeyValueConfiguration<?> configuration = getConfiguration();
+        configuration = new RedisConfiguration();
         managerFactory = configuration.get();
     }
+
 
     @Produces
     public BucketManager getManager() {
         return managerFactory.getBucketManager(BUCKET);
-
-    }
-
-    private KeyValueConfiguration<?> getConfiguration() {
-        return new RedisConfiguration();
     }
 
 }

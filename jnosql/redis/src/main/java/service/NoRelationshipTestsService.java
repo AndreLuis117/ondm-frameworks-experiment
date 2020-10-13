@@ -1,7 +1,6 @@
 package service;
 
 import model.Status;
-import org.jnosql.artemis.DatabaseQualifier;
 import repository.StatusRepository;
 import utilities.Printer;
 
@@ -12,8 +11,7 @@ public class NoRelationshipTestsService implements ServiceBase {
 
     public NoRelationshipTestsService(){
         container = SeContainerInitializer.newInstance().initialize();
-        statusRepository = container.select(StatusRepository.class)
-                .select(DatabaseQualifier.ofKeyValue()).get();
+        statusRepository = container.select(StatusRepository.class).get();
     }
 
     SeContainer container;
@@ -47,12 +45,12 @@ public class NoRelationshipTestsService implements ServiceBase {
 
             statusRepository.save(status);
 
-            var statusReturn = statusRepository.findByName(status.getName());
+            var statusReturn = statusRepository.findById(status.getId());
 
             if(statusReturn != null){
                 Printer.selectSuccess();
                 System.out.println("Status: ");
-                System.out.println(statusReturn.getName());
+                System.out.println(statusReturn.get().getName());
             }else{
                 Printer.selectFailure();
             }

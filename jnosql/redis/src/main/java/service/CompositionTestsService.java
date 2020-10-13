@@ -1,7 +1,6 @@
 package service;
 
 import model.*;
-import org.jnosql.artemis.DatabaseQualifier;
 import repository.OrderRepository;
 import utilities.Printer;
 
@@ -15,8 +14,7 @@ public class CompositionTestsService implements ServiceBase {
 
     public CompositionTestsService(){
         container = SeContainerInitializer.newInstance().initialize();
-        orderRepository = container.select(OrderRepository.class)
-                .select(DatabaseQualifier.ofKeyValue()).get();
+        orderRepository = container.select(OrderRepository.class).get();
     }
 
     SeContainer container;

@@ -2,19 +2,20 @@ package service;
 
 import model.Address;
 import model.Client;
-import org.jnosql.artemis.DatabaseQualifier;
+import model.OrderItems;
 import repository.ClientRepository;
 import utilities.Printer;
 
 import javax.enterprise.inject.se.SeContainer;
 import javax.enterprise.inject.se.SeContainerInitializer;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AggregationTestsService implements ServiceBase{
 
     public AggregationTestsService(){
         container = SeContainerInitializer.newInstance().initialize();
-        clientRepository = container.select(ClientRepository.class)
-                .select(DatabaseQualifier.ofKeyValue()).get();
+        clientRepository = container.select(ClientRepository.class).get();
     }
 
     SeContainer container;
@@ -64,13 +65,16 @@ public class AggregationTestsService implements ServiceBase{
             clientRepository.save(client2);
             clientRepository.save(client3);
 
-            var clientReturn = clientRepository.findAll();
+            List<Client> clients = new ArrayList<Client>();
+            clients.add(clientRepository.findById(client.getId()).get());
+            clients.add(clientRepository.findById(client2.getId()).get());
+            clients.add(clientRepository.findById(client3.getId()).get());
 
-            if(!clientReturn.isEmpty()){
+            if(!clients.isEmpty()){
                 Printer.selectSuccess();
                 System.out.println("Clientes:");
 
-                for (Client clientInDb : clientReturn)
+                for (Client clientInDb : clients)
                 {
                     System.out.println(clientInDb.getName());
                 }

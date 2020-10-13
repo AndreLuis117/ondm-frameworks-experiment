@@ -1,13 +1,15 @@
 package model;
 
-import org.jnosql.artemis.Column;
-import org.jnosql.artemis.Entity;
-import org.jnosql.artemis.Id;
 
+import jakarta.nosql.mapping.Column;
+import jakarta.nosql.mapping.Entity;
+import jakarta.nosql.mapping.Id;
+
+import java.io.Serializable;
 import java.util.Random;
 
 @Entity
-public class Client {
+public class Client implements Serializable {
 
     public Client(){
 
