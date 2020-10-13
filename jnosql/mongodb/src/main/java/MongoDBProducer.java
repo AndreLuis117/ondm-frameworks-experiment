@@ -10,7 +10,7 @@ import javax.enterprise.inject.Produces;
 @ApplicationScoped
 public class MongoDBProducer {
 
-    private static final String COLLECTION = "test";
+    private static final String COLLECTION = "mongoExperimentoDb";
 
     private MongoDBDocumentConfiguration configuration;
 

@@ -12,7 +12,7 @@ import javax.enterprise.inject.Produces;
 @ApplicationScoped
 public class CassandraProducer {
 
-    private static final String KEY_SPACE = "test";
+    private static final String KEY_SPACE = "cassandraExperimentDb";
 
     private CassandraConfiguration cassandraConfiguration;
 

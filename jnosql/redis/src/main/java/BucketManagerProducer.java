@@ -26,7 +26,7 @@ import javax.enterprise.inject.Produces;
 @ApplicationScoped
 public class BucketManagerProducer {
 
-    private static final String BUCKET = "test";
+    private static final String BUCKET = "redisExperimentDb";
 
     private RedisConfiguration configuration;
 
