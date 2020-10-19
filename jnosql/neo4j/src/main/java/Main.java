@@ -34,10 +34,10 @@ public class Main {
         //inheritanceTests.delete();
         //inheritanceTests.select();
 
-        noRelationshipTests.runAll();
+        //noRelationshipTests.runAll();
         agregationTests.runAll();
-        compositionTests.runAll();
-        inheritanceTests.runAll();
+        //compositionTests.runAll();
+        //inheritanceTests.runAll();
 
 
     }

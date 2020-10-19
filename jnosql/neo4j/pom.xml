@@ -12,7 +12,6 @@
     <artifactId>neo4j</artifactId>
 
     <dependencies>
-
         <dependency>
             <groupId>org.eclipse.jnosql.artemis</groupId>
             <artifactId>artemis-graph</artifactId>

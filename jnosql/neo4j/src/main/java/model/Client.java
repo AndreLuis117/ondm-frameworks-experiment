@@ -16,19 +16,12 @@ public class Client {
     }
 
     public Client(String name, Address address){
-        this.id = generateId();
         this.name = name;
         this.address = address;
     }
 
-    private static final Random RANDOM = new Random();
-
-    public static long generateId() {
-        return RANDOM.nextLong();
-    }
-
     @Id
-    private long id;
+    private Long id;
 
     @Column
     private String name;

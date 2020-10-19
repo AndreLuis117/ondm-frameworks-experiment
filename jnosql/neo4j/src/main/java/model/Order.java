@@ -15,22 +15,15 @@ public class Order {
 
     public  Order(){
 
-    };
-
-    private static final Random RANDOM = new Random();
-
-    public static long generateId() {
-        return RANDOM.nextLong();
     }
 
     public Order(List<OrderItems> orderItems, Status status){
-        this.id = generateId();
         this.orderItems = orderItems;
         this.status = status;
     }
 
     @Id
-    private long id;
+    private Long id;
 
     @Column
     private List<OrderItems> orderItems = new ArrayList<OrderItems>();

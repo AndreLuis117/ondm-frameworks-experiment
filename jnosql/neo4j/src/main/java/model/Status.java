@@ -16,17 +16,11 @@ public class Status {
     }
 
     public Status(String statusDescription){
-        this.id = generateId();
         this.name = statusDescription;
-    }
-    private static final Random RANDOM = new Random();
-
-    public static long generateId() {
-        return RANDOM.nextLong();
     }
 
     @Id
-    private long id;
+    private Long id;
 
     @Column
     private String name;

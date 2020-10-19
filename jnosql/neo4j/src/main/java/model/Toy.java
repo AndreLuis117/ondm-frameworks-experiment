@@ -12,7 +12,6 @@ public class Toy extends Product {
     }
 
     public Toy(String name, int ageIndication){
-        this.id = generateId();
         this.name = name;
         this.ageIndication = ageIndication;
     }

@@ -1,6 +1,7 @@
 package service;
 
 import model.Status;
+import org.eclipse.jnosql.artemis.DatabaseQualifier;
 import repository.StatusRepository;
 import utilities.Printer;
 

@@ -15,19 +15,12 @@ public class OrderItems {
 
     }
 
-    private static final Random RANDOM = new Random();
-
-    public static long generateId() {
-        return RANDOM.nextLong();
-    }
-
     public OrderItems(Product product){
-        this.id = generateId();
         this.product = product;
     }
 
     @Id
-    private long id;
+    private Long id;
 
     @Column
     private Product product;

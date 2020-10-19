@@ -12,14 +12,12 @@ public class Electronic extends Product {
     }
 
     public Electronic(String name, int voltage){
-        this.id = generateId();
         this.name = name;
         this.voltage = voltage;
     }
 
     @Column
     private int voltage;
-
 
     public int getVoltage() {
         return voltage;

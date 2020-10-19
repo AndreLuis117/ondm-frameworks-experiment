@@ -17,14 +17,8 @@ public class Product {
 
     }
 
-    private static final Random RANDOM = new Random();
-
-    public static long generateId() {
-        return RANDOM.nextLong();
-    }
-
     @Id
-    protected long id;
+    protected Long id;
 
     @Column
     protected String name;
