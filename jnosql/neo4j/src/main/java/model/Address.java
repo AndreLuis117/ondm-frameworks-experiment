@@ -3,6 +3,7 @@ package model;
 
 import jakarta.nosql.mapping.Column;
 import jakarta.nosql.mapping.Entity;
+import jakarta.nosql.mapping.Id;
 
 @Entity
 public class Address {
@@ -18,6 +19,8 @@ public class Address {
         this.postalCode = postalCode;
     }
 
+    @Id
+    private Long id;
     @Column
     private String city;
     @Column
@@ -58,5 +61,19 @@ public class Address {
 
     public void setPostalCode(int postalCode) {
         this.postalCode = postalCode;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Endereço: ");
+        sb.append("id = ").append(id);
+        sb.append(", cidade = ").append(city).append('\'');
+        sb.append(", estado = ").append(state);
+        sb.append(", Rua = ").append(street).append('\'');
+        sb.append(", Número = ").append(postalCode);
+        return sb.toString();
     }
 }

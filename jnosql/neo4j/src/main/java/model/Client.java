@@ -17,7 +17,6 @@ public class Client {
 
     public Client(String name, Address address){
         this.name = name;
-        this.address = address;
     }
 
     @Id
@@ -25,9 +24,6 @@ public class Client {
 
     @Column
     private String name;
-
-    @Column
-    private Address address;
 
 
     public long getId() {
@@ -42,11 +38,4 @@ public class Client {
         this.name = name;
     }
 
-    public Address getAddress() {
-        return address;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
-    }
 }
