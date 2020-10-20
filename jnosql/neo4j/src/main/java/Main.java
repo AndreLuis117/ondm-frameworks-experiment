@@ -20,7 +20,7 @@ public class Main {
 
         //agregationTests.insert();
         //agregationTests.select();
-        agregationTests.update();
+        //agregationTests.update();
         //agregationTests.delete();
 
 
@@ -36,7 +36,7 @@ public class Main {
 
         //noRelationshipTests.runAll();
         //agregationTests.runAll();
-        //compositionTests.runAll();
+        compositionTests.runAll();
         //inheritanceTests.runAll();
 
 
