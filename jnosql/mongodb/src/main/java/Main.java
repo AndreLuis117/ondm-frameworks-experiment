@@ -34,9 +34,9 @@ public class Main {
         //inheritanceTests.delete();
         //inheritanceTests.select();
 
-        noRelationshipTests.runAll();
-        agregationTests.runAll();
-        compositionTests.runAll();
+        //noRelationshipTests.runAll();
+        //agregationTests.runAll();
+        //compositionTests.runAll();
         inheritanceTests.runAll();
 
 

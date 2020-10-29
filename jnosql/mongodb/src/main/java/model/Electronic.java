@@ -20,7 +20,6 @@ public class Electronic extends Product {
     @Column
     private int voltage;
 
-
     public int getVoltage() {
         return voltage;
     }
