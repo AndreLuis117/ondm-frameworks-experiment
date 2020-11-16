@@ -12,7 +12,7 @@ public class Main {
         AggregationTestsService agregationTests = new AggregationTestsService();
         InheritanceTestsService inheritanceTests = new InheritanceTestsService();
 
-        //noRelationshipTests.insert();
+        noRelationshipTests.insert();
         //noRelationshipTests.select();
         //noRelationshipTests.update();
         //noRelationshipTests.delete();
@@ -29,7 +29,7 @@ public class Main {
         //compositionTests.update();
         //compositionTests.delete();
 
-        inheritanceTests.insert();
+        //inheritanceTests.insert();
         //inheritanceTests.update();
         //inheritanceTests.delete();
         //inheritanceTests.select();

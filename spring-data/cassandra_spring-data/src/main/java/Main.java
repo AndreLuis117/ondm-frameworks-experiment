@@ -29,12 +29,12 @@ public class Main {
         //compositionTests.update();
         //compositionTests.delete();
 
-        inheritanceTests.insert();
+        //inheritanceTests.insert();
         //inheritanceTests.update();
         //inheritanceTests.delete();
         //inheritanceTests.select();
 
-        //noRelationshipTests.runAll();
+        noRelationshipTests.runAll();
         //agregationTests.runAll();
         //agregationTests.runAll();
         //inheritanceTests.runAll();
