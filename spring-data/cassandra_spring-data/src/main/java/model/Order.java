@@ -2,6 +2,7 @@ package model;
 
 
 
+import org.springframework.data.cassandra.core.mapping.Frozen;
 import org.springframework.data.cassandra.core.mapping.PrimaryKey;
 import org.springframework.data.cassandra.core.mapping.Table;
 
@@ -14,7 +15,7 @@ public class Order {
 
     public  Order(){
 
-    };
+    }
 
     private static final Random RANDOM = new Random();
 
@@ -24,8 +25,6 @@ public class Order {
 
     public Order(List<OrderItems> orderItems, Status status){
         this.id = generateId();
-        this.orderItems = orderItems;
-        this.status = status;
     }
 
     @PrimaryKey
@@ -33,7 +32,10 @@ public class Order {
 
     private List<OrderItems> orderItems = new ArrayList<OrderItems>();
 
-    private Status status;
+
+    public long getId() {
+        return id;
+    }
 
 
     public List<OrderItems> getOrderItems() {
@@ -42,17 +44,5 @@ public class Order {
 
     public void setOrderItems(List<OrderItems> orderItems) {
         this.orderItems = orderItems;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public Status getStatus() {
-        return status;
-    }
-
-    public void setStatus(Status status) {
-        this.status = status;
     }
 }

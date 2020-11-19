@@ -12,12 +12,13 @@
     <artifactId>cassandra_spring-data</artifactId>
     <dependencies>
 
-        <!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-cassandra -->
+        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-cassandra -->
         <dependency>
-            <groupId>org.springframework.data</groupId>
-            <artifactId>spring-data-cassandra</artifactId>
-            <version>3.0.0.RELEASE</version>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-cassandra</artifactId>
+            <version>2.4.0</version>
         </dependency>
+
 
 
     </dependencies>

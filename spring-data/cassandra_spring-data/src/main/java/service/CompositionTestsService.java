@@ -1,6 +1,9 @@
 package service;
 
 import model.*;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import repository.ClientRepository;
 import repository.OrderRepository;
 import utilities.Printer;
 
@@ -13,11 +16,10 @@ import java.util.Optional;
 public class CompositionTestsService implements ServiceBase {
 
     public CompositionTestsService(){
-        container = SeContainerInitializer.newInstance().initialize();
-        orderRepository = container.select(OrderRepository.class).get();
+        ApplicationContext context = new ClassPathXmlApplicationContext("META-INF/beans.xml");
+        orderRepository = context.getBean(OrderRepository.class);
     }
 
-    SeContainer container;
     OrderRepository orderRepository;
 
     public void runAll(){

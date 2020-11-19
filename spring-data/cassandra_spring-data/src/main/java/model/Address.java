@@ -2,13 +2,26 @@ package model;
 
 
 import org.springframework.data.cassandra.core.mapping.Table;
+import org.springframework.data.cassandra.core.mapping.UserDefinedType;
 
-@Table
+@UserDefinedType
 public class Address {
+
+    public Address(){
+
+    }
+
+    public Address(String city, String street, String state, int postalCode){
+        this.city = city;
+        this.street = street;
+        this.state = state;
+        this.postalCode = postalCode;
+    }
 
     private String city;
     private String street;
     private String state;
+    private int postalCode;
 
 
     public String getCity() {
@@ -33,6 +46,14 @@ public class Address {
 
     public void setState(String state) {
         this.state = state;
+    }
+
+    public int getPostalCode() {
+        return postalCode;
+    }
+
+    public void setPostalCode(int postalCode) {
+        this.postalCode = postalCode;
     }
 
 

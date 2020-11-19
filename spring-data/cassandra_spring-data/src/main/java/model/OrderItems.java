@@ -1,12 +1,13 @@
 package model;
 
 
-import org.springframework.data.cassandra.core.mapping.PrimaryKey;
-import org.springframework.data.cassandra.core.mapping.Table;
+import jnr.ffi.annotations.Transient;
+import org.springframework.data.cassandra.core.mapping.*;
 
 import java.util.Random;
+import java.util.UUID;
 
-@Table
+@UserDefinedType
 public class OrderItems {
 
     public OrderItems(){
@@ -20,19 +21,11 @@ public class OrderItems {
     }
 
     public OrderItems(Product product){
-        this.id = generateId();
         this.product = product;
     }
 
-    @PrimaryKey
-    private long id;
-
+    @Embedded.Nullable
     private Product product;
-
-
-    public long getId() {
-        return id;
-    }
 
     public Product getProduct() {
         return product;

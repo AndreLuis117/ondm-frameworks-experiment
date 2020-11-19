@@ -1,6 +1,8 @@
 package service;
 
 import model.Status;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import repository.StatusRepository;
 import utilities.Printer;
 
@@ -10,11 +12,10 @@ import javax.enterprise.inject.se.SeContainerInitializer;
 public class NoRelationshipTestsService implements ServiceBase {
 
     public NoRelationshipTestsService(){
-        container = SeContainerInitializer.newInstance().initialize();
-        statusRepository = container.select(StatusRepository.class).get();
+        ApplicationContext context = new ClassPathXmlApplicationContext("META-INF/beans.xml");
+        statusRepository = context.getBean(StatusRepository.class);
     }
 
-    SeContainer container;
     StatusRepository statusRepository;
 
     public void runAll(){
@@ -45,12 +46,12 @@ public class NoRelationshipTestsService implements ServiceBase {
 
             statusRepository.save(status);
 
-            var statusReturn = statusRepository.findByName(status.getName());
+            var statusReturn = statusRepository.findById(status.getId());
 
             if(statusReturn != null){
                 Printer.selectSuccess();
                 System.out.println("Status: ");
-                System.out.println(statusReturn.getName());
+                System.out.println(statusReturn.get().getName());
             }else{
                 Printer.selectFailure();
             }

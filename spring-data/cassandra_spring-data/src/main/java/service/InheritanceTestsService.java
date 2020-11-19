@@ -1,7 +1,10 @@
 package service;
 
 import model.Electronic;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import repository.ElectronicRepository;
+import repository.StatusRepository;
 import utilities.Printer;
 
 import javax.enterprise.inject.se.SeContainer;
@@ -10,11 +13,10 @@ import javax.enterprise.inject.se.SeContainerInitializer;
 public class InheritanceTestsService implements ServiceBase {
 
     public InheritanceTestsService(){
-        container = SeContainerInitializer.newInstance().initialize();
-        electronicRepository = container.select(ElectronicRepository.class).get();
+        ApplicationContext context = new ClassPathXmlApplicationContext("META-INF/beans.xml");
+        electronicRepository = context.getBean(ElectronicRepository.class);
     }
 
-    SeContainer container;
     ElectronicRepository electronicRepository;
 
     public void runAll(){

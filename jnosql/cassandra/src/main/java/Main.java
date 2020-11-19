@@ -1,10 +1,14 @@
+import org.springframework.beans.factory.annotation.Autowired;
 import service.AggregationTestsService;
 import service.CompositionTestsService;
 import service.InheritanceTestsService;
 import service.NoRelationshipTestsService;
 
+import javax.inject.Inject;
+
 public class Main {
 
+    @Autowired
     public static void main(String[] args) {
 
         NoRelationshipTestsService noRelationshipTests = new NoRelationshipTestsService();

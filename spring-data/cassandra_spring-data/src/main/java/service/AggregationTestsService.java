@@ -2,7 +2,10 @@ package service;
 
 import model.Address;
 import model.Client;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import repository.ClientRepository;
+import repository.ElectronicRepository;
 import utilities.Printer;
 
 import javax.enterprise.inject.se.SeContainer;
@@ -11,11 +14,10 @@ import javax.enterprise.inject.se.SeContainerInitializer;
 public class AggregationTestsService implements ServiceBase{
 
     public AggregationTestsService(){
-        container = SeContainerInitializer.newInstance().initialize();
-        clientRepository = container.select(ClientRepository.class).get();
+        ApplicationContext context = new ClassPathXmlApplicationContext("META-INF/beans.xml");
+        clientRepository = context.getBean(ClientRepository.class);
     }
 
-    SeContainer container;
     ClientRepository clientRepository;
 
     public void runAll(){
@@ -29,16 +31,8 @@ public class AggregationTestsService implements ServiceBase{
     public void insert() {
 
         try{
-            Address address = new Address();
-            address.setCity("Rio Negrinho");
-            address.setStreet("Rua Marechal Teodoro");
-            address.setState("SC");
-            //address.setPostalCode(178);
-            Client client = new Client();
-            client.setName("John Marston");
-            client.setAddress(address);
-            client.setId(10);
-
+            Address address = new Address("Rio Negrinho", "Rua Marechal Teodoro", "SC", 178);
+            Client client = new Client("John Marston", address);
 
             clientRepository.save(client);
 
@@ -55,7 +49,7 @@ public class AggregationTestsService implements ServiceBase{
 
     @Override
     public void select() {
-        /*
+
         try {
             Address address = new Address("Joinville", "Rua da saudade", "SC", 898);
             Client client = new Client("Marco Reus", address);
@@ -86,12 +80,12 @@ public class AggregationTestsService implements ServiceBase{
         }catch (Exception e){
             e.printStackTrace();
         }
-*/
+
     }
 
     @Override
     public void update() {
-        /*
+
         try{
             Address address = new Address("Joinville", "Rua XV de novembro", "SC", 1100);
             Client client = new Client("Thomas A. Anderson", address);
@@ -112,12 +106,12 @@ public class AggregationTestsService implements ServiceBase{
         } catch (Exception e){
             e.printStackTrace();
         }
-*/
+
     }
 
     @Override
     public void delete() {
-/*
+
         try {
             Address address = new Address("Chapecó", "Rua João dos Santos", "SC", 460);
             Client client = new Client("John Wick", address);
@@ -133,6 +127,6 @@ public class AggregationTestsService implements ServiceBase{
         }catch (Exception e){
             e.printStackTrace();
         }
-*/
+
     }
 }
