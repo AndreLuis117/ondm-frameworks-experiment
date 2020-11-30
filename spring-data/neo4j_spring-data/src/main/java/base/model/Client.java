@@ -3,10 +3,7 @@ package base.model;
 
 
 
-import org.springframework.data.neo4j.core.schema.Id;
-import org.springframework.data.neo4j.core.schema.Node;
-import org.springframework.data.neo4j.core.schema.Property;
-import org.springframework.data.neo4j.core.schema.Relationship;
+import org.springframework.data.neo4j.core.schema.*;
 
 @Node
 public class Client {
@@ -21,6 +18,7 @@ public class Client {
     }
 
     @Id
+    @GeneratedValue
     private Long id;
 
     @Property

@@ -1,7 +1,8 @@
 package base.service;
 
-import model.Status;
-import repository.StatusRepository;
+
+import base.model.Status;
+import base.repository.StatusRepository;
 import service.ServiceBase;
 import utilities.Printer;
 

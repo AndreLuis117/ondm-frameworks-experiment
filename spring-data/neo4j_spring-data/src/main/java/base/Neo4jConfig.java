@@ -16,7 +16,7 @@ public class Neo4jConfig {
     @ApplicationScoped
     public Driver driver() {
         return GraphDatabase
-                .driver("bolt://localhost:7687", AuthTokens.basic("neo4j", "secret"));
+                .driver("bolt://localhost:7687", AuthTokens.basic("neo4j", "test"));
     }
 
     public void close(@Disposes Driver driver) {
@@ -25,6 +25,6 @@ public class Neo4jConfig {
 
     @Produces @Singleton
     public DatabaseSelectionProvider getDatabaseSelectionProvider() {
-        return DatabaseSelectionProvider.createStaticDatabaseSelectionProvider("yourDatabase");
+        return DatabaseSelectionProvider.createStaticDatabaseSelectionProvider("neo4j");
     }
 }
