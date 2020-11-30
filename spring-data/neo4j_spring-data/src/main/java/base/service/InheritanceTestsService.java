@@ -1,7 +1,7 @@
 package base.service;
 
-import model.Electronic;
-import repository.ElectronicRepository;
+import base.model.Electronic;
+import base.repository.ElectronicRepository;
 import service.ServiceBase;
 import utilities.Printer;
 

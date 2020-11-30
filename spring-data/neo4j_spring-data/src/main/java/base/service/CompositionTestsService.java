@@ -1,26 +1,25 @@
 package base.service;
 
-import org.eclipse.jnosql.artemis.graph.GraphTemplate;
-import repository.OrderRepository;
+import base.model.*;
+import base.repository.OrderRepository;
 import service.ServiceBase;
 import utilities.Printer;
 
 import javax.enterprise.inject.se.SeContainer;
 import javax.enterprise.inject.se.SeContainerInitializer;
-
-import static java.util.stream.Collectors.toList;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 public class CompositionTestsService implements ServiceBase {
 
     public CompositionTestsService(){
         container = SeContainerInitializer.newInstance().initialize();
         orderRepository = container.select(OrderRepository.class).get();
-        graph = container.select(GraphTemplate.class).get();
     }
 
     SeContainer container;
     OrderRepository orderRepository;
-    GraphTemplate graph;
 
     public void runAll(){
         insert();
@@ -36,43 +35,19 @@ public class CompositionTestsService implements ServiceBase {
             Electronic xbox360 = new Electronic("Xbox 360", 110);
             Electronic ps3 = new Electronic("PS3", 220);
             Toy funko = new Toy("Batmovel", 5);
-            graph.insert(xbox360);
-            graph.insert(ps3);
-            graph.insert(funko);
-
             Status status = new Status("Aguardando pagamento");
-            graph.insert(status);
-
-            OrderItem orderItem1 = new OrderItem();
-            OrderItem orderItem2 = new OrderItem();
-            OrderItem orderItem3 = new OrderItem();
-            graph.insert(orderItem1);
-            graph.insert(orderItem2);
-            graph.insert(orderItem3);
-
-            Order order = new Order();
-            graph.insert(order);
 
 
-            graph.edge(orderItem1, "has", xbox360);
-            graph.edge(orderItem2, "has", ps3);
-            graph.edge(orderItem3, "has", funko);
+            List<OrderItem> orderItems = new ArrayList<OrderItem>();
+            orderItems.add(new OrderItem(xbox360));
+            orderItems.add(new OrderItem(ps3));
+            orderItems.add(new OrderItem(funko));
+            Order order = new Order(orderItems, status);
 
-            graph.edge(order, "has", orderItem1);
-            graph.edge(order, "has", orderItem2);
-            graph.edge(order, "has", orderItem3);
-            graph.edge(order,"is", status);
-
+            orderRepository.save(order);
 
             if(orderRepository.existsById(order.getId()))
-            {
-
-                var orderItemsReturned = graph.getTraversalVertex(order.getId())
-                        .out("has").<OrderItem>getResult().collect(toList());
-                if(!orderItemsReturned.isEmpty())
-                    Printer.insertSuccess();
-
-            }
+                Printer.insertSuccess();
             else
                 Printer.insertFailure();
 
@@ -89,55 +64,27 @@ public class CompositionTestsService implements ServiceBase {
             Electronic xboxOne = new Electronic("Xbox one", 220);
             Electronic ps4 = new Electronic("PS4", 220);
             Toy hotwheels = new Toy("Batmovel", 5);
-            graph.insert(xboxOne);
-            graph.insert(ps4);
-            graph.insert(hotwheels);
-
             Status status = new Status("Aguardando pagamento");
-            graph.insert(status);
-
-            OrderItem orderItem1 = new OrderItem();
-            OrderItem orderItem2 = new OrderItem();
-            OrderItem orderItem3 = new OrderItem();
-            graph.insert(orderItem1);
-            graph.insert(orderItem2);
-            graph.insert(orderItem3);
-
-            Order order = new Order();
-            graph.insert(order);
 
 
-            graph.edge(orderItem1, "has", xboxOne);
-            graph.edge(orderItem2, "has", ps4);
-            graph.edge(orderItem3, "has", hotwheels);
+            List<OrderItem> OrderItem = new ArrayList<OrderItem>();
+            OrderItem.add(new OrderItem(xboxOne));
+            OrderItem.add(new OrderItem(ps4));
+            OrderItem.add(new OrderItem(hotwheels));
+            Order order = new Order(OrderItem, status);
 
-            graph.edge(order, "has", orderItem1);
-            graph.edge(order, "has", orderItem2);
-            graph.edge(order, "has", orderItem3);
-            graph.edge(order,"is", status);
+            orderRepository.save(order);
 
-            var orderReturn = graph.getTraversalVertex(order.getId()).<Order>getSingleResult();
+            Optional<Order> orderReturn = orderRepository.findById(order.getId());
 
-            if(orderReturn.isPresent())
-            {
-                var orderItemsReturned = graph.getTraversalVertex(order.getId())
-                        .out("has").<OrderItem>getResult().collect(toList());
+            if(orderReturn.isPresent()){
+                Printer.selectSuccess();
+                System.out.println("Itens:");
 
-                if(!orderItemsReturned.isEmpty())
+                for (OrderItem orderItem : orderReturn.get().getOrderItems())
                 {
-                    Printer.selectSuccess();
-
-                    System.out.println("Itens:");
-
-                    for (OrderItem orderItem : orderItemsReturned)
-                    {
-                        var productReturned = graph.getTraversalVertex(orderItem.getId())
-                                .out("has").<Product>getSingleResult().get();
-
-                        System.out.println(productReturned.getName());
-                    }
+                    System.out.println(orderItem.getProduct().getName());
                 }
-
             }else
                 Printer.selectFailure();
 
@@ -154,47 +101,23 @@ public class CompositionTestsService implements ServiceBase {
             Product ps2 = new Electronic("PS2", 220);
             Product xbox = new Electronic("Xbox", 220);
             Product maxSteel = new Toy("Max Steel", 5);
-            graph.insert(ps2);
-            graph.insert(xbox);
-            graph.insert(maxSteel);
-
             Status status = new Status("Aguardando pagamento");
-            graph.insert(status);
-
-            OrderItem orderItem1 = new OrderItem();
-            OrderItem orderItem2 = new OrderItem();
-            OrderItem orderItem3 = new OrderItem();
-            graph.insert(orderItem1);
-            graph.insert(orderItem2);
-            graph.insert(orderItem3);
-
-            Order order = new Order();
-            graph.insert(order);
 
 
-            graph.edge(orderItem1, "has", ps2);
-            graph.edge(orderItem2, "has", xbox);
-            graph.edge(orderItem3, "has", maxSteel);
+            List<OrderItem> OrderItem = new ArrayList<OrderItem>();
+            OrderItem.add(new OrderItem(ps2));
+            OrderItem.add(new OrderItem(xbox));
+            OrderItem.add(new OrderItem(maxSteel));
+            Order order = new Order(OrderItem, status);
 
-            graph.edge(order, "has", orderItem1);
-            graph.edge(order, "has", orderItem2);
-            graph.edge(order, "has", orderItem3);
-            graph.edge(order,"is", status);
-
-
+            orderRepository.save(order);
             Toy pistaHotWheels = new Toy("Pista Hot Wheels", 5);
-            OrderItem orderItem4 = new OrderItem();
-            graph.insert(pistaHotWheels);
-            graph.insert(orderItem4);
-            graph.edge(orderItem4, "has", pistaHotWheels);
-            graph.edge(order, "has", orderItem4);
+            order.getOrderItems().add(new OrderItem(pistaHotWheels));
+            orderRepository.save(order);
 
             var orderReturn = orderRepository.findById(order.getId());
 
-            var orderItemsReturned = graph.getTraversalVertex(order.getId())
-                    .out("has").<OrderItem>getResult().collect(toList());
-
-            if(orderItemsReturned.size() > 3)
+            if(orderReturn.get().getOrderItems().stream().anyMatch(x -> x.getProduct().getName().equals("Pista Hot Wheels")))
                 Printer.updateSuccess();
             else
                 Printer.updateFailure();
@@ -212,32 +135,16 @@ public class CompositionTestsService implements ServiceBase {
             Electronic nswitch = new Electronic("Nintendo Switch", 220);
             Electronic wii = new Electronic("Nintendo Wii", 220);
             Toy funko = new Toy("Funko", 5);
-            graph.insert(nswitch);
-            graph.insert(wii);
-            graph.insert(funko);
-
             Status status = new Status("Aguardando pagamento");
-            graph.insert(status);
-
-            OrderItem orderItem1 = new OrderItem();
-            OrderItem orderItem2 = new OrderItem();
-            OrderItem orderItem3 = new OrderItem();
-            graph.insert(orderItem1);
-            graph.insert(orderItem2);
-            graph.insert(orderItem3);
-
-            Order order = new Order();
-            graph.insert(order);
 
 
-            graph.edge(orderItem1, "has", nswitch);
-            graph.edge(orderItem2, "has", wii);
-            graph.edge(orderItem3, "has", funko);
+            List<OrderItem> OrderItem = new ArrayList<OrderItem>();
+            OrderItem.add(new OrderItem(nswitch));
+            OrderItem.add(new OrderItem(wii));
+            OrderItem.add(new OrderItem(funko));
+            Order order = new Order(OrderItem, status);
 
-            graph.edge(order, "has", orderItem1);
-            graph.edge(order, "has", orderItem2);
-            graph.edge(order, "has", orderItem3);
-            graph.edge(order,"is", status);
+            orderRepository.save(order);
 
             orderRepository.deleteById(order.getId());
 

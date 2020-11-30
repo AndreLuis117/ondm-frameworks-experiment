@@ -1,9 +1,9 @@
 package base.service;
 
-import model.Address;
-import model.Client;
-import org.eclipse.jnosql.artemis.graph.GraphTemplate;
-import repository.ClientRepository;
+
+import base.model.Address;
+import base.model.Client;
+import base.repository.ClientRepository;
 import service.ServiceBase;
 import utilities.Printer;
 
@@ -15,13 +15,10 @@ public class AggregationTestsService implements ServiceBase{
     public AggregationTestsService(){
         container = SeContainerInitializer.newInstance().initialize();
         clientRepository = container.select(ClientRepository.class).get();
-        graph = container.select(GraphTemplate.class).get();
-
     }
 
     SeContainer container;
     ClientRepository clientRepository;
-    GraphTemplate graph;
 
     public void runAll(){
         insert();
@@ -37,16 +34,9 @@ public class AggregationTestsService implements ServiceBase{
             Address address = new Address("Rio Negrinho", "Rua Marechal Teodoro", "SC", 178);
             Client client = new Client("John Marston", address);
 
-            graph.insert(client);
-            graph.insert(address);
+            clientRepository.save(client);
 
-            graph.edge(client, "has", address);
-
-            var clientAddress = graph.getTraversalVertex().has("name", client.getName())
-                                                                    .out("has").<Address>getResult()
-                                                                    .findFirst();
-
-            if(clientRepository.existsById(client.getId()) && clientAddress.isPresent())
+            if(clientRepository.existsById(client.getId()))
                 Printer.insertSuccess();
             else
                 Printer.insertFailure();
@@ -70,18 +60,9 @@ public class AggregationTestsService implements ServiceBase{
             Address address3 = new Address("Blumenau", "Rua João das Neves", "SC", 980);
             Client client3 = new Client("Keanu Reeves", address3);
 
-            graph.insert(client);
-            graph.insert(client2);
-            graph.insert(client3);
-
-            graph.insert(address);
-            graph.insert(address2);
-            graph.insert(address3);
-
-            graph.edge(client, "has", address);
-            graph.edge(client2, "has", address2);
-            graph.edge(client3, "has", address3);
-
+            clientRepository.save(client);
+            clientRepository.save(client2);
+            clientRepository.save(client3);
 
             var clientReturn = clientRepository.findAll();
 
@@ -92,14 +73,6 @@ public class AggregationTestsService implements ServiceBase{
                 for (Client clientInDb : clientReturn)
                 {
                     System.out.println(clientInDb.getName());
-
-                    var clientAddress = graph.getTraversalVertex().has("name", clientInDb.getName())
-                            .out("has").<Address>getResult()
-                            .findFirst();
-                    if(clientAddress.isPresent())
-                        System.out.println("Endereço: " + clientAddress.toString());
-                    else
-                        System.out.println("Não foi possível encontrar o endereço do cliente.");
                 }
             }else
                 Printer.selectFailure();
@@ -117,24 +90,15 @@ public class AggregationTestsService implements ServiceBase{
             Address address = new Address("Joinville", "Rua XV de novembro", "SC", 1100);
             Client client = new Client("Thomas A. Anderson", address);
 
-            graph.insert(client);
-            graph.insert(address);
+            clientRepository.save(client);
 
-            graph.edge(client, "has", address);
+            client.getAddress().setPostalCode(1111);
 
-            var clientAddress = graph.getTraversalVertex(client.getId()).has("name", client.getName())
-                    .out("has").<Address>getSingleResult();
+            clientRepository.save(client);
 
-            if (clientAddress.isPresent())
-            {
-                clientAddress.get().setPostalCode(1111);
-                graph.insert(clientAddress.get());
-            }
+            var clientReturn = clientRepository.findById(client.getId());
 
-            var clientAddressUpdate = graph.getTraversalVertex(client.getId()).has("name", client.getName())
-                    .out("has").<Address>getSingleResult();
-
-            if(clientAddressUpdate.isPresent() && clientAddressUpdate.get().getPostalCode() == 1111)
+            if(clientReturn.get().getAddress().getPostalCode() == client.getAddress().getPostalCode())
                 Printer.updateSuccess();
             else
                 Printer.updateFailure();
