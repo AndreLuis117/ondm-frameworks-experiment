@@ -10,6 +10,7 @@
 		<module>jnosql</module>
         <module>shared</module>
         <module>spring-data</module>
+        <module>kundera</module>
     </modules>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
