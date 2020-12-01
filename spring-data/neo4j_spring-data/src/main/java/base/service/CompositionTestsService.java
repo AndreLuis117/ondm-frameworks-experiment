@@ -1,7 +1,10 @@
 package base.service;
 
 import base.model.*;
+import base.repository.ElectronicRepository;
+import base.repository.OrderItemsRepository;
 import base.repository.OrderRepository;
+import base.repository.ProductRepository;
 import service.ServiceBase;
 import utilities.Printer;
 
@@ -16,10 +19,12 @@ public class CompositionTestsService implements ServiceBase {
     public CompositionTestsService(){
         container = SeContainerInitializer.newInstance().initialize();
         orderRepository = container.select(OrderRepository.class).get();
+        orderItemsRepository = container.select(OrderItemsRepository.class).get();
     }
 
     SeContainer container;
     OrderRepository orderRepository;
+    OrderItemsRepository orderItemsRepository;
 
     public void runAll(){
         insert();
@@ -32,11 +37,10 @@ public class CompositionTestsService implements ServiceBase {
     public void insert() {
 
         try {
-            Electronic xbox360 = new Electronic("Xbox 360", 110);
-            Electronic ps3 = new Electronic("PS3", 220);
-            Toy funko = new Toy("Batmovel", 5);
+            Product xbox360 = new Product("Xbox 360");
+            Product ps3 = new Product("PS3");
+            Product funko = new Product("Batmovel");
             Status status = new Status("Aguardando pagamento");
-
 
             List<OrderItem> orderItems = new ArrayList<OrderItem>();
             orderItems.add(new OrderItem(xbox360));
@@ -61,9 +65,9 @@ public class CompositionTestsService implements ServiceBase {
     public void select() {
 
         try {
-            Electronic xboxOne = new Electronic("Xbox one", 220);
-            Electronic ps4 = new Electronic("PS4", 220);
-            Toy hotwheels = new Toy("Batmovel", 5);
+            Product xboxOne = new Product("Xbox one");
+            Product ps4 = new Product("PS4");
+            Product hotwheels = new Product("Batmovel");
             Status status = new Status("Aguardando pagamento");
 
 
@@ -75,17 +79,22 @@ public class CompositionTestsService implements ServiceBase {
 
             orderRepository.save(order);
 
-            Optional<Order> orderReturn = orderRepository.findById(order.getId());
+            var orderReturn = orderRepository.findById(order.getId());
 
-            if(orderReturn.isPresent()){
+            if(orderReturn.isPresent())
+            {
                 Printer.selectSuccess();
                 System.out.println("Itens:");
 
                 for (OrderItem orderItem : orderReturn.get().getOrderItems())
                 {
-                    System.out.println(orderItem.getProduct().getName());
+                    var orderItemReturn = orderItemsRepository.findById(orderItem.getId());
+
+                    if (orderItemReturn.isPresent())
+                        System.out.println(orderItemReturn.get().getProduct().getName());
                 }
-            }else
+            }
+            else
                 Printer.selectFailure();
 
         } catch (Exception e){
@@ -98,9 +107,9 @@ public class CompositionTestsService implements ServiceBase {
     public void update() {
 
         try{
-            Product ps2 = new Electronic("PS2", 220);
-            Product xbox = new Electronic("Xbox", 220);
-            Product maxSteel = new Toy("Max Steel", 5);
+            Product ps2 = new Product("PS2");
+            Product xbox = new Product("Xbox");
+            Product maxSteel = new Product("Max Steel");
             Status status = new Status("Aguardando pagamento");
 
 
@@ -111,16 +120,24 @@ public class CompositionTestsService implements ServiceBase {
             Order order = new Order(OrderItem, status);
 
             orderRepository.save(order);
-            Toy pistaHotWheels = new Toy("Pista Hot Wheels", 5);
+
+            Product pistaHotWheels = new Product("Pista Hot Wheels");
             order.getOrderItems().add(new OrderItem(pistaHotWheels));
             orderRepository.save(order);
 
             var orderReturn = orderRepository.findById(order.getId());
+            if(orderReturn.isPresent())
+            {
+                var orderItemsReturn = orderItemsRepository.findAll();
+                if(orderItemsReturn
+                        .stream()
+                        .filter(x -> x.getProduct() != null)
+                        .anyMatch(x -> x.getProduct().getName().equals("Pista Hot Wheels")))
+                    Printer.updateSuccess();
+                else
+                    Printer.updateFailure();
+            }
 
-            if(orderReturn.get().getOrderItems().stream().anyMatch(x -> x.getProduct().getName().equals("Pista Hot Wheels")))
-                Printer.updateSuccess();
-            else
-                Printer.updateFailure();
 
         }catch (Exception e){
             e.printStackTrace();
@@ -132,9 +149,9 @@ public class CompositionTestsService implements ServiceBase {
     public void delete() {
 
         try{
-            Electronic nswitch = new Electronic("Nintendo Switch", 220);
-            Electronic wii = new Electronic("Nintendo Wii", 220);
-            Toy funko = new Toy("Funko", 5);
+            Product nswitch = new Product("Nintendo Switch");
+            Product wii = new Product("Nintendo Wii");
+            Product funko = new Product("Funko");
             Status status = new Status("Aguardando pagamento");
 
 

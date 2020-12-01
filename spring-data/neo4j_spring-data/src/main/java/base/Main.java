@@ -40,7 +40,7 @@ public class Main {
         //noRelationshipTests.runAll();
         //agregationTests.runAll();
         //compositionTests.runAll();
-        inheritanceTests.runAll();
+        //inheritanceTests.runAll();
 
 
     }

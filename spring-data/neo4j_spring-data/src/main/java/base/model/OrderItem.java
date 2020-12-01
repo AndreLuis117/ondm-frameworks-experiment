@@ -21,7 +21,7 @@ public class OrderItem {
     @GeneratedValue
     private Long id;
 
-    @Relationship(type = "has")
+    @Relationship(type = "have")
     private Product product;
 
     public long getId() {

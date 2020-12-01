@@ -13,6 +13,10 @@ public class Product {
 
     }
 
+    public Product(String name){
+        this.name = name;
+    }
+
     @Id
     @GeneratedValue
     protected Long id;
