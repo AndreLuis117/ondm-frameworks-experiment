@@ -7,7 +7,7 @@ import javax.persistence.*;
 import java.util.Random;
 
 @Entity
-@Table(name = "Client", schema = "test")
+@Table(name = "Client", schema = "testDB@mongo_pu")
 public class Client {
 
     public Client(){

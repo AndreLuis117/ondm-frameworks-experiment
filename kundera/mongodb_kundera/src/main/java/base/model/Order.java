@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Random;
 
 @Entity
-@Table(name = "Order", schema = "test")
+@Table(name = "Order", schema = "testDB@mongo_pu")
 public class Order {
 
     public  Order(){

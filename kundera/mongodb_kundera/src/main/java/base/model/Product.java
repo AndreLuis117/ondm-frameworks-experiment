@@ -10,7 +10,7 @@ import javax.persistence.Table;
 import java.util.Random;
 
 @Entity
-@Table(name = "Product", schema = "test")
+@Table(name = "Product", schema = "testDB@mongo_pu")
 public class Product {
 
     public Product(){
