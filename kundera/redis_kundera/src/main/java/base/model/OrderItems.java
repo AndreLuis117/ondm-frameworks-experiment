@@ -1,22 +1,25 @@
 package base.model;
 
 
-import javax.persistence.Embeddable;
-import javax.persistence.Embedded;
 
-@Embeddable
+import javax.persistence.*;
+
+@Entity
+@Table(name = "OrderItems", schema = "redisDb@redis_pu")
 public class OrderItems {
 
     public OrderItems(){
 
     }
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private String id;
 
     public OrderItems(ProductEmbeddable product){
         this.product = product;
     }
 
-    @Embedded
     private ProductEmbeddable product;
 
 

@@ -26,7 +26,8 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private String id;
 
-    @ElementCollection
+    @OneToMany
+    @JoinColumn
     private List<OrderItems> orderItems = new ArrayList<OrderItems>();
 
     @OneToOne

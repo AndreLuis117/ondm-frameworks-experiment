@@ -4,7 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 @Embeddable
-public class ProductEmbeddable extends Product{
+public class ProductEmbeddable{
 
     public ProductEmbeddable(){
 
