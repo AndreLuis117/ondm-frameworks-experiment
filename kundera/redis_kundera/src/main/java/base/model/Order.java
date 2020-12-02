@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "Order", schema = "kunderaTestDb@redis_pu")
+@Table(name = "Order", schema = "redisDb@redis_pu")
 public class Order {
 
     public  Order(){
@@ -23,7 +23,7 @@ public class Order {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private String id;
 
     @ElementCollection

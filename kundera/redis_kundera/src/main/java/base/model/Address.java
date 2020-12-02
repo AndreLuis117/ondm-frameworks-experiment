@@ -4,7 +4,7 @@ package base.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Address", schema = "kunderaTestDb@redis_pu")
+@Table(name = "Address", schema = "redisDb@redis_pu")
 public class Address {
 
     public Address(){
@@ -19,7 +19,7 @@ public class Address {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private String id;
     @Column
     private String city;

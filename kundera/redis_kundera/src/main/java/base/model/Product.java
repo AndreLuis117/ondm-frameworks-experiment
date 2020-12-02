@@ -6,7 +6,7 @@ package base.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Product", schema = "kunderaTestDb")
+@Table(name = "Product", schema = "redisDb")
 @Inheritance(strategy=InheritanceType.JOINED)
 public class Product {
 
@@ -19,7 +19,7 @@ public class Product {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     protected String id;
 
     @Column

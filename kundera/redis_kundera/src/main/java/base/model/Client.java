@@ -6,7 +6,7 @@ package base.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Client", schema = "kunderaTestDb@redis_pu")
+@Table(name = "Client", schema = "redisDb@redis_pu")
 public class Client {
 
     public Client(){
@@ -20,7 +20,7 @@ public class Client {
 
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private String id;
 
     @Column

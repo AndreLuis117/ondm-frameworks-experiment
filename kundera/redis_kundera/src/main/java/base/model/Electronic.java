@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Electronic", schema = "kunderaTestDb@redis_pu")
+@Table(name = "Electronic", schema = "redisDb@redis_pu")
 public class Electronic extends Product {
 
     public Electronic(){
