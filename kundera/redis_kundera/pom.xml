@@ -11,5 +11,15 @@
 
     <artifactId>redis_kundera</artifactId>
 
+    <dependencies>
+        <!-- https://mvnrepository.com/artifact/com.impetus.kundera.client/kundera-redis -->
+        <dependency>
+            <groupId>com.impetus.kundera.client</groupId>
+            <artifactId>kundera-redis</artifactId>
+            <version>3.13</version>
+        </dependency>
+
+    </dependencies>
+
 
 </project>
