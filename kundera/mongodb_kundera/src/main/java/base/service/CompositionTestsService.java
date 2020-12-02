@@ -34,9 +34,9 @@ public class CompositionTestsService implements ServiceBase {
     public void insert() {
 
         try {
-            Electronic xbox360 = new Electronic("Xbox 360", 110);
-            Electronic ps3 = new Electronic("PS3", 220);
-            Toy funko = new Toy("Batmovel", 5);
+            ProductEmbeddable xbox360 = new ProductEmbeddable("Xbox 360");
+            ProductEmbeddable ps3 = new ProductEmbeddable("PS3");
+            ProductEmbeddable funko = new ProductEmbeddable("Batmovel");
             Status status = new Status("Aguardando pagamento");
 
 
@@ -63,9 +63,9 @@ public class CompositionTestsService implements ServiceBase {
     public void select() {
 
         try {
-            Electronic xboxOne = new Electronic("Xbox one", 220);
-            Electronic ps4 = new Electronic("PS4", 220);
-            Toy hotwheels = new Toy("Batmovel", 5);
+            ProductEmbeddable xboxOne = new ProductEmbeddable("Xbox one");
+            ProductEmbeddable ps4 = new ProductEmbeddable("PS4");
+            ProductEmbeddable hotwheels = new ProductEmbeddable("Batmovel");
             Status status = new Status("Aguardando pagamento");
 
 
@@ -77,7 +77,7 @@ public class CompositionTestsService implements ServiceBase {
 
             em.persist(order);
 
-            var orderReturn = em.find(Order.class, order);
+            var orderReturn = em.find(Order.class, order.getId());
 
             if(orderReturn != null){
                 Printer.selectSuccess();
@@ -100,9 +100,9 @@ public class CompositionTestsService implements ServiceBase {
     public void update() {
 
         try{
-            Product ps2 = new Electronic("PS2", 220);
-            Product xbox = new Electronic("Xbox", 220);
-            Product maxSteel = new Toy("Max Steel", 5);
+            ProductEmbeddable ps2 = new ProductEmbeddable("PS2");
+            ProductEmbeddable xbox = new ProductEmbeddable("Xbox");
+            ProductEmbeddable maxSteel = new ProductEmbeddable("Max Steel");
             Status status = new Status("Aguardando pagamento");
 
 
@@ -113,11 +113,11 @@ public class CompositionTestsService implements ServiceBase {
             Order order = new Order(orderItems, status);
 
             em.persist(order);
-            Toy pistaHotWheels = new Toy("Pista Hot Wheels", 5);
+            ProductEmbeddable pistaHotWheels = new ProductEmbeddable("Pista Hot Wheels");
             order.getOrderItems().add(new OrderItems(pistaHotWheels));
-            em.persist(order);
+            em.merge(order);
 
-            var orderReturn = em.find(Order.class, order);
+            var orderReturn = em.find(Order.class, order.getId());
 
             if(orderReturn.getOrderItems().stream().anyMatch(x -> x.getProduct().getName().equals("Pista Hot Wheels")))
                 Printer.updateSuccess();
@@ -134,9 +134,9 @@ public class CompositionTestsService implements ServiceBase {
     public void delete() {
 
         try{
-            Electronic nswitch = new Electronic("Nintendo Switch", 220);
-            Electronic wii = new Electronic("Nintendo Wii", 220);
-            Toy funko = new Toy("Funko", 5);
+            ProductEmbeddable nswitch = new ProductEmbeddable("Nintendo Switch");
+            ProductEmbeddable wii = new ProductEmbeddable("Nintendo Wii");
+            ProductEmbeddable funko = new ProductEmbeddable("Funko");
             Status status = new Status("Aguardando pagamento");
 
 
@@ -158,7 +158,6 @@ public class CompositionTestsService implements ServiceBase {
         } catch (Exception e){
             e.printStackTrace();
         }
-
     }
 
 }

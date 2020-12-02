@@ -1,9 +1,7 @@
 package base.model;
 
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "Electronic", schema = "kunderaTestDb@mongo_pu")
@@ -17,6 +15,7 @@ public class Electronic extends Product {
         this.name = name;
         this.voltage = voltage;
     }
+
 
     @Column
     private int voltage;

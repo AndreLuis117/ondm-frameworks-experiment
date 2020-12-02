@@ -1,10 +1,7 @@
 package base.model;
 
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "Toy", schema = "kunderaTestDb@mongo_pu")
@@ -18,7 +15,6 @@ public class Toy extends Product {
         this.name = name;
         this.ageIndication = ageIndication;
     }
-
 
 
     @Column

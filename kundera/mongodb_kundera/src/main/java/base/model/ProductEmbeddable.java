@@ -1,26 +1,19 @@
 package base.model;
 
-
-
-
 import javax.persistence.*;
-import java.util.Random;
 
-@Entity
-@Table(name = "Product", schema = "kunderaTestDb")
-@Inheritance(strategy=InheritanceType.JOINED)
-public class Product {
+@Embeddable
+public class ProductEmbeddable extends Product{
 
-    public Product(){
+    public ProductEmbeddable(){
 
     }
 
-    public Product(String name){
+    public ProductEmbeddable(String name){
         this.name = name;
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column
     protected String id;
 
     @Column
