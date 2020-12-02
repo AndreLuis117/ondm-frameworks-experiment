@@ -13,6 +13,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>mongodb_kundera</module>
+        <module>redis_kundera</module>
     </modules>
 
     <dependencies>
