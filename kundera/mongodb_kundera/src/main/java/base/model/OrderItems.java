@@ -6,7 +6,6 @@ package base.model;
 import javax.persistence.*;
 import java.util.Random;
 
-@Embeddable
 public class OrderItems {
 
     public OrderItems(){

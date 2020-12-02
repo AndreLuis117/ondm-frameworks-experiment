@@ -3,6 +3,7 @@ package base.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
@@ -18,6 +19,8 @@ public class Toy extends Product {
         this.name = name;
         this.ageIndication = ageIndication;
     }
+
+
 
     @Column
     private int ageIndication;

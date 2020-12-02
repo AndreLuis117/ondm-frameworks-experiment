@@ -7,8 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import java.util.Random;
 
-@Entity
-@Table(name = "Address", schema = "testDB@mongo_pu")
+
 public class Address {
 
     public Address(){
@@ -72,5 +71,13 @@ public class Address {
 
     public void setPostalCode(int postalCode) {
         this.postalCode = postalCode;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }

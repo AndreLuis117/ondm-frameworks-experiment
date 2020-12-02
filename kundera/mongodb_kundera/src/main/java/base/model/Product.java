@@ -3,14 +3,12 @@ package base.model;
 
 
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Random;
 
 @Entity
-@Table(name = "Product", schema = "testDB@mongo_pu")
+@Table(name = "Product", schema = "testDB")
+@Inheritance(strategy=InheritanceType.JOINED)
 public class Product {
 
     public Product(){

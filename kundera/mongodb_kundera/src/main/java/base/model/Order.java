@@ -9,8 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-@Entity
-@Table(name = "Order", schema = "testDB@mongo_pu")
+
 public class Order {
 
     public  Order(){
@@ -48,9 +47,6 @@ public class Order {
         this.orderItems = orderItems;
     }
 
-    public long getId() {
-        return id;
-    }
 
     public Status getStatus() {
         return status;
@@ -58,5 +54,13 @@ public class Order {
 
     public void setStatus(Status status) {
         this.status = status;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }

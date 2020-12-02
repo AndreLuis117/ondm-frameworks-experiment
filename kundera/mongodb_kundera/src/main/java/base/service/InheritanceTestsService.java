@@ -55,7 +55,7 @@ public class InheritanceTestsService implements ServiceBase {
 
             em.persist(electronic);
 
-            var electronicReturn = em.find(Electronic.class, electronic);
+            var electronicReturn = em.find(Electronic.class, electronic.getId());
 
             if (electronicReturn != null)
                 Printer.selectSuccess();
@@ -79,9 +79,9 @@ public class InheritanceTestsService implements ServiceBase {
 
             electronic.setVoltage(220);
 
-            em.persist(electronic);
+            em.merge(electronic);
 
-            var electronicReturn = em.find(Electronic.class, electronic);
+            var electronicReturn = em.find(Electronic.class, electronic.getId());
 
             if(electronicReturn.getVoltage() == electronic.getVoltage())
                 Printer.updateSuccess();

@@ -6,8 +6,7 @@ package base.model;
 import javax.persistence.*;
 import java.util.Random;
 
-@Entity
-@Table(name = "Client", schema = "testDB@mongo_pu")
+
 public class Client {
 
     public Client(){
@@ -37,9 +36,6 @@ public class Client {
     private Address address;
 
 
-    public long getId() {
-        return id;
-    }
 
     public String getName() {
         return name;
@@ -55,5 +51,13 @@ public class Client {
 
     public void setAddress(Address address) {
         this.address = address;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }
