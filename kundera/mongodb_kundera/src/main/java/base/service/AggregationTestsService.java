@@ -66,13 +66,16 @@ public class AggregationTestsService implements ServiceBase {
             em.persist(client2);
             em.persist(client3);
 
-            var clientReturn = em.find(Client.class, client);
-            var clientReturn2 = em.find(Client.class, client2);
-            var clientReturn3 = em.find(Client.class, client3);
+            var clientReturn = em.find(Client.class, client.getId());
+            var clientReturn2 = em.find(Client.class, client2.getId());
+            var clientReturn3 = em.find(Client.class, client3.getId());
 
             if(clientReturn != null){
                 Printer.selectSuccess();
                 System.out.println("Clientes:");
+                System.out.println(clientReturn.getName());
+                System.out.println(clientReturn2.getName());
+                System.out.println(clientReturn3.getName());
 
 
             }else
@@ -95,9 +98,9 @@ public class AggregationTestsService implements ServiceBase {
 
             client.getAddress().setPostalCode(1111);
 
-            em.persist(client);
+            em.merge(client);
 
-            var clientReturn = em.find(Client.class, client);
+            var clientReturn = em.find(Client.class, client.getId());
 
             if(clientReturn.getAddress().getPostalCode() == client.getAddress().getPostalCode())
                 Printer.updateSuccess();

@@ -7,7 +7,7 @@ import javax.persistence.*;
 import java.util.Random;
 
 @Entity
-@Table(name = "Product", schema = "testDB")
+@Table(name = "Product", schema = "kunderaTestDb")
 @Inheritance(strategy=InheritanceType.JOINED)
 public class Product {
 
@@ -15,19 +15,14 @@ public class Product {
 
     }
 
-    private static final Random RANDOM = new Random();
-
-    public static long generateId() {
-        return RANDOM.nextLong();
-    }
-
     @Id
-    protected long id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    protected String id;
 
     @Column
     protected String name;
 
-    public long getId() {
+    public String getId() {
         return id;
     }
 

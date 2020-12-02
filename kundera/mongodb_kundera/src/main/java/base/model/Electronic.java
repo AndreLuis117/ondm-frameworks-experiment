@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Electronic", schema = "testDB@mongo_pu")
+@Table(name = "Electronic", schema = "kunderaTestDb@mongo_pu")
 public class Electronic extends Product {
 
     public Electronic(){
@@ -14,7 +14,6 @@ public class Electronic extends Product {
     }
 
     public Electronic(String name, int voltage){
-        this.id = generateId();
         this.name = name;
         this.voltage = voltage;
     }

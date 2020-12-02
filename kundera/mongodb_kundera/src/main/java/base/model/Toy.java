@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Toy", schema = "testDB@mongo_pu")
+@Table(name = "Toy", schema = "kunderaTestDb@mongo_pu")
 public class Toy extends Product {
 
     public Toy(){
@@ -15,7 +15,6 @@ public class Toy extends Product {
     }
 
     public Toy(String name, int ageIndication){
-        this.id = generateId();
         this.name = name;
         this.ageIndication = ageIndication;
     }

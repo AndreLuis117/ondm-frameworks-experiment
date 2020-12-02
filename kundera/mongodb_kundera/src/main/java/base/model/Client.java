@@ -6,7 +6,8 @@ package base.model;
 import javax.persistence.*;
 import java.util.Random;
 
-
+@Entity
+@Table(name = "Client", schema = "kunderaTestDb@mongo_pu")
 public class Client {
 
     public Client(){
@@ -14,25 +15,19 @@ public class Client {
     }
 
     public Client(String name, Address address){
-        this.id = generateId();
         this.name = name;
         this.address = address;
     }
 
-    private static final Random RANDOM = new Random();
-
-    public static long generateId() {
-        return RANDOM.nextLong();
-    }
 
     @Id
-    private long id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private String id;
 
     @Column
     private String name;
 
     @OneToOne
-    @JoinColumn
     private Address address;
 
 
@@ -53,11 +48,11 @@ public class Client {
         this.address = address;
     }
 
-    public long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(String id) {
         this.id = id;
     }
 }

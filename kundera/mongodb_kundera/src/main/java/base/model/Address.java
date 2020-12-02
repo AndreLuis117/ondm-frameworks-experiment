@@ -1,13 +1,11 @@
 package base.model;
 
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Random;
 
-
+@Entity
+@Table(name = "Address", schema = "kunderaTestDb@mongo_pu")
 public class Address {
 
     public Address(){
@@ -15,22 +13,16 @@ public class Address {
     }
 
     public Address(String city, String street, String state, int postalCode){
-        this.id = generateId();
+        //this.id = generateId();
         this.city = city;
         this.street = street;
         this.state = state;
         this.postalCode = postalCode;
     }
 
-    private static final Random RANDOM = new Random();
-
-    public static long generateId() {
-        return RANDOM.nextLong();
-    }
-
     @Id
-    private long id;
-
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private String id;
     @Column
     private String city;
     @Column
@@ -73,11 +65,11 @@ public class Address {
         this.postalCode = postalCode;
     }
 
-    public long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(String id) {
         this.id = id;
     }
 }
