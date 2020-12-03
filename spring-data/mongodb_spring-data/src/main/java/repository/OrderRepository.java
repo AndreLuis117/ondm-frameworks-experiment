@@ -1,6 +1,6 @@
 package repository;
 
-import model.Order;
+import base.model.Order;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.List;

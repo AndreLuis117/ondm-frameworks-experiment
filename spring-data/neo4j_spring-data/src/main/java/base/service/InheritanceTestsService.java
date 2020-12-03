@@ -2,7 +2,6 @@ package base.service;
 
 import base.model.Electronic;
 import base.repository.ElectronicRepository;
-import service.ServiceBase;
 import utilities.Printer;
 
 import javax.enterprise.inject.se.SeContainer;

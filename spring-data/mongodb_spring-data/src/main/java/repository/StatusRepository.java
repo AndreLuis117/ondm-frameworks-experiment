@@ -1,6 +1,6 @@
 package repository;
 
-import model.Status;
+import base.model.Status;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.List;

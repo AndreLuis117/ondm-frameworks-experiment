@@ -1,6 +1,6 @@
 package repository;
 
-import model.Client;
+import base.model.Client;
 import org.eclipse.jnosql.artemis.cassandra.column.CassandraRepository;
 
 import java.util.List;

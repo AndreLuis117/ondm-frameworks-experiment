@@ -3,7 +3,6 @@ package base.service;
 
 import base.model.Address;
 import base.model.Client;
-import service.ServiceBase;
 import utilities.Printer;
 
 import javax.persistence.EntityManager;

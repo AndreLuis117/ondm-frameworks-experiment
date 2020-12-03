@@ -1,6 +1,6 @@
 package repository;
 
-import model.Order;
+import base.model.Order;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;

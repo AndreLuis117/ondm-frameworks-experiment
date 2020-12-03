@@ -1,10 +1,8 @@
 import org.springframework.beans.factory.annotation.Autowired;
-import service.AggregationTestsService;
-import service.CompositionTestsService;
-import service.InheritanceTestsService;
-import service.NoRelationshipTestsService;
-
-import javax.inject.Inject;
+import base.service.AggregationTestsService;
+import base.service.CompositionTestsService;
+import base.service.InheritanceTestsService;
+import base.service.NoRelationshipTestsService;
 
 public class Main {
 

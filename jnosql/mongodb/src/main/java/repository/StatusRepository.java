@@ -1,7 +1,7 @@
 package repository;
 
 import jakarta.nosql.mapping.Repository;
-import model.Status;
+import base.model.Status;
 
 import java.util.List;
 

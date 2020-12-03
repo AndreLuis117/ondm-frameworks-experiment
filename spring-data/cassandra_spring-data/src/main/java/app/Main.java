@@ -1,30 +1,16 @@
 package app;
 
-import com.datastax.oss.driver.api.core.CqlSession;
-import model.Status;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.data.cassandra.CassandraWriteTimeoutException;
 import org.springframework.data.cassandra.config.AbstractCassandraConfiguration;
 import org.springframework.data.cassandra.config.SchemaAction;
-import org.springframework.data.cassandra.config.SessionFactoryFactoryBean;
-import org.springframework.data.cassandra.core.convert.CassandraConverter;
 import org.springframework.data.cassandra.core.cql.keyspace.CreateKeyspaceSpecification;
 import org.springframework.data.cassandra.repository.config.EnableCassandraRepositories;
 import org.springframework.stereotype.Component;
-import repository.StatusRepository;
-import service.AggregationTestsService;
-import service.CompositionTestsService;
-import service.InheritanceTestsService;
-import service.NoRelationshipTestsService;
+import base.service.AggregationTestsService;
+import base.service.CompositionTestsService;
+import base.service.InheritanceTestsService;
+import base.service.NoRelationshipTestsService;
 
-import javax.inject.Inject;
 import java.util.Arrays;
 import java.util.List;
 
@@ -80,7 +66,7 @@ public class Main extends AbstractCassandraConfiguration {
 
     @Override
     public String[] getEntityBasePackages() {
-        return new String[]{"model"};
+        return new String[]{"base/model"};
     }
 
     @Override

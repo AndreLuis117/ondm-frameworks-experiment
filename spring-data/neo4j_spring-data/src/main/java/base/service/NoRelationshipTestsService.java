@@ -3,7 +3,6 @@ package base.service;
 
 import base.model.Status;
 import base.repository.StatusRepository;
-import service.ServiceBase;
 import utilities.Printer;
 
 import javax.enterprise.inject.se.SeContainer;

@@ -1,7 +1,7 @@
 package repository;
 
 import jakarta.nosql.mapping.Repository;
-import model.Electronic;
+import base.model.Electronic;
 
 import java.util.List;
 

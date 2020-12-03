@@ -1,17 +1,13 @@
 package base.service;
 
 import base.model.*;
-import service.ServiceBase;
 import utilities.Printer;
 
-import javax.enterprise.inject.se.SeContainer;
-import javax.enterprise.inject.se.SeContainerInitializer;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class CompositionTestsService implements ServiceBase {
 

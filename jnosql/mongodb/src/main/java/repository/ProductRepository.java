@@ -1,7 +1,7 @@
 package repository;
 
 import jakarta.nosql.mapping.Repository;
-import model.Product;
+import base.model.Product;
 
 public interface ProductRepository extends Repository<Product, Long> {
 }

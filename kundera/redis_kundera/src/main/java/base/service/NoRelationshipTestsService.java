@@ -1,7 +1,6 @@
 package base.service;
 
 import base.model.Status;
-import service.ServiceBase;
 import utilities.Printer;
 
 import javax.persistence.EntityManager;

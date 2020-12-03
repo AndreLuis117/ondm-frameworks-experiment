@@ -1,7 +1,7 @@
 package repository;
 
 import jakarta.nosql.mapping.Repository;
-import model.Order;
+import base.model.Order;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
 package repository;
 
-import model.Client;
+import base.model.Client;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
