@@ -12,6 +12,8 @@ public class NoRelationshipTestsService implements ServiceBase {
     public NoRelationshipTestsService(){
         emf = Persistence.createEntityManagerFactory("neo4j_pu");
         em = emf.createEntityManager();
+        em.getTransaction().begin();
+
     }
 
     EntityManagerFactory emf;
@@ -27,8 +29,7 @@ public class NoRelationshipTestsService implements ServiceBase {
     public void insert(){
         try {
             Status status = new Status("Aguardando pagamento");
-            status.setId("5");
-            em.getTransaction().begin();
+
             em.persist(status);
 
             if(em.contains(status))
@@ -43,7 +44,6 @@ public class NoRelationshipTestsService implements ServiceBase {
     public void select(){
         try{
             Status status = new Status("Em separação");
-            em.getTransaction().begin();
 
             em.persist(status);
 
