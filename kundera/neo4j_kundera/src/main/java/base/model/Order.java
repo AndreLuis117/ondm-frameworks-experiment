@@ -7,6 +7,7 @@ package base.model;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 @Entity
 @Table(name = "Order", schema = "kunderaTestDb@neo4j_pu")
@@ -18,13 +19,19 @@ public class Order {
 
 
     public Order(List<OrderItems> orderItems, Status status){
+        this.id = generateId();
         this.orderItems = orderItems;
         this.status = status;
     }
 
+    private static final Random RANDOM = new Random();
+
+    public static long generateId() {
+        return RANDOM.nextLong();
+    }
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private String id;
+    private long id;
 
     @ElementCollection
     private List<OrderItems> orderItems = new ArrayList<OrderItems>();
@@ -50,11 +57,11 @@ public class Order {
         this.status = status;
     }
 
-    public String getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(long id) {
         this.id = id;
     }
 }

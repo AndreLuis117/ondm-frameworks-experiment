@@ -4,6 +4,7 @@ package base.model;
 
 
 import javax.persistence.*;
+import java.util.Random;
 
 @Entity
 @Table(name = "Product", schema = "kunderaTestDb")
@@ -18,14 +19,19 @@ public class Product {
         this.name = name;
     }
 
+    private static final Random RANDOM = new Random();
+
+    public static long generateId() {
+        return RANDOM.nextLong();
+    }
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    protected String id;
+    protected long id;
 
     @Column
     protected String name;
 
-    public String getId() {
+    public long getId() {
         return id;
     }
 

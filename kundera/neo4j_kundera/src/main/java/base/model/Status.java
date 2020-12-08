@@ -2,6 +2,7 @@ package base.model;
 
 
 import javax.persistence.*;
+import java.util.Random;
 
 @Entity
 @Table(name = "Status", schema = "kunderaTestDb@neo4j_pu")
@@ -12,12 +13,18 @@ public class Status {
     }
 
     public Status(String statusDescription){
-        //this.id = generateId();
+        this.id = generateId();
         this.name = statusDescription;
     }
 
+    private static final Random RANDOM = new Random();
+
+    public static long generateId() {
+        return RANDOM.nextLong();
+    }
+
     @Id
-    private String id;
+    private long id;
 
     @Column
     private String name;
@@ -31,11 +38,11 @@ public class Status {
         this.name = name;
     }
 
-    public String getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(long id) {
         this.id = id;
     }
 }

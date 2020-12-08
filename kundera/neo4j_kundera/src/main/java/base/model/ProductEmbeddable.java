@@ -15,12 +15,12 @@ public class ProductEmbeddable extends Product{
     }
 
     @Column
-    protected String id;
+    protected long id;
 
     @Column
     protected String name;
 
-    public String getId() {
+    public long getId() {
         return id;
     }
 
