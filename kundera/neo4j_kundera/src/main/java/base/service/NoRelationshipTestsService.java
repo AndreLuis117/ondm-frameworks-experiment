@@ -7,16 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-public class NoRelationshipTestsService implements ServiceBase {
-
-    public NoRelationshipTestsService(){
-        emf = Persistence.createEntityManagerFactory("neo4j_pu");
-        em = emf.createEntityManager();
-
-    }
-
-    private EntityManagerFactory emf;
-    private EntityManager em;
+public class NoRelationshipTestsService extends KunderaNeo4jService implements ServiceBase{
 
     public void runAll(){
         insert();
@@ -27,6 +18,7 @@ public class NoRelationshipTestsService implements ServiceBase {
 
     public void insert(){
         try {
+            EntityManager em = CreateEntityManager();
             Status status = new Status("Aguardando pagamento");
             em.getTransaction().begin();
 
@@ -47,6 +39,8 @@ public class NoRelationshipTestsService implements ServiceBase {
 
     public void select(){
         try{
+            EntityManager em = CreateEntityManager();
+
             Status status = new Status("Em separação");
             em.getTransaction().begin();
 
@@ -72,6 +66,8 @@ public class NoRelationshipTestsService implements ServiceBase {
     public void delete(){
 
         try{
+            EntityManager em = CreateEntityManager();
+
             Status status = new Status("Aguardando coleta da transportadora");
             em.getTransaction().begin();
 
@@ -94,6 +90,8 @@ public class NoRelationshipTestsService implements ServiceBase {
     public void update(){
 
         try{
+            EntityManager em = CreateEntityManager();
+
             Status status = new Status("Em transrte");
             em.getTransaction().begin();
 

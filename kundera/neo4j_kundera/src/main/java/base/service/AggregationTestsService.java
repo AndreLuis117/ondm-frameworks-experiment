@@ -9,15 +9,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-public class AggregationTestsService implements ServiceBase {
+public class AggregationTestsService extends KunderaNeo4jService implements ServiceBase {
 
-    public AggregationTestsService(){
-        emf = Persistence.createEntityManagerFactory("neo4j_pu");
-        em = emf.createEntityManager();
-    }
-
-    EntityManagerFactory emf;
-    EntityManager em;
 
     public void runAll(){
         insert();
@@ -30,6 +23,8 @@ public class AggregationTestsService implements ServiceBase {
     public void insert() {
 
         try{
+            EntityManager em = CreateEntityManager();
+
             Address address = new Address("Rio Negrinho", "Rua Marechal Teodoro", "SC", 178);
             Client client = new Client("John Marston", address);
 
@@ -50,6 +45,8 @@ public class AggregationTestsService implements ServiceBase {
     public void select() {
 
         try {
+            EntityManager em = CreateEntityManager();
+
             Address address = new Address("Joinville", "Rua da saudade", "SC", 898);
             Client client = new Client("Marco Reus", address);
 
@@ -88,6 +85,8 @@ public class AggregationTestsService implements ServiceBase {
     public void update() {
 
         try{
+            EntityManager em = CreateEntityManager();
+
             Address address = new Address("Joinville", "Rua XV de novembro", "SC", 1100);
             Client client = new Client("Thomas A. Anderson", address);
 
@@ -114,6 +113,8 @@ public class AggregationTestsService implements ServiceBase {
     public void delete() {
 
         try {
+            EntityManager em = CreateEntityManager();
+
             Address address = new Address("Chapecó", "Rua João dos Santos", "SC", 460);
             Client client = new Client("John Wick", address);
 

@@ -8,15 +8,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-public class InheritanceTestsService implements ServiceBase {
+public class InheritanceTestsService extends KunderaNeo4jService implements ServiceBase {
 
-    public InheritanceTestsService(){
-        emf = Persistence.createEntityManagerFactory("neo4j_pu");
-        em = emf.createEntityManager();
-    }
-
-    private EntityManagerFactory emf;
-    private EntityManager em;
 
     public void runAll(){
         insert();
@@ -29,6 +22,8 @@ public class InheritanceTestsService implements ServiceBase {
     public void insert() {
 
         try{
+            EntityManager em = CreateEntityManager();
+
             Electronic electronic = new Electronic("Xbox One X", 220);
             em.getTransaction().begin();
 
@@ -50,6 +45,8 @@ public class InheritanceTestsService implements ServiceBase {
     public void select() {
 
         try{
+            EntityManager em = CreateEntityManager();
+
             Electronic electronic = new Electronic("Xbox One X", 220);
             em.getTransaction().begin();
 
@@ -74,6 +71,8 @@ public class InheritanceTestsService implements ServiceBase {
     public void update() {
 
         try{
+            EntityManager em = CreateEntityManager();
+
             Electronic electronic = new Electronic("PS4", 110);
             em.getTransaction().begin();
 
@@ -102,6 +101,8 @@ public class InheritanceTestsService implements ServiceBase {
     public void delete() {
 
         try{
+            EntityManager em = CreateEntityManager();
+
             Electronic electronic = new Electronic("TV SAMSUNG 4K RU7100", 220);
             em.getTransaction().begin();
 

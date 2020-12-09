@@ -11,12 +11,8 @@ public class Main {
     public static void main(String[] args) {
 
         NoRelationshipTestsService noRelationshipTests = new NoRelationshipTestsService();
-/*
         CompositionTestsService compositionTests = new CompositionTestsService();
-*/
-/*
         AggregationTestsService agregationTests = new AggregationTestsService();
-*/
         InheritanceTestsService inheritanceTests = new InheritanceTestsService();
 
         //noRelationshipTests.insert();
@@ -44,7 +40,7 @@ public class Main {
         //noRelationshipTests.runAll();
         //agregationTests.runAll();
         //compositionTests.runAll();
-        inheritanceTests.runAll();
+        //inheritanceTests.runAll();
 
 
     }

@@ -12,15 +12,8 @@ import javax.persistence.Persistence;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CompositionTestsService implements ServiceBase {
+public class CompositionTestsService extends KunderaNeo4jService implements ServiceBase {
 
-    public CompositionTestsService(){
-        emf = Persistence.createEntityManagerFactory("neo4j_pu");
-        em = emf.createEntityManager();
-    }
-
-    EntityManagerFactory emf;
-    EntityManager em;
 
     public void runAll(){
         insert();
@@ -33,6 +26,8 @@ public class CompositionTestsService implements ServiceBase {
     public void insert() {
 
         try {
+            EntityManager em = CreateEntityManager();
+
             ProductEmbeddable xbox360 = new ProductEmbeddable("Xbox 360");
             ProductEmbeddable ps3 = new ProductEmbeddable("PS3");
             ProductEmbeddable funko = new ProductEmbeddable("Batmovel");
@@ -62,6 +57,8 @@ public class CompositionTestsService implements ServiceBase {
     public void select() {
 
         try {
+            EntityManager em = CreateEntityManager();
+
             ProductEmbeddable xboxOne = new ProductEmbeddable("Xbox one");
             ProductEmbeddable ps4 = new ProductEmbeddable("PS4");
             ProductEmbeddable hotwheels = new ProductEmbeddable("Batmovel");
@@ -99,6 +96,8 @@ public class CompositionTestsService implements ServiceBase {
     public void update() {
 
         try{
+            EntityManager em = CreateEntityManager();
+
             ProductEmbeddable ps2 = new ProductEmbeddable("PS2");
             ProductEmbeddable xbox = new ProductEmbeddable("Xbox");
             ProductEmbeddable maxSteel = new ProductEmbeddable("Max Steel");
@@ -133,6 +132,8 @@ public class CompositionTestsService implements ServiceBase {
     public void delete() {
 
         try{
+            EntityManager em = CreateEntityManager();
+
             ProductEmbeddable nswitch = new ProductEmbeddable("Nintendo Switch");
             ProductEmbeddable wii = new ProductEmbeddable("Nintendo Wii");
             ProductEmbeddable funko = new ProductEmbeddable("Funko");
