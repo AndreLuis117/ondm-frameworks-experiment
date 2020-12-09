@@ -26,7 +26,8 @@ public class CompositionTestsService extends KunderaNeo4jService implements Serv
     public void insert() {
 
         try {
-            EntityManager em = CreateEntityManager();
+
+            CreateEntityManager();
 
             ProductEmbeddable xbox360 = new ProductEmbeddable("Xbox 360");
             ProductEmbeddable ps3 = new ProductEmbeddable("PS3");
@@ -47,6 +48,8 @@ public class CompositionTestsService extends KunderaNeo4jService implements Serv
             else
                 Printer.insertFailure();
 
+            CloseEntityManager();
+
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -57,7 +60,7 @@ public class CompositionTestsService extends KunderaNeo4jService implements Serv
     public void select() {
 
         try {
-            EntityManager em = CreateEntityManager();
+            CreateEntityManager();
 
             ProductEmbeddable xboxOne = new ProductEmbeddable("Xbox one");
             ProductEmbeddable ps4 = new ProductEmbeddable("PS4");
@@ -86,6 +89,8 @@ public class CompositionTestsService extends KunderaNeo4jService implements Serv
             }else
                 Printer.selectFailure();
 
+            CloseEntityManager();
+
         } catch (Exception e){
             e.printStackTrace();
         }
@@ -96,7 +101,7 @@ public class CompositionTestsService extends KunderaNeo4jService implements Serv
     public void update() {
 
         try{
-            EntityManager em = CreateEntityManager();
+            CreateEntityManager();
 
             ProductEmbeddable ps2 = new ProductEmbeddable("PS2");
             ProductEmbeddable xbox = new ProductEmbeddable("Xbox");
@@ -122,6 +127,8 @@ public class CompositionTestsService extends KunderaNeo4jService implements Serv
             else
                 Printer.updateFailure();
 
+            CloseEntityManager();
+
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -132,7 +139,7 @@ public class CompositionTestsService extends KunderaNeo4jService implements Serv
     public void delete() {
 
         try{
-            EntityManager em = CreateEntityManager();
+            CreateEntityManager();
 
             ProductEmbeddable nswitch = new ProductEmbeddable("Nintendo Switch");
             ProductEmbeddable wii = new ProductEmbeddable("Nintendo Wii");
@@ -154,6 +161,8 @@ public class CompositionTestsService extends KunderaNeo4jService implements Serv
                 Printer.deleteSuccess();
             else
                 Printer.deleteFailure();
+
+            CloseEntityManager();
 
         } catch (Exception e){
             e.printStackTrace();

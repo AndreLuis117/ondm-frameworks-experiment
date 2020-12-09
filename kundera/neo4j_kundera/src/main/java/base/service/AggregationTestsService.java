@@ -23,7 +23,9 @@ public class AggregationTestsService extends KunderaNeo4jService implements Serv
     public void insert() {
 
         try{
-            EntityManager em = CreateEntityManager();
+            CreateEntityManager();
+
+            em.getTransaction().begin();
 
             Address address = new Address("Rio Negrinho", "Rua Marechal Teodoro", "SC", 178);
             Client client = new Client("John Marston", address);
@@ -35,6 +37,9 @@ public class AggregationTestsService extends KunderaNeo4jService implements Serv
             else
                 Printer.insertFailure();
 
+            em.getTransaction().commit();
+            CloseEntityManager();
+
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -45,7 +50,9 @@ public class AggregationTestsService extends KunderaNeo4jService implements Serv
     public void select() {
 
         try {
-            EntityManager em = CreateEntityManager();
+            CreateEntityManager();
+
+            em.getTransaction().begin();
 
             Address address = new Address("Joinville", "Rua da saudade", "SC", 898);
             Client client = new Client("Marco Reus", address);
@@ -75,7 +82,12 @@ public class AggregationTestsService extends KunderaNeo4jService implements Serv
             }else
                 Printer.selectFailure();
 
+            em.getTransaction().commit();
+
+            CloseEntityManager();
+
         }catch (Exception e){
+            CloseEntityManager();
             e.printStackTrace();
         }
 
@@ -85,7 +97,9 @@ public class AggregationTestsService extends KunderaNeo4jService implements Serv
     public void update() {
 
         try{
-            EntityManager em = CreateEntityManager();
+            CreateEntityManager();
+
+            em.getTransaction().begin();
 
             Address address = new Address("Joinville", "Rua XV de novembro", "SC", 1100);
             Client client = new Client("Thomas A. Anderson", address);
@@ -103,7 +117,13 @@ public class AggregationTestsService extends KunderaNeo4jService implements Serv
             else
                 Printer.updateFailure();
 
+            em.getTransaction().commit();
+
+            CloseEntityManager();
+
         } catch (Exception e){
+            CloseEntityManager();
+
             e.printStackTrace();
         }
 
@@ -113,7 +133,9 @@ public class AggregationTestsService extends KunderaNeo4jService implements Serv
     public void delete() {
 
         try {
-            EntityManager em = CreateEntityManager();
+            CreateEntityManager();
+
+            em.getTransaction().begin();
 
             Address address = new Address("Chapecó", "Rua João dos Santos", "SC", 460);
             Client client = new Client("John Wick", address);
@@ -126,7 +148,14 @@ public class AggregationTestsService extends KunderaNeo4jService implements Serv
                 Printer.deleteSuccess();
             else
                 Printer.deleteFailure();
+
+            em.getTransaction().commit();
+
+            CloseEntityManager();
+
         }catch (Exception e){
+            CloseEntityManager();
+
             e.printStackTrace();
         }
 

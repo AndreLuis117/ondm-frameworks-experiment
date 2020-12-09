@@ -6,9 +6,16 @@ import javax.persistence.Persistence;
 
 public abstract class KunderaNeo4jService{
 
-    protected EntityManager CreateEntityManager(){
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("neo4j_pu");
+    private EntityManagerFactory emf;
+    protected EntityManager em;
 
-        return emf.createEntityManager();
+    protected void CreateEntityManager(){
+        emf = Persistence.createEntityManagerFactory("neo4j_pu");
+        em = emf.createEntityManager();
+    }
+
+    protected void CloseEntityManager(){
+        emf.close();
+        em.close();
     }
 }

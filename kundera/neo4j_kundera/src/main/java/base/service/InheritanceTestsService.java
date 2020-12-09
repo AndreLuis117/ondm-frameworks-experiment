@@ -22,7 +22,7 @@ public class InheritanceTestsService extends KunderaNeo4jService implements Serv
     public void insert() {
 
         try{
-            EntityManager em = CreateEntityManager();
+            CreateEntityManager();
 
             Electronic electronic = new Electronic("Xbox One X", 220);
             em.getTransaction().begin();
@@ -35,6 +35,8 @@ public class InheritanceTestsService extends KunderaNeo4jService implements Serv
                 Printer.insertFailure();
 
             em.getTransaction().commit();
+            CloseEntityManager();
+
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -45,7 +47,7 @@ public class InheritanceTestsService extends KunderaNeo4jService implements Serv
     public void select() {
 
         try{
-            EntityManager em = CreateEntityManager();
+            CreateEntityManager();
 
             Electronic electronic = new Electronic("Xbox One X", 220);
             em.getTransaction().begin();
@@ -61,6 +63,9 @@ public class InheritanceTestsService extends KunderaNeo4jService implements Serv
                 Printer.selectFailure();
 
             em.getTransaction().commit();
+
+            CloseEntityManager();
+
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -71,7 +76,7 @@ public class InheritanceTestsService extends KunderaNeo4jService implements Serv
     public void update() {
 
         try{
-            EntityManager em = CreateEntityManager();
+            CreateEntityManager();
 
             Electronic electronic = new Electronic("PS4", 110);
             em.getTransaction().begin();
@@ -90,6 +95,8 @@ public class InheritanceTestsService extends KunderaNeo4jService implements Serv
                 Printer.updateFailure();
 
             em.getTransaction().commit();
+            CloseEntityManager();
+
 
         }catch (Exception e){
             e.printStackTrace();
@@ -101,7 +108,7 @@ public class InheritanceTestsService extends KunderaNeo4jService implements Serv
     public void delete() {
 
         try{
-            EntityManager em = CreateEntityManager();
+            CreateEntityManager();
 
             Electronic electronic = new Electronic("TV SAMSUNG 4K RU7100", 220);
             em.getTransaction().begin();
@@ -116,6 +123,8 @@ public class InheritanceTestsService extends KunderaNeo4jService implements Serv
                 Printer.deleteFailure();
 
             em.getTransaction().commit();
+            CloseEntityManager();
+
 
         }catch (Exception e){
             e.printStackTrace();
