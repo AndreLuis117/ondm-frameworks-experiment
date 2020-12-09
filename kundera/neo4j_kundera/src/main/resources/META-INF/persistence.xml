@@ -7,7 +7,7 @@
     <persistence-unit name="neo4j_pu">
         <provider>com.impetus.kundera.KunderaPersistence</provider>
         <properties>
-            <property name="kundera.datastore.file.path" value="target/imdb.db" />
+            <property name="kundera.datastore.file.path" value="target/neo4j.db" />
             <property name="kundera.dialect" value="neo4j" />
             <property name="kundera.client.lookup.class"
                       value="com.impetus.client.neo4j.Neo4JClientFactory" />

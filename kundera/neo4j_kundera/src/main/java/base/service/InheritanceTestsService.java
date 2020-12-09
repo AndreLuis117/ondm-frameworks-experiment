@@ -15,8 +15,8 @@ public class InheritanceTestsService implements ServiceBase {
         em = emf.createEntityManager();
     }
 
-    EntityManagerFactory emf;
-    EntityManager em;
+    private EntityManagerFactory emf;
+    private EntityManager em;
 
     public void runAll(){
         insert();
@@ -30,6 +30,7 @@ public class InheritanceTestsService implements ServiceBase {
 
         try{
             Electronic electronic = new Electronic("Xbox One X", 220);
+            em.getTransaction().begin();
 
             em.persist(electronic);
 
@@ -38,6 +39,7 @@ public class InheritanceTestsService implements ServiceBase {
             else
                 Printer.insertFailure();
 
+            em.getTransaction().commit();
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -49,6 +51,8 @@ public class InheritanceTestsService implements ServiceBase {
 
         try{
             Electronic electronic = new Electronic("Xbox One X", 220);
+            em.getTransaction().begin();
+
 
             em.persist(electronic);
 
@@ -59,7 +63,7 @@ public class InheritanceTestsService implements ServiceBase {
             else
                 Printer.selectFailure();
 
-
+            em.getTransaction().commit();
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -71,6 +75,7 @@ public class InheritanceTestsService implements ServiceBase {
 
         try{
             Electronic electronic = new Electronic("PS4", 110);
+            em.getTransaction().begin();
 
             em.persist(electronic);
 
@@ -85,6 +90,8 @@ public class InheritanceTestsService implements ServiceBase {
             else
                 Printer.updateFailure();
 
+            em.getTransaction().commit();
+
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -96,6 +103,7 @@ public class InheritanceTestsService implements ServiceBase {
 
         try{
             Electronic electronic = new Electronic("TV SAMSUNG 4K RU7100", 220);
+            em.getTransaction().begin();
 
             em.persist(electronic);
 
@@ -105,6 +113,8 @@ public class InheritanceTestsService implements ServiceBase {
                 Printer.deleteSuccess();
             else
                 Printer.deleteFailure();
+
+            em.getTransaction().commit();
 
         }catch (Exception e){
             e.printStackTrace();
