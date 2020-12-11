@@ -8,6 +8,8 @@ import utilities.Printer;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AggregationTestsService extends KunderaNeo4jService implements ServiceBase {
 
@@ -27,7 +29,9 @@ public class AggregationTestsService extends KunderaNeo4jService implements Serv
 
             em.getTransaction().begin();
 
-            Address address = new Address("Rio Negrinho", "Rua Marechal Teodoro", "SC", 178);
+            List<Address> address = new ArrayList<Address>();
+            address.add(new Address("Rio Negrinho", "Rua Marechal Teodoro", "SC", 178));
+
             Client client = new Client("John Marston", address);
 
             em.persist(client);
@@ -54,13 +58,16 @@ public class AggregationTestsService extends KunderaNeo4jService implements Serv
 
             em.getTransaction().begin();
 
-            Address address = new Address("Joinville", "Rua da saudade", "SC", 898);
+            List<Address> address = new ArrayList<Address>();
+            address.add(new Address("Joinville", "Rua da saudade", "SC", 898));
             Client client = new Client("Marco Reus", address);
 
-            Address address2 = new Address("Campo Alegre", "Rua General Osvaldo", "SC", 1009);
+            List<Address> address2 = new ArrayList<Address>();
+            address2.add(new Address("Campo Alegre", "Rua General Osvaldo", "SC", 1009));
             Client client2 = new Client("Arthur Morgan", address2);
 
-            Address address3 = new Address("Blumenau", "Rua João das Neves", "SC", 980);
+            List<Address> address3 = new ArrayList<Address>();
+            address3.add(new Address("Blumenau", "Rua João das Neves", "SC", 980));
             Client client3 = new Client("Keanu Reeves", address3);
 
             em.persist(client);
@@ -101,18 +108,19 @@ public class AggregationTestsService extends KunderaNeo4jService implements Serv
 
             em.getTransaction().begin();
 
-            Address address = new Address("Joinville", "Rua XV de novembro", "SC", 1100);
+            List<Address> address = new ArrayList<Address>();
+            address.add(new Address("Joinville", "Rua XV de novembro", "SC", 1100));
             Client client = new Client("Thomas A. Anderson", address);
 
             em.persist(client);
 
-            client.getAddress().setPostalCode(1111);
+            client.getAddress().get(0).setPostalCode(1111);
 
             em.merge(client);
 
             var clientReturn = em.find(Client.class, client.getId());
 
-            if(clientReturn.getAddress().getPostalCode() == client.getAddress().getPostalCode())
+            if(clientReturn.getAddress().get(0).getPostalCode() == client.getAddress().get(0).getPostalCode())
                 Printer.updateSuccess();
             else
                 Printer.updateFailure();
@@ -137,7 +145,8 @@ public class AggregationTestsService extends KunderaNeo4jService implements Serv
 
             em.getTransaction().begin();
 
-            Address address = new Address("Chapecó", "Rua João dos Santos", "SC", 460);
+            List<Address> address = new ArrayList<Address>();
+            address.add(new Address("Chapecó", "Rua João dos Santos", "SC", 460));
             Client client = new Client("John Wick", address);
 
             em.persist(client);

@@ -8,7 +8,6 @@ import java.util.Random;
 
 @Entity
 @Table(name = "Product", schema = "kunderaTestDb")
-@Inheritance(strategy=InheritanceType.JOINED)
 public class Product {
 
     public Product(){

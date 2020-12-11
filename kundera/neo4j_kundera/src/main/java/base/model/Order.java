@@ -33,10 +33,10 @@ public class Order {
     @Id
     private long id;
 
-    @ElementCollection
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "orders")
     private List<OrderItems> orderItems = new ArrayList<OrderItems>();
 
-    @OneToOne
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "status")
     private Status status;
 
 

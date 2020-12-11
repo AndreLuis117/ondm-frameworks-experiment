@@ -1,9 +1,6 @@
 package base.service;
 
-import base.model.Order;
-import base.model.OrderItems;
-import base.model.ProductEmbeddable;
-import base.model.Status;
+import base.model.*;
 import utilities.Printer;
 
 import javax.persistence.EntityManager;
@@ -29,9 +26,12 @@ public class CompositionTestsService extends KunderaNeo4jService implements Serv
 
             CreateEntityManager();
 
-            ProductEmbeddable xbox360 = new ProductEmbeddable("Xbox 360");
-            ProductEmbeddable ps3 = new ProductEmbeddable("PS3");
-            ProductEmbeddable funko = new ProductEmbeddable("Batmovel");
+            em.getTransaction().begin();
+
+
+            Product xbox360 = new Product("Xbox 360");
+            Product ps3 = new Product("PS3");
+            Product funko = new Product("Batmovel");
             Status status = new Status("Aguardando pagamento");
 
 
@@ -48,6 +48,8 @@ public class CompositionTestsService extends KunderaNeo4jService implements Serv
             else
                 Printer.insertFailure();
 
+            em.getTransaction().commit();
+
             CloseEntityManager();
 
         }catch (Exception e){
@@ -61,10 +63,11 @@ public class CompositionTestsService extends KunderaNeo4jService implements Serv
 
         try {
             CreateEntityManager();
+            em.getTransaction().begin();
 
-            ProductEmbeddable xboxOne = new ProductEmbeddable("Xbox one");
-            ProductEmbeddable ps4 = new ProductEmbeddable("PS4");
-            ProductEmbeddable hotwheels = new ProductEmbeddable("Batmovel");
+            Product xboxOne = new Product("Xbox one");
+            Product ps4 = new Product("PS4");
+            Product hotwheels = new Product("Batmovel");
             Status status = new Status("Aguardando pagamento");
 
 
@@ -88,6 +91,7 @@ public class CompositionTestsService extends KunderaNeo4jService implements Serv
                 }
             }else
                 Printer.selectFailure();
+            em.getTransaction().commit();
 
             CloseEntityManager();
 
@@ -102,10 +106,11 @@ public class CompositionTestsService extends KunderaNeo4jService implements Serv
 
         try{
             CreateEntityManager();
+            em.getTransaction().begin();
 
-            ProductEmbeddable ps2 = new ProductEmbeddable("PS2");
-            ProductEmbeddable xbox = new ProductEmbeddable("Xbox");
-            ProductEmbeddable maxSteel = new ProductEmbeddable("Max Steel");
+            Product ps2 = new Product("PS2");
+            Product xbox = new Product("Xbox");
+            Product maxSteel = new Product("Max Steel");
             Status status = new Status("Aguardando pagamento");
 
 
@@ -116,7 +121,7 @@ public class CompositionTestsService extends KunderaNeo4jService implements Serv
             Order order = new Order(orderItems, status);
 
             em.persist(order);
-            ProductEmbeddable pistaHotWheels = new ProductEmbeddable("Pista Hot Wheels");
+            Product pistaHotWheels = new Product("Pista Hot Wheels");
             order.getOrderItems().add(new OrderItems(pistaHotWheels));
             em.merge(order);
 
@@ -126,6 +131,8 @@ public class CompositionTestsService extends KunderaNeo4jService implements Serv
                 Printer.updateSuccess();
             else
                 Printer.updateFailure();
+
+            em.getTransaction().commit();
 
             CloseEntityManager();
 
@@ -140,10 +147,11 @@ public class CompositionTestsService extends KunderaNeo4jService implements Serv
 
         try{
             CreateEntityManager();
+            em.getTransaction().begin();
 
-            ProductEmbeddable nswitch = new ProductEmbeddable("Nintendo Switch");
-            ProductEmbeddable wii = new ProductEmbeddable("Nintendo Wii");
-            ProductEmbeddable funko = new ProductEmbeddable("Funko");
+            Product nswitch = new Product("Nintendo Switch");
+            Product wii = new Product("Nintendo Wii");
+            Product funko = new Product("Funko");
             Status status = new Status("Aguardando pagamento");
 
 
@@ -161,6 +169,8 @@ public class CompositionTestsService extends KunderaNeo4jService implements Serv
                 Printer.deleteSuccess();
             else
                 Printer.deleteFailure();
+
+            em.getTransaction().commit();
 
             CloseEntityManager();
 

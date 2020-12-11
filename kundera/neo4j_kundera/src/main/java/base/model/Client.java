@@ -4,6 +4,8 @@ package base.model;
 
 
 import javax.persistence.*;
+import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 @Entity
@@ -14,7 +16,7 @@ public class Client {
 
     }
 
-    public Client(String name, Address address){
+    public Client(String name, List<Address> address){
         this.id = generateId();
         this.name = name;
         this.address = address;
@@ -32,8 +34,8 @@ public class Client {
     @Column
     private String name;
 
-    @OneToOne
-    private Address address;
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "clients")
+    private List<Address> address;
 
 
 
@@ -45,19 +47,19 @@ public class Client {
         this.name = name;
     }
 
-    public Address getAddress() {
-        return address;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
-    }
-
     public long getId() {
         return id;
     }
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public List<Address> getAddress() {
+        return address;
+    }
+
+    public void setAddress(List<Address> address) {
+        this.address = address;
     }
 }
