@@ -16,7 +16,7 @@ public class Client {
 
     }
 
-    public Client(String name, List<Address> address){
+    public Client(String name, Address address){
         this.id = generateId();
         this.name = name;
         this.address = address;
@@ -35,7 +35,7 @@ public class Client {
     private String name;
 
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "clients")
-    private List<Address> address;
+    private Address address;
 
 
 
@@ -55,11 +55,12 @@ public class Client {
         this.id = id;
     }
 
-    public List<Address> getAddress() {
+
+    public Address getAddress() {
         return address;
     }
 
-    public void setAddress(List<Address> address) {
+    public void setAddress(Address address) {
         this.address = address;
     }
 }
