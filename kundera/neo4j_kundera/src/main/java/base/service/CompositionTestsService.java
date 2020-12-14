@@ -11,7 +11,6 @@ import java.util.List;
 
 public class CompositionTestsService extends KunderaNeo4jService implements ServiceBase {
 
-
     public void runAll(){
         insert();
         select();
@@ -96,6 +95,7 @@ public class CompositionTestsService extends KunderaNeo4jService implements Serv
             CloseEntityManager();
 
         } catch (Exception e){
+            CloseEntityManager();
             e.printStackTrace();
         }
 
@@ -137,6 +137,7 @@ public class CompositionTestsService extends KunderaNeo4jService implements Serv
             CloseEntityManager();
 
         }catch (Exception e){
+            CloseEntityManager();
             e.printStackTrace();
         }
 
@@ -175,6 +176,7 @@ public class CompositionTestsService extends KunderaNeo4jService implements Serv
             CloseEntityManager();
 
         } catch (Exception e){
+            CloseEntityManager();
             e.printStackTrace();
         }
     }

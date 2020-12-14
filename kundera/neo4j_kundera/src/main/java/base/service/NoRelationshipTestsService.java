@@ -35,6 +35,7 @@ public class NoRelationshipTestsService extends KunderaNeo4jService implements S
 
             CloseEntityManager();
         } catch (Exception e) {
+            CloseEntityManager();
             e.printStackTrace();
         }
 
@@ -63,6 +64,7 @@ public class NoRelationshipTestsService extends KunderaNeo4jService implements S
 
             CloseEntityManager();
         } catch (Exception e) {
+            CloseEntityManager();
             e.printStackTrace();
         }
     }
@@ -89,6 +91,7 @@ public class NoRelationshipTestsService extends KunderaNeo4jService implements S
             CloseEntityManager();
 
         } catch (Exception e){
+            CloseEntityManager();
             e.printStackTrace();
         }
 
@@ -122,6 +125,7 @@ public class NoRelationshipTestsService extends KunderaNeo4jService implements S
 
         }
         catch (Exception e){
+            CloseEntityManager();
             e.printStackTrace();
         }
 

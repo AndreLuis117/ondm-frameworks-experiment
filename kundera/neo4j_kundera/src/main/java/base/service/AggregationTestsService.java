@@ -13,7 +13,6 @@ import java.util.List;
 
 public class AggregationTestsService extends KunderaNeo4jService implements ServiceBase {
 
-
     public void runAll(){
         insert();
         select();
@@ -44,6 +43,7 @@ public class AggregationTestsService extends KunderaNeo4jService implements Serv
             CloseEntityManager();
 
         }catch (Exception e){
+            CloseEntityManager();
             e.printStackTrace();
         }
 
@@ -126,7 +126,6 @@ public class AggregationTestsService extends KunderaNeo4jService implements Serv
 
         } catch (Exception e){
             CloseEntityManager();
-
             e.printStackTrace();
         }
 
@@ -158,7 +157,6 @@ public class AggregationTestsService extends KunderaNeo4jService implements Serv
 
         }catch (Exception e){
             CloseEntityManager();
-
             e.printStackTrace();
         }
 

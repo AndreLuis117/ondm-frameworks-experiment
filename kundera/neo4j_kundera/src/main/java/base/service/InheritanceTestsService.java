@@ -38,6 +38,7 @@ public class InheritanceTestsService extends KunderaNeo4jService implements Serv
             CloseEntityManager();
 
         }catch (Exception e){
+            CloseEntityManager();
             e.printStackTrace();
         }
 
@@ -67,6 +68,7 @@ public class InheritanceTestsService extends KunderaNeo4jService implements Serv
             CloseEntityManager();
 
         }catch (Exception e){
+            CloseEntityManager();
             e.printStackTrace();
         }
 
@@ -99,6 +101,7 @@ public class InheritanceTestsService extends KunderaNeo4jService implements Serv
 
 
         }catch (Exception e){
+            CloseEntityManager();
             e.printStackTrace();
         }
 
@@ -127,6 +130,7 @@ public class InheritanceTestsService extends KunderaNeo4jService implements Serv
 
 
         }catch (Exception e){
+            CloseEntityManager();
             e.printStackTrace();
         }
 
