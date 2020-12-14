@@ -10,12 +10,17 @@ public abstract class KunderaNeo4jService{
     protected EntityManager em;
 
     protected void CreateEntityManager(){
+        if (emf != null && emf.isOpen())
+            CloseEntityManager();
         emf = Persistence.createEntityManagerFactory("neo4j_pu");
         em = emf.createEntityManager();
     }
 
     protected void CloseEntityManager(){
-        emf.close();
-        em.close();
+        if (emf != null && emf.isOpen())
+            emf.close();
+
+        if (em != null && em.isOpen())
+            em.close();
     }
 }
