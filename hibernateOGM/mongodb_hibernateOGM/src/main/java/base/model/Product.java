@@ -18,7 +18,7 @@ public class Product {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     protected String id;
 
     @Column

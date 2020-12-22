@@ -11,7 +11,6 @@ public class Address {
     }
 
     public Address(String city, String street, String state, int postalCode){
-        //this.id = generateId();
         this.city = city;
         this.street = street;
         this.state = state;
@@ -19,7 +18,7 @@ public class Address {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private String id;
     @Column
     private String city;
