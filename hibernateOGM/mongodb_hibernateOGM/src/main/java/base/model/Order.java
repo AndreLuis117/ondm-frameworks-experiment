@@ -23,12 +23,12 @@ public class Order {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private String id;
+    private int id;
 
     @ElementCollection
     private List<OrderItems> orderItems = new ArrayList<OrderItems>();
 
-    @OneToOne
+    @OneToOne(cascade=CascadeType.ALL)
     private Status status;
 
 
@@ -49,11 +49,11 @@ public class Order {
         this.status = status;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 }

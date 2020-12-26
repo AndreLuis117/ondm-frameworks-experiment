@@ -9,6 +9,7 @@ import utilities.Printer;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.transaction.TransactionManager;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,6 +34,10 @@ public class CompositionTestsService implements ServiceBase {
     public void insert() {
 
         try {
+            TransactionManager transactionManager =
+                    com.arjuna.ats.jta.TransactionManager.transactionManager();
+            transactionManager.begin();
+
             ProductEmbeddable xbox360 = new ProductEmbeddable("Xbox 360");
             ProductEmbeddable ps3 = new ProductEmbeddable("PS3");
             ProductEmbeddable funko = new ProductEmbeddable("Batmovel");
@@ -52,6 +57,7 @@ public class CompositionTestsService implements ServiceBase {
             else
                 Printer.insertFailure();
 
+            transactionManager.commit();
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -62,6 +68,10 @@ public class CompositionTestsService implements ServiceBase {
     public void select() {
 
         try {
+            TransactionManager transactionManager =
+                    com.arjuna.ats.jta.TransactionManager.transactionManager();
+            transactionManager.begin();
+
             ProductEmbeddable xboxOne = new ProductEmbeddable("Xbox one");
             ProductEmbeddable ps4 = new ProductEmbeddable("PS4");
             ProductEmbeddable hotwheels = new ProductEmbeddable("Batmovel");
@@ -89,6 +99,8 @@ public class CompositionTestsService implements ServiceBase {
             }else
                 Printer.selectFailure();
 
+            transactionManager.commit();
+
         } catch (Exception e){
             e.printStackTrace();
         }
@@ -99,6 +111,10 @@ public class CompositionTestsService implements ServiceBase {
     public void update() {
 
         try{
+            TransactionManager transactionManager =
+                    com.arjuna.ats.jta.TransactionManager.transactionManager();
+            transactionManager.begin();
+
             ProductEmbeddable ps2 = new ProductEmbeddable("PS2");
             ProductEmbeddable xbox = new ProductEmbeddable("Xbox");
             ProductEmbeddable maxSteel = new ProductEmbeddable("Max Steel");
@@ -123,6 +139,8 @@ public class CompositionTestsService implements ServiceBase {
             else
                 Printer.updateFailure();
 
+            transactionManager.commit();
+
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -133,6 +151,10 @@ public class CompositionTestsService implements ServiceBase {
     public void delete() {
 
         try{
+            TransactionManager transactionManager =
+                    com.arjuna.ats.jta.TransactionManager.transactionManager();
+            transactionManager.begin();
+
             ProductEmbeddable nswitch = new ProductEmbeddable("Nintendo Switch");
             ProductEmbeddable wii = new ProductEmbeddable("Nintendo Wii");
             ProductEmbeddable funko = new ProductEmbeddable("Funko");
@@ -153,6 +175,8 @@ public class CompositionTestsService implements ServiceBase {
                 Printer.deleteSuccess();
             else
                 Printer.deleteFailure();
+
+            transactionManager.commit();
 
         } catch (Exception e){
             e.printStackTrace();
