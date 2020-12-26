@@ -20,12 +20,12 @@ public class Client {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private String id;
+    private int id;
 
     @Column
     private String name;
 
-    @OneToOne
+    @OneToOne(cascade=CascadeType.ALL)
     private Address address;
 
 
@@ -46,11 +46,12 @@ public class Client {
         this.address = address;
     }
 
-    public String getId() {
+
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 }

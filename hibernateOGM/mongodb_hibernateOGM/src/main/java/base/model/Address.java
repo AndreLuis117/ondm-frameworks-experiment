@@ -19,7 +19,7 @@ public class Address {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private String id;
+    private int id;
     @Column
     private String city;
     @Column
@@ -62,11 +62,11 @@ public class Address {
         this.postalCode = postalCode;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 }

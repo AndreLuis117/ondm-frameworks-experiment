@@ -33,6 +33,8 @@ public class AggregationTestsService implements ServiceBase {
         try{
             TransactionManager transactionManager =
                     com.arjuna.ats.jta.TransactionManager.transactionManager();
+            transactionManager.begin();
+
             Address address = new Address("Rio Negrinho", "Rua Marechal Teodoro", "SC", 178);
             Client client = new Client("John Marston", address);
 
@@ -42,6 +44,8 @@ public class AggregationTestsService implements ServiceBase {
                 Printer.insertSuccess();
             else
                 Printer.insertFailure();
+
+            transactionManager.commit();
 
         }catch (Exception e){
             e.printStackTrace();
@@ -53,6 +57,10 @@ public class AggregationTestsService implements ServiceBase {
     public void select() {
 
         try {
+            TransactionManager transactionManager =
+                    com.arjuna.ats.jta.TransactionManager.transactionManager();
+            transactionManager.begin();
+
             Address address = new Address("Joinville", "Rua da saudade", "SC", 898);
             Client client = new Client("Marco Reus", address);
 
@@ -81,6 +89,8 @@ public class AggregationTestsService implements ServiceBase {
             }else
                 Printer.selectFailure();
 
+            transactionManager.commit();
+
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -91,6 +101,10 @@ public class AggregationTestsService implements ServiceBase {
     public void update() {
 
         try{
+            TransactionManager transactionManager =
+                    com.arjuna.ats.jta.TransactionManager.transactionManager();
+            transactionManager.begin();
+
             Address address = new Address("Joinville", "Rua XV de novembro", "SC", 1100);
             Client client = new Client("Thomas A. Anderson", address);
 
@@ -107,6 +121,8 @@ public class AggregationTestsService implements ServiceBase {
             else
                 Printer.updateFailure();
 
+            transactionManager.commit();
+
         } catch (Exception e){
             e.printStackTrace();
         }
@@ -117,6 +133,10 @@ public class AggregationTestsService implements ServiceBase {
     public void delete() {
 
         try {
+            TransactionManager transactionManager =
+                    com.arjuna.ats.jta.TransactionManager.transactionManager();
+            transactionManager.begin();
+
             Address address = new Address("Chapecó", "Rua João dos Santos", "SC", 460);
             Client client = new Client("John Wick", address);
 
@@ -128,6 +148,9 @@ public class AggregationTestsService implements ServiceBase {
                 Printer.deleteSuccess();
             else
                 Printer.deleteFailure();
+
+            transactionManager.commit();
+
         }catch (Exception e){
             e.printStackTrace();
         }
