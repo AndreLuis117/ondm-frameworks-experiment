@@ -7,6 +7,7 @@ import utilities.Printer;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.transaction.TransactionManager;
 
 public class InheritanceTestsService implements ServiceBase {
 
@@ -29,6 +30,10 @@ public class InheritanceTestsService implements ServiceBase {
     public void insert() {
 
         try{
+            TransactionManager transactionManager =
+                    com.arjuna.ats.jta.TransactionManager.transactionManager();
+            transactionManager.begin();
+
             Electronic electronic = new Electronic("Xbox One X", 220);
 
             em.persist(electronic);
@@ -38,6 +43,7 @@ public class InheritanceTestsService implements ServiceBase {
             else
                 Printer.insertFailure();
 
+            transactionManager.commit();
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -48,6 +54,10 @@ public class InheritanceTestsService implements ServiceBase {
     public void select() {
 
         try{
+            TransactionManager transactionManager =
+                    com.arjuna.ats.jta.TransactionManager.transactionManager();
+            transactionManager.begin();
+
             Electronic electronic = new Electronic("Xbox One X", 220);
 
             em.persist(electronic);
@@ -59,6 +69,7 @@ public class InheritanceTestsService implements ServiceBase {
             else
                 Printer.selectFailure();
 
+            transactionManager.commit();
 
         }catch (Exception e){
             e.printStackTrace();
@@ -70,6 +81,10 @@ public class InheritanceTestsService implements ServiceBase {
     public void update() {
 
         try{
+            TransactionManager transactionManager =
+                    com.arjuna.ats.jta.TransactionManager.transactionManager();
+            transactionManager.begin();
+
             Electronic electronic = new Electronic("PS4", 110);
 
             em.persist(electronic);
@@ -85,6 +100,8 @@ public class InheritanceTestsService implements ServiceBase {
             else
                 Printer.updateFailure();
 
+            transactionManager.commit();
+
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -95,6 +112,10 @@ public class InheritanceTestsService implements ServiceBase {
     public void delete() {
 
         try{
+            TransactionManager transactionManager =
+                    com.arjuna.ats.jta.TransactionManager.transactionManager();
+            transactionManager.begin();
+
             Electronic electronic = new Electronic("TV SAMSUNG 4K RU7100", 220);
 
             em.persist(electronic);
@@ -105,6 +126,8 @@ public class InheritanceTestsService implements ServiceBase {
                 Printer.deleteSuccess();
             else
                 Printer.deleteFailure();
+
+            transactionManager.commit();
 
         }catch (Exception e){
             e.printStackTrace();
