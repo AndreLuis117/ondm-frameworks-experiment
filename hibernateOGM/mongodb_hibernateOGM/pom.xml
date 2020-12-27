@@ -35,8 +35,6 @@
             <artifactId>narayana-jta</artifactId>
             <version>5.9.2.Final</version>
         </dependency>
-
-
     </dependencies>
 
 
