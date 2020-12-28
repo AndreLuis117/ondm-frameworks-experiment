@@ -3,28 +3,22 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>ondmtests</artifactId>
+        <artifactId>hibernateOGM</artifactId>
         <groupId>br.edu.univille.tcc</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>hibernateOGM</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>mongodb_hibernateOGM</module>
-        <module>redis_hibernateOGM</module>
-        <module>cassandra_hibernateOGM</module>
-        <module>neo4j_hibernateOGM</module>
-    </modules>
+    <artifactId>neo4j_hibernateOGM</artifactId>
+
 
     <dependencies>
         <dependency>
-            <groupId>br.edu.univille.tcc</groupId>
-            <artifactId>shared</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <scope>compile</scope>
+            <groupId>org.hibernate.ogm</groupId>
+            <artifactId>hibernate-ogm-neo4j</artifactId>
+            <version>5.4.1.Final</version>
         </dependency>
     </dependencies>
+
 
 </project>
