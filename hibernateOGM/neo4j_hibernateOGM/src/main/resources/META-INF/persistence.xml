@@ -4,7 +4,7 @@
              xsi:schemaLocation="http://java.sun.com/xml/ns/persistence
                            http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
 
-    <persistence-unit name="mongo_pu" transaction-type="JTA">
+    <persistence-unit name="neo4j_pu" transaction-type="JTA">
         <provider>org.hibernate.ogm.jpa.HibernateOgmPersistence</provider>
 
         <class>base.model.Address</class>
@@ -20,10 +20,10 @@
 
         <properties>
             <property name="hibernate.ogm.datastore.database" value="hibernateOgmDb" />
-            <property name="hibernate.ogm.datastore.host" value="127.0.0.1" />
-            <property name="hibernate.ogm.datastore.provider" value="MONGODB" />
+<!--            <property name="hibernate.ogm.datastore.host" value="127.0.0.1" />-->
+            <property name="hibernate.ogm.datastore.provider" value="neo4j_bolt" />
 
-            <property name="hibernate.ogm.datastore.port" value="27017" />
+<!--            <property name="hibernate.ogm.datastore.port" value="27017" />-->
 
             <property name="hibernate.ogm.datastore.create_database" value="true" />
         </properties>

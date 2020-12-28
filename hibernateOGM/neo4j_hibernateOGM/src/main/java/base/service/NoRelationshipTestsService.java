@@ -11,7 +11,7 @@ import javax.transaction.TransactionManager;
 public class NoRelationshipTestsService implements ServiceBase {
 
     public NoRelationshipTestsService(){
-        emf = Persistence.createEntityManagerFactory("mongo_pu");
+        emf = Persistence.createEntityManagerFactory("neo4j_pu");
         em = emf.createEntityManager();
     }
 

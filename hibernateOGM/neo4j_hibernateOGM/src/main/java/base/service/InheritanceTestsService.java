@@ -12,7 +12,7 @@ import javax.transaction.TransactionManager;
 public class InheritanceTestsService implements ServiceBase {
 
     public InheritanceTestsService(){
-        emf = Persistence.createEntityManagerFactory("mongo_pu");
+        emf = Persistence.createEntityManagerFactory("neo4j_pu");
         em = emf.createEntityManager();
     }
 

@@ -16,7 +16,7 @@ import java.util.List;
 public class CompositionTestsService implements ServiceBase {
 
     public CompositionTestsService(){
-        emf = Persistence.createEntityManagerFactory("mongo_pu");
+        emf = Persistence.createEntityManagerFactory("neo4j_pu");
         em = emf.createEntityManager();
     }
 
