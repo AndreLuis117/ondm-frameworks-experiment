@@ -19,13 +19,13 @@
 
 
         <properties>
-<!--            <property name="hibernate.ogm.datastore.database" value="hibernateOgmDb" />-->
+            <property name="hibernate.ogm.datastore.database" value="hibernateOgmDb" />
 <!--            <property name="hibernate.ogm.datastore.host" value="127.0.0.1" />-->
             <property name="hibernate.ogm.datastore.provider" value="cassandra_experimental" />
 
 <!--            <property name="hibernate.ogm.datastore.port" value="27017" />-->
 
-            <property name="hibernate.ogm.datastore.create_database" value="true" />
+<!--            <property name="hibernate.ogm.datastore.create_database" value="true" />-->
         </properties>
 
     </persistence-unit>
