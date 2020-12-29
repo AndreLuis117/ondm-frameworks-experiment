@@ -19,13 +19,16 @@
 
 
         <properties>
-            <property name="hibernate.ogm.datastore.database" value="hibernateOgmDb" />
-<!--            <property name="hibernate.ogm.datastore.host" value="127.0.0.1" />-->
+            <property name="hibernate.ogm.datastore.database" value="neo4j" />
+<!--            <property name="hibernate.ogm.datastore.host" value="localhost:7687" />-->
+<!--            <property name="hibernate.ogm.datastore.provider" value="neo4j_embedded" />-->
             <property name="hibernate.ogm.datastore.provider" value="neo4j_bolt" />
 
-<!--            <property name="hibernate.ogm.datastore.port" value="27017" />-->
+            <property name="hibernate.ogm.datastore.username" value="neo4j" />
+            <property name="hibernate.ogm.datastore.password" value="test" />
+<!--            <property name="hibernate.ogm.neo4j.database_path" value="target/neo4jTest.db" />-->
 
-            <property name="hibernate.ogm.datastore.create_database" value="true" />
+<!--            <property name="hibernate.ogm.datastore.create_database" value="true" />-->
         </properties>
 
     </persistence-unit>
