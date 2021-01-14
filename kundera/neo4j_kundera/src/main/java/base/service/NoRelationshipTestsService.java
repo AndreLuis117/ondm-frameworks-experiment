@@ -33,10 +33,10 @@ public class NoRelationshipTestsService extends KunderaNeo4jService implements S
 
             em.getTransaction().commit();
 
-            CloseEntityManager();
         } catch (Exception e) {
-            CloseEntityManager();
             e.printStackTrace();
+        }finally {
+            CloseEntityManager();
         }
 
     }
@@ -62,10 +62,10 @@ public class NoRelationshipTestsService extends KunderaNeo4jService implements S
 
             em.getTransaction().commit();
 
-            CloseEntityManager();
         } catch (Exception e) {
-            CloseEntityManager();
             e.printStackTrace();
+        }finally {
+            CloseEntityManager();
         }
     }
 
@@ -73,7 +73,6 @@ public class NoRelationshipTestsService extends KunderaNeo4jService implements S
 
         try{
             CreateEntityManager();
-
 
             Status status = new Status("Aguardando coleta da transportadora");
             em.getTransaction().begin();
@@ -88,11 +87,11 @@ public class NoRelationshipTestsService extends KunderaNeo4jService implements S
                 Printer.deleteFailure();
 
             em.getTransaction().commit();
-            CloseEntityManager();
 
         } catch (Exception e){
-            CloseEntityManager();
             e.printStackTrace();
+        }finally {
+            CloseEntityManager();
         }
 
     }
@@ -100,7 +99,6 @@ public class NoRelationshipTestsService extends KunderaNeo4jService implements S
 
         try{
             CreateEntityManager();
-
 
             Status status = new Status("Em transrte");
             em.getTransaction().begin();
@@ -121,12 +119,11 @@ public class NoRelationshipTestsService extends KunderaNeo4jService implements S
 
             em.getTransaction().commit();
 
-            CloseEntityManager();
-
         }
         catch (Exception e){
-            CloseEntityManager();
             e.printStackTrace();
+        }finally {
+            CloseEntityManager();
         }
 
     }

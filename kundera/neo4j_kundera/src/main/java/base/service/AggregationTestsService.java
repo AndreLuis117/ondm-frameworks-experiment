@@ -43,8 +43,9 @@ public class AggregationTestsService extends KunderaNeo4jService implements Serv
             CloseEntityManager();
 
         }catch (Exception e){
-            CloseEntityManager();
             e.printStackTrace();
+        }finally {
+            CloseEntityManager();
         }
 
     }
@@ -74,24 +75,23 @@ public class AggregationTestsService extends KunderaNeo4jService implements Serv
             var clientReturn2 = em.find(Client.class, client2.getId());
             var clientReturn3 = em.find(Client.class, client3.getId());
 
-            if(clientReturn != null){
+            if(clientReturn != null)
+            {
                 Printer.selectSuccess();
                 System.out.println("Clientes:");
                 System.out.println(clientReturn.getName());
                 System.out.println(clientReturn2.getName());
                 System.out.println(clientReturn3.getName());
 
-
             }else
                 Printer.selectFailure();
 
             em.getTransaction().commit();
 
-            CloseEntityManager();
-
         }catch (Exception e){
-            CloseEntityManager();
             e.printStackTrace();
+        }finally {
+            CloseEntityManager();
         }
 
     }
@@ -122,11 +122,10 @@ public class AggregationTestsService extends KunderaNeo4jService implements Serv
 
             em.getTransaction().commit();
 
-            CloseEntityManager();
-
         } catch (Exception e){
-            CloseEntityManager();
             e.printStackTrace();
+        }finally {
+            CloseEntityManager();
         }
 
     }
@@ -153,11 +152,10 @@ public class AggregationTestsService extends KunderaNeo4jService implements Serv
 
             em.getTransaction().commit();
 
-            CloseEntityManager();
-
         }catch (Exception e){
-            CloseEntityManager();
             e.printStackTrace();
+        }finally {
+            CloseEntityManager();
         }
 
     }

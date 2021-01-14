@@ -35,11 +35,11 @@ public class InheritanceTestsService extends KunderaNeo4jService implements Serv
                 Printer.insertFailure();
 
             em.getTransaction().commit();
-            CloseEntityManager();
 
         }catch (Exception e){
-            CloseEntityManager();
             e.printStackTrace();
+        }finally {
+            CloseEntityManager();
         }
 
     }
@@ -65,11 +65,10 @@ public class InheritanceTestsService extends KunderaNeo4jService implements Serv
 
             em.getTransaction().commit();
 
-            CloseEntityManager();
-
         }catch (Exception e){
-            CloseEntityManager();
             e.printStackTrace();
+        }finally {
+            CloseEntityManager();
         }
 
     }
@@ -97,12 +96,11 @@ public class InheritanceTestsService extends KunderaNeo4jService implements Serv
                 Printer.updateFailure();
 
             em.getTransaction().commit();
-            CloseEntityManager();
-
 
         }catch (Exception e){
-            CloseEntityManager();
             e.printStackTrace();
+        }finally {
+            CloseEntityManager();
         }
 
     }
@@ -126,12 +124,11 @@ public class InheritanceTestsService extends KunderaNeo4jService implements Serv
                 Printer.deleteFailure();
 
             em.getTransaction().commit();
-            CloseEntityManager();
-
 
         }catch (Exception e){
-            CloseEntityManager();
             e.printStackTrace();
+        }finally {
+            CloseEntityManager();
         }
 
     }

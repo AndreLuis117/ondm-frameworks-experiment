@@ -49,10 +49,10 @@ public class CompositionTestsService extends KunderaNeo4jService implements Serv
 
             em.getTransaction().commit();
 
-            CloseEntityManager();
-
         }catch (Exception e){
             e.printStackTrace();
+        }finally {
+            CloseEntityManager();
         }
 
     }
@@ -90,13 +90,13 @@ public class CompositionTestsService extends KunderaNeo4jService implements Serv
                 }
             }else
                 Printer.selectFailure();
+
             em.getTransaction().commit();
 
-            CloseEntityManager();
-
         } catch (Exception e){
-            CloseEntityManager();
             e.printStackTrace();
+        }finally {
+            CloseEntityManager();
         }
 
     }
@@ -134,11 +134,10 @@ public class CompositionTestsService extends KunderaNeo4jService implements Serv
 
             em.getTransaction().commit();
 
-            CloseEntityManager();
-
         }catch (Exception e){
-            CloseEntityManager();
             e.printStackTrace();
+        }finally {
+            CloseEntityManager();
         }
 
     }
@@ -173,11 +172,10 @@ public class CompositionTestsService extends KunderaNeo4jService implements Serv
 
             em.getTransaction().commit();
 
-            CloseEntityManager();
-
         } catch (Exception e){
-            CloseEntityManager();
             e.printStackTrace();
+        }finally {
+            CloseEntityManager();
         }
     }
 
