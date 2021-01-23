@@ -15,3 +15,5 @@ Cada framework é testado perante um banco de dados não relacional de um modelo
 * [Redis](https://redis.io/) (Chave-valor)
 * [Cassandra](https://cassandra.apache.org/) (Orientado a colunas)
 * [Neo4j](https://neo4j.com/) (Grafos)
+
+Para informações adicionais, favor consultar a [Wiki](https://github.com/AndreLuis117/ondm-frameworks-experiment/wiki) do projeto.
