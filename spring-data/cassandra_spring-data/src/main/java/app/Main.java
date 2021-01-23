@@ -51,8 +51,8 @@ public class Main extends AbstractCassandraConfiguration {
         //inheritanceTests.delete();
         //inheritanceTests.select();
 
-        //noRelationshipTests.runAll();
-        compositionTests.runAll();
+        noRelationshipTests.runAll();
+        //compositionTests.runAll();
         //agregationTests.runAll();
         //inheritanceTests.runAll();
 
