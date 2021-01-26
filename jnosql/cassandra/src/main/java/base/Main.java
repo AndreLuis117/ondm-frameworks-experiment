@@ -1,6 +1,5 @@
 package base;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import base.service.AggregationTestsService;
 import base.service.CompositionTestsService;
 import base.service.InheritanceTestsService;
@@ -8,7 +7,7 @@ import base.service.NoRelationshipTestsService;
 
 public class Main {
 
-    @Autowired
+
     public static void main(String[] args) {
 
         NoRelationshipTestsService noRelationshipTests = new NoRelationshipTestsService();

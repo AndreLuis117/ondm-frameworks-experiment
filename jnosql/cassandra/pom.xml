@@ -18,11 +18,7 @@
             <artifactId>cassandra-extension</artifactId>
             <version>${jnosql.version}</version>
         </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-beans</artifactId>
-            <version>5.3.0</version>
-        </dependency>
+
 
     </dependencies>
 
