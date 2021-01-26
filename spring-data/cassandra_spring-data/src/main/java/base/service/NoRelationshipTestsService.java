@@ -3,7 +3,7 @@ package base.service;
 import base.model.Status;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import repository.StatusRepository;
+import base.repository.StatusRepository;
 import utilities.Printer;
 
 public class NoRelationshipTestsService implements ServiceBase {

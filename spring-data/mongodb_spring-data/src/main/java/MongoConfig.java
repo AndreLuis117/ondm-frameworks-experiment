@@ -2,12 +2,8 @@ import com.mongodb.ConnectionString;
 import com.mongodb.MongoClientSettings;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
-import com.mongodb.client.internal.MongoClientImpl;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.core.env.Environment;
 import org.springframework.data.mongodb.config.AbstractMongoClientConfiguration;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -18,7 +14,7 @@ import java.util.Collection;
 import java.util.Collections;
 
 @Configuration
-@EnableMongoRepositories(basePackages = {"repository"})
+@EnableMongoRepositories(basePackages = {"base.repository"})
 public class MongoConfig extends AbstractMongoClientConfiguration  {
     @Override
     protected String getDatabaseName() {
@@ -43,7 +39,7 @@ public class MongoConfig extends AbstractMongoClientConfiguration  {
 
     @Override
     public Collection getMappingBasePackages() {
-        return Collections.singleton("repository");
+        return Collections.singleton("base/repository");
     }
 
 }

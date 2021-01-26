@@ -2,7 +2,7 @@ package base.service;
 
 import base.model.*;
 import org.eclipse.jnosql.artemis.DatabaseQualifier;
-import repository.OrderRepository;
+import base.repository.OrderRepository;
 import utilities.Printer;
 
 import javax.enterprise.inject.se.SeContainer;

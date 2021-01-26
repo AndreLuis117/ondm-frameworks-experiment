@@ -1,7 +1,7 @@
 package base.service;
 
 import base.model.Status;
-import repository.StatusRepository;
+import base.repository.StatusRepository;
 import utilities.Printer;
 
 import javax.enterprise.inject.se.SeContainer;

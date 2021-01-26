@@ -3,7 +3,7 @@ package base.service;
 import base.model.Electronic;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import repository.ElectronicRepository;
+import base.repository.ElectronicRepository;
 import utilities.Printer;
 
 public class InheritanceTestsService implements ServiceBase {

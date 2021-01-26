@@ -3,7 +3,7 @@ package base.service;
 import base.model.Address;
 import base.model.Client;
 import org.eclipse.jnosql.artemis.graph.GraphTemplate;
-import repository.ClientRepository;
+import base.repository.ClientRepository;
 import utilities.Printer;
 
 import javax.enterprise.inject.se.SeContainer;

@@ -4,7 +4,7 @@ import base.model.Address;
 import base.model.Client;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import repository.ClientRepository;
+import base.repository.ClientRepository;
 import utilities.Printer;
 
 public class AggregationTestsService implements ServiceBase{

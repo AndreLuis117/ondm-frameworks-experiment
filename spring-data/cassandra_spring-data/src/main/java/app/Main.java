@@ -17,7 +17,7 @@ import java.util.List;
 
 @Component
 @SpringBootApplication
-@EnableCassandraRepositories("repository")
+@EnableCassandraRepositories("base.repository")
 public class Main extends AbstractCassandraConfiguration {
 
 

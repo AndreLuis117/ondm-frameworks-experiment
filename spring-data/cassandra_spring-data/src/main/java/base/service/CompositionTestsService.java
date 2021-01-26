@@ -3,7 +3,7 @@ package base.service;
 import base.model.*;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import repository.OrderRepository;
+import base.repository.OrderRepository;
 import utilities.Printer;
 
 import java.util.ArrayList;
