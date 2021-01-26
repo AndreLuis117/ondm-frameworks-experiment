@@ -1,4 +1,4 @@
-
+package base;
 
 
 import org.eclipse.jnosql.diana.cassandra.column.CassandraColumnFamilyManager;

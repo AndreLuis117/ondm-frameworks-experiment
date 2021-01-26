@@ -1,3 +1,6 @@
+package base;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import base.service.AggregationTestsService;
 import base.service.CompositionTestsService;
 import base.service.InheritanceTestsService;
@@ -5,6 +8,7 @@ import base.service.NoRelationshipTestsService;
 
 public class Main {
 
+    @Autowired
     public static void main(String[] args) {
 
         NoRelationshipTestsService noRelationshipTests = new NoRelationshipTestsService();
@@ -12,7 +16,7 @@ public class Main {
         AggregationTestsService agregationTests = new AggregationTestsService();
         InheritanceTestsService inheritanceTests = new InheritanceTestsService();
 
-        //noRelationshipTests.insert();
+        noRelationshipTests.insert();
         //noRelationshipTests.select();
         //noRelationshipTests.update();
         //noRelationshipTests.delete();
@@ -34,11 +38,10 @@ public class Main {
         //inheritanceTests.delete();
         //inheritanceTests.select();
 
-        noRelationshipTests.runAll();
-        agregationTests.runAll();
-        compositionTests.runAll();
-        inheritanceTests.runAll();
-
+        //noRelationshipTests.runAll();
+        //agregationTests.runAll();
+        //agregationTests.runAll();
+        //inheritanceTests.runAll();
 
     }
 
