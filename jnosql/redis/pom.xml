@@ -21,17 +21,15 @@
             <artifactId>redis-driver</artifactId>
             <version>${jnosql.version}</version>
         </dependency>
-
         <dependency>
             <groupId>org.glassfish</groupId>
             <artifactId>javax.json</artifactId>
-            <version>1.1</version>
+            <version>${javax.json.version}</version>
         </dependency>
-
         <dependency>
             <groupId>org.eclipse</groupId>
             <artifactId>yasson</artifactId>
-            <version>1.0</version>
+            <version>${yasson.version}</version>
         </dependency>
 
     </dependencies>
