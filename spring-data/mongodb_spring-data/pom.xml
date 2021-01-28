@@ -16,12 +16,12 @@
         <dependency>
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-mongodb</artifactId>
-            <version>3.1.0</version>
+            <version>${springdata.mongodb.version}</version>
         </dependency>
         <dependency>
             <groupId>org.mongodb</groupId>
             <artifactId>mongodb-driver-sync</artifactId>
-            <version>4.0.3</version>
+            <version>${mongodb.driver.version}</version>
             <scope>compile</scope>
         </dependency>
 

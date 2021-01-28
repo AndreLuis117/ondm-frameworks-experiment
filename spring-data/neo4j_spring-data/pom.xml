@@ -16,9 +16,8 @@
         <dependency>
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-neo4j</artifactId>
-            <version>6.0.1</version>
+            <version>${springdata.neo4j.version}</version>
         </dependency>
-
     </dependencies>
 
 

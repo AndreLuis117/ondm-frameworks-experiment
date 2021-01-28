@@ -26,6 +26,12 @@
 		<tinkerpop.version>3.4.3</tinkerpop.version>
 		<neo4j.tinkerpopimpl.version>0.9-3.4.0</neo4j.tinkerpopimpl.version>
 		<yasson.version>1.0</yasson.version>
+		<springdata.mongodb.version>3.1.0</springdata.mongodb.version>
+		<springdata.redis.version>2.4.0</springdata.redis.version>
+		<springdata.neo4j.version>6.0.1</springdata.neo4j.version>
+		<springdata.cassandra.version>2.4.0</springdata.cassandra.version>
+		<mongodb.driver.version>4.0.3</mongodb.driver.version>
+		<jedis.version>3.3.0</jedis.version>
 	</properties>
 	<build>
 		<plugins>
