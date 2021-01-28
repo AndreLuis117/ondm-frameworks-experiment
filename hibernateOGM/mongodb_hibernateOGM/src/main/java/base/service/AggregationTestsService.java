@@ -10,6 +10,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.transaction.TransactionManager;
 
+
 public class AggregationTestsService implements ServiceBase {
 
     public AggregationTestsService(){

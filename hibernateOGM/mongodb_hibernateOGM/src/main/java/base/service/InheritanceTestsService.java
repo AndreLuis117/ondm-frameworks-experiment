@@ -9,6 +9,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.transaction.TransactionManager;
 
+
 public class InheritanceTestsService implements ServiceBase {
 
     public InheritanceTestsService(){
