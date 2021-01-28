@@ -7,28 +7,11 @@
     <persistence-unit name="neo4j_pu" transaction-type="JTA">
         <provider>org.hibernate.ogm.jpa.HibernateOgmPersistence</provider>
 
-        <class>base.model.Address</class>
-        <class>base.model.Client</class>
-        <class>base.model.Electronic</class>
-        <class>base.model.Order</class>
-        <class>base.model.OrderItems</class>
-        <class>base.model.Product</class>
-        <class>base.model.ProductEmbeddable</class>
-        <class>base.model.Status</class>
-        <class>base.model.Toy</class>
-
-
         <properties>
             <property name="hibernate.ogm.datastore.database" value="neo4j" />
-<!--            <property name="hibernate.ogm.datastore.host" value="localhost:7687" />-->
-<!--            <property name="hibernate.ogm.datastore.provider" value="neo4j_embedded" />-->
             <property name="hibernate.ogm.datastore.provider" value="neo4j_bolt" />
-
             <property name="hibernate.ogm.datastore.username" value="neo4j" />
             <property name="hibernate.ogm.datastore.password" value="test" />
-<!--            <property name="hibernate.ogm.neo4j.database_path" value="target/neo4jTest.db" />-->
-
-<!--            <property name="hibernate.ogm.datastore.create_database" value="true" />-->
         </properties>
 
     </persistence-unit>
