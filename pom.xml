@@ -32,6 +32,8 @@
 		<springdata.cassandra.version>2.4.0</springdata.cassandra.version>
 		<mongodb.driver.version>4.0.3</mongodb.driver.version>
 		<jedis.version>3.3.0</jedis.version>
+		<weld.version>3.1.1.Final</weld.version>
+		<microprofile.version>1.4</microprofile.version>
 	</properties>
 	<build>
 		<plugins>
@@ -55,12 +57,12 @@
 		<dependency>
 			<groupId>org.eclipse.microprofile.config</groupId>
 			<artifactId>microprofile-config-api</artifactId>
-			<version>1.4</version>
+			<version>${microprofile.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.jboss.weld.se</groupId>
 			<artifactId>weld-se-shaded</artifactId>
-			<version>3.1.1.Final</version>
+			<version>${weld.version}</version>
 		</dependency>
 	</dependencies>
 </project>
